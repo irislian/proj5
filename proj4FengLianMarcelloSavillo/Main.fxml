@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+File: Main.fxml
+CS361 Project 4
+Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
+Date: 10/02/18
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj4FengLianMarcelloSavillo.Controller">
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu onHidden="#handleFileHidden" onShowing="#handleFileShowing" text="File">
+            <MenuItem fx:id="aboutButton" onAction="#handleAboutButtonAction" text="About..." />
+            <SeparatorMenuItem />
+            <MenuItem fx:id="newButton" onAction="#handleNewButtonAction" text="New">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="N" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                </accelerator></MenuItem>
+            <MenuItem fx:id="openButton" onAction="#handleOpenButtonAction" text="Open...">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="O" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                </accelerator></MenuItem>
+            <MenuItem fx:id="closeButton" onAction="#handleCloseButtonAction" text="Close">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="W" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                </accelerator></MenuItem>
+            <MenuItem fx:id="saveButton" onAction="#handleSaveButtonAction" text="Save">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                </accelerator></MenuItem>
+            <MenuItem fx:id="saveAsButton" onAction="#handleSaveAsButtonAction" text="Save as...">
+            <accelerator>
+               <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN" shift="DOWN" shortcut="UP" />
+            </accelerator></MenuItem>
+            <SeparatorMenuItem />
+            <MenuItem fx:id="exitButton" onAction="#handleExitButtonAction" text="Exit">
+            <accelerator>
+               <KeyCodeCombination alt="UP" code="Q" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+            </accelerator></MenuItem>
+        </Menu>
+        <Menu onHidden="#handleEditHidden" onShowing="#handleEditShowing" text="Edit">
+            <MenuItem fx:id="undoButton" onAction="#handleUndoButtonAction" text="Undo" />
+            <MenuItem fx:id="redoButton" onAction="#handleRedoButtonAction" text="Redo" />
+            <MenuItem fx:id="cutButton" onAction="#handleCutButtonAction" text="Cut" />
+            <MenuItem fx:id="copyButton" onAction="#handleCopyButtonAction" text="Copy" />
+            <MenuItem fx:id="pasteButton" onAction="#handlePasteButtonAction" text="Paste" />
+            <MenuItem fx:id="selectButton" onAction="#handleSelectAllButtonAction" text="Select all" />
+        </Menu>
+    </MenuBar>
+    <ToolBar VBox.vgrow="ALWAYS">
+        <Button fx:id="helloButton" onAction="#handleHelloButtonAction" text="Hello" />
+        <Button fx:id="goodbyeButton" onAction="#handleGoodbyeButtonAction" text="Goodbye" />
+    </ToolBar>
+    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+        <tabs>
+            <Tab fx:id="untitledTab" onCloseRequest="#handleCloseButtonAction" text="untitled">
+                <content>
+                    <TextArea fx:id="defaultTextArea" wrapText="true" />
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>
