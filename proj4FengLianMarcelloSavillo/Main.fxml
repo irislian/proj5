@@ -19,6 +19,9 @@ Date: 10/02/18
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.VBox?>
 
+<?import org.fxmisc.richtext.CodeArea?>
+<?import org.fxmisc.flowless.VirtualizedScrollPane?>
+
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj4FengLianMarcelloSavillo.Controller">
     <MenuBar VBox.vgrow="NEVER">
         <Menu onHidden="#handleFileHidden" onShowing="#handleFileShowing" text="File">
@@ -67,7 +70,11 @@ Date: 10/02/18
         <tabs>
             <Tab fx:id="untitledTab" onCloseRequest="#handleCloseButtonAction" text="untitled">
                 <content>
-                    <TextArea fx:id="defaultTextArea" wrapText="true" />
+                    <VirtualizedScrollPane>
+                        <content>
+                            <CodeArea fx:id="codeArea" wrapText="true"/>
+                        </content>
+                    </VirtualizedScrollPane>
                 </content>
             </Tab>
         </tabs>

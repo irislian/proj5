@@ -42,6 +42,7 @@ public class Main extends Application {
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, 640, 480);
         scene.getStylesheets().add("/proj4FengLianMarcelloSavillo/Main.css");
+        scene.getStylesheets().add("/proj4FengLianMarcelloSavillo/java-keywords.css");
  
         // configure the stage
         stage.setTitle("Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo's Project 4");
