@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 
 import javafx.scene.control.ButtonBar.ButtonData;
 
+import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
@@ -68,7 +69,8 @@ public class Controller
     /**
      * the default code area
      */
-    @FXML private CodeArea codeArea;
+    @FXML
+    private CodeArea codeArea;
     /**
      * a HashMap mapping the tabs and associated files
      */
@@ -95,7 +97,7 @@ public class Controller
     private MenuItem selectButton;
 
 
-    private static final String[] KEYWORDS = new String[] {
+    private static final String[] KEYWORDS = new String[]{
             "abstract", "assert", "boolean", "break", "byte",
             "case", "catch", "char", "class", "const",
             "continue", "default", "do", "double", "else",
@@ -144,7 +146,8 @@ public class Controller
     /**
      * Helper function to set up the code area.
      */
-    private void setUpCodeArea(){
+    private void setUpCodeArea()
+    {
         this.codeArea.setParagraphGraphicFactory(LineNumberFactory.get(this.codeArea));
 
         // recompute the syntax highlighting 500 ms after user stops editing area
@@ -167,12 +170,14 @@ public class Controller
      *
      * @param text String that is in the code area
      */
-    private static StyleSpans<Collection<String>> computeHighlighting(String text) {
+    private static StyleSpans<Collection<String>> computeHighlighting(String text)
+    {
         Matcher matcher = PATTERN.matcher(text);
         int lastKwEnd = 0;
         StyleSpansBuilder<Collection<String>> spansBuilder
                 = new StyleSpansBuilder<>();
-        while(matcher.find()) {
+        while (matcher.find())
+        {
             String styleClass =
                     matcher.group("KEYWORD") != null ? "keyword" :
                             matcher.group("PAREN") != null ? "paren" :
@@ -182,7 +187,8 @@ public class Controller
                                                             matcher.group("STRING") != null ? "string" :
                                                                     matcher.group("COMMENT") != null ? "comment" :
                                                                             matcher.group("INTCON") != null ? "intcon" :
-                                                                                    null; /* never happens */ assert styleClass != null;
+                                                                                    null; /* never happens */
+            assert styleClass != null;
             spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
             spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
             lastKwEnd = matcher.end();
@@ -260,15 +266,15 @@ public class Controller
      * Helper function to check if the content of the specified TextArea
      * has changed from the specified File.
      *
-     * @param textArea TextArea to compare with the the specified File
+     * @param codeArea TextArea to compare with the the specified File
      * @param file     File to compare with the the specified TextArea
      * @return Boolean indicating if the TextArea has changed from the File
      */
-    private Boolean ifFileChanged(TextArea textArea, File file)
+    private Boolean ifFileChanged(CodeArea codeArea, File file)
     {
-        String textAreaContent = textArea.getText();
+        String codeAreaContent = codeArea.getText();
         String fileContent = this.getFileContent((file));
-        return !textAreaContent.equals(fileContent);
+        return !codeAreaContent.equals(fileContent);
     }
 
 
@@ -303,7 +309,7 @@ public class Controller
         // check whether the saved file has been changed or not
         else
         {
-            return this.ifFileChanged((TextArea) tab.getContent(), this.tabFileMap.get(tab));
+            return this.ifFileChanged((CodeArea) tab.getContent(), this.tabFileMap.get(tab));
         }
     }
 
@@ -377,10 +383,7 @@ public class Controller
 
         // when ok button is clicked, set the text of the Hello button to the input number
         final Optional<String> enterValue = dialog.showAndWait();
-        if (enterValue.isPresent())
-        {
-            this.helloButton.setText(enterValue.get());
-        }
+        enterValue.ifPresent(s -> this.helloButton.setText(s));
     }
 
 
@@ -412,7 +415,7 @@ public class Controller
         // set the title and the content of the About window
         dialog.setTitle("About");
         dialog.setHeaderText("Authors");
-        dialog.setContentText("Liwei Jiang\nIris Lian\nTracy Quan");
+        dialog.setContentText("Yi Feng,\nIris Lian,\nChristopher Marcello,\nand Evan Savillo");
 
         // enable to resize the About window
         dialog.setResizable(true);
@@ -428,12 +431,13 @@ public class Controller
     @FXML
     private void handleNewButtonAction()
     {
-        TextArea newTextArea = new TextArea();
+        CodeArea newCodeArea = new CodeArea();
 
         Tab newTab = new Tab();
         newTab.setText("untitled");
-        newTab.setContent(newTextArea);
+        newTab.setContent(newCodeArea);
         // set close action
+        //TODO come back later, may not be necessary
         newTab.setOnClosed(event -> this.closeTab(newTab));
 
         // add the new tab to the tab pane
@@ -475,12 +479,12 @@ public class Controller
             }
 
             String contentString = this.getFileContent(openFile);
-            TextArea untitledTextArea = (TextArea) this.untitledTab.getContent();
+            CodeArea untitledCodeArea = (CodeArea) this.untitledTab.getContent();
             // if the default text area is empty, then fill that in with the file to be open
             // this tab becomes the topmost tab
-            if (untitledTextArea.getText().isEmpty())
+            if (untitledCodeArea.getText().isEmpty())
             {
-                untitledTextArea.setText(contentString);
+                untitledCodeArea.replaceText(contentString);
                 this.untitledTab.setText(openFile.getName());
                 this.tabPane.getSelectionModel().select(this.untitledTab);
                 this.tabFileMap.put(this.untitledTab, openFile);
@@ -488,12 +492,12 @@ public class Controller
             // if the default text area is not empty, open the file in a new tab window
             else
             {
-                TextArea newTextArea = new TextArea();
-                newTextArea.setText(contentString);
+                CodeArea newCodeArea = new CodeArea();
+                newCodeArea.replaceText(contentString);
 
                 Tab newTab = new Tab();
                 newTab.setText(openFile.getName());
-                newTab.setContent(newTextArea);
+                newTab.setContent(newCodeArea);
                 newTab.setOnClosed(event -> {
                     this.closeTab(newTab);
                 });
@@ -554,8 +558,8 @@ public class Controller
 
             // get the text area embedded in the selected tab window
             // save the content of the active text area to the selected file
-            TextArea activeTextArea = (TextArea) selectedTab.getContent();
-            this.saveFile(activeTextArea.getText(), saveFile);
+            CodeArea activeCodeArea = this.getCurrentCodeArea();
+            this.saveFile(activeCodeArea.getText(), saveFile);
             // set the title of the tab to the name of the saved file
             selectedTab.setText(saveFile.getName());
 
@@ -579,7 +583,8 @@ public class Controller
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
 
         // get the text area embedded in the selected tab window
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
+        ;
 
         // if the tab content was not loaded from a file nor ever saved to a file
         // save the content of the active text area to the selected file path
@@ -593,7 +598,7 @@ public class Controller
             File saveFile = fileChooser.showSaveDialog(null);
             if (saveFile != null)
             {
-                this.saveFile(activeTextArea.getText(), saveFile);
+                this.saveFile(activeCodeArea.getText(), saveFile);
 
                 // map the tab and the associated file
                 this.tabFileMap.put(selectedTab, saveFile);
@@ -606,7 +611,7 @@ public class Controller
         // then the text area is saved to that file
         else
         {
-            this.saveFile(activeTextArea.getText(), this.tabFileMap.get(selectedTab));
+            this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
         }
     }
 
@@ -639,10 +644,9 @@ public class Controller
     private void handleUndoButtonAction()
     {
         // get the text area embedded in the selected tab window
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
         // undo the actions in the text area
-        activeTextArea.undo();
+        activeCodeArea.undo();
     }
 
 
@@ -654,10 +658,9 @@ public class Controller
     private void handleRedoButtonAction()
     {
         // get the text area embedded in the selected tab window
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
         // redo the actions in the text area
-        activeTextArea.redo();
+        activeCodeArea.redo();
     }
 
 
@@ -669,10 +672,9 @@ public class Controller
     private void handleCutButtonAction()
     {
         // get the text area embedded in the selected tab window
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
         // cut the selected text
-        activeTextArea.cut();
+        activeCodeArea.cut();
     }
 
 
@@ -684,10 +686,9 @@ public class Controller
     private void handleCopyButtonAction()
     {
         // get the text area embedded in the selected tab window
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
         // copy the selected text
-        activeTextArea.copy();
+        activeCodeArea.copy();
     }
 
 
@@ -698,11 +699,10 @@ public class Controller
     @FXML
     private void handlePasteButtonAction()
     {
-        // get the text area embedded in the selected tab window
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        // get the code area embedded in the selected tab window
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
         // paste the copied/cut text
-        activeTextArea.paste();
+        activeCodeArea.paste();
     }
 
 
@@ -713,11 +713,10 @@ public class Controller
     @FXML
     private void handleSelectAllButtonAction()
     {
-        // get the text area embedded in the selected tab window
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        TextArea activeTextArea = (TextArea) selectedTab.getContent();
+        // get the code area embedded in the selected tab window
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
         // select all texts in the text area
-        activeTextArea.selectAll();
+        activeCodeArea.selectAll();
     }
 
     @FXML
@@ -756,13 +755,13 @@ public class Controller
         else
         {
             // Case 2: No undos
-            if (!getCurrentTextArea().isUndoable())
+            if (!getCurrentCodeArea().isUndoAvailable())
             {
                 undoButton.setDisable(true);
             }
 
             // Case 3: No redos
-            if (!getCurrentTextArea().isRedoable())
+            if (!getCurrentCodeArea().isRedoAvailable())
             {
                 redoButton.setDisable(true);
             }
@@ -780,9 +779,10 @@ public class Controller
         selectButton.setDisable(false);
     }
 
-    private TextArea getCurrentTextArea()
+    private CodeArea getCurrentCodeArea()
     {
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-        return (TextArea)selectedTab.getContent();
+        VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
+        return (CodeArea)vsp.getContent();
     }
 }
