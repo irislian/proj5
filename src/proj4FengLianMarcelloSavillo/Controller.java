@@ -17,6 +17,8 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import java.io.BufferedReader;
@@ -124,7 +126,7 @@ public class Controller
         newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
 
         // set close action (clicking the 'x')
-        newTab.setOnCloseRequest(this::handleCloseMenuitemAction);
+        newTab.setOnCloseRequest(this::handleCloseMenuItemAction);
 
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
@@ -176,7 +178,7 @@ public class Controller
             newTab.setContent(
                     new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
-            newTab.setOnClosed(this::handleCloseMenuitemAction);
+            newTab.setOnClosed(this::handleCloseMenuItemAction);
 
             this.tabFileMap.put(newTab, openFile);
 
@@ -190,7 +192,7 @@ public class Controller
      * appears asking whether you want to save the text before closing it.
      */
     @FXML
-    private void handleCloseMenuitemAction(Event event)
+    private void handleCloseMenuItemAction(Event event)
     {
         event.consume();
 
@@ -452,34 +454,18 @@ public class Controller
      */
     private String getFileContent(File file)
     {
-        StringBuilder contentString = new StringBuilder();
-        try
-        {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-            try
-            {
-                while ((line = bufferedReader.readLine()) != null)
-                {
-                    contentString.append(line).append("\n");
-                }
-                bufferedReader.close();
-            }
-            catch (IOException e)
-            {
-                MyErrorDialog myErrorDialog = new MyErrorDialog(
-                        MyErrorDialogType.READING_ERROR, file.getName());
-                myErrorDialog.showAndWait();
-            }
+        String content = "";
+        try{
+            content = new String(Files.readAllBytes(Paths.get(file.toURI())));
         }
-        catch (FileNotFoundException e)
+        catch (IOException e)
         {
             MyErrorDialog myErrorDialog = new MyErrorDialog(
-                    MyErrorDialogType.FNF_ERROR, file.getName());
+                    MyErrorDialogType.READING_ERROR, file.getName());
             myErrorDialog.showAndWait();
+
         }
-        return contentString.toString();
+        return content;
     }
 
 
@@ -508,6 +494,7 @@ public class Controller
     private void removeTab(Tab tab)
     {
         this.tabFileMap.remove(tab);
+        this.tabPane.getSelectionModel().selectPrevious();
         this.tabPane.getTabs().remove(tab);
     }
 
