@@ -75,7 +75,6 @@ public class Controller
 
     private int untitledCounter = 1;
 
-
     /**
      * This function is called after the FXML fields are populated.
      * Initializes the tab file map with the default tab.
@@ -125,7 +124,7 @@ public class Controller
         newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
 
         // set close action (clicking the 'x')
-        newTab.setOnCloseRequest(this::handleCloseMenuItemAction);
+        newTab.setOnCloseRequest(this::handleCloseMenuitemAction);
 
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
@@ -165,23 +164,22 @@ public class Controller
 
             String contentOpenedFile = this.getFileContent(openFile);
 
-
             // Case: current text area is in use and shouldn't be overwritten
             // Behavior: generate new tab and open the file there
-            {
-                Tab newTab = new Tab();
-                this.tabPane.getTabs().add(newTab);
-                //current tab is now new tab, so getCurrentCodeArea() can be used below
-                this.tabPane.getSelectionModel().select(newTab);
 
-                newTab.setText(openFile.getName());
-                newTab.setContent(
-                        new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
-                this.getCurrentCodeArea().replaceText(contentOpenedFile);
-                newTab.setOnClosed(this::handleCloseMenuItemAction);
+            Tab newTab = new Tab();
+            this.tabPane.getTabs().add(newTab);
+            //current tab is now new tab, so getCurrentCodeArea() can be used below
+            this.tabPane.getSelectionModel().select(newTab);
 
-                this.tabFileMap.put(newTab, openFile);
-            }
+            newTab.setText(openFile.getName());
+            newTab.setContent(
+                    new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+            this.getCurrentCodeArea().replaceText(contentOpenedFile);
+            newTab.setOnClosed(this::handleCloseMenuitemAction);
+
+            this.tabFileMap.put(newTab, openFile);
+
         }
     }
 
@@ -192,7 +190,7 @@ public class Controller
      * appears asking whether you want to save the text before closing it.
      */
     @FXML
-    private void handleCloseMenuItemAction(Event event)
+    private void handleCloseMenuitemAction(Event event)
     {
         event.consume();
 
@@ -510,7 +508,6 @@ public class Controller
     private void removeTab(Tab tab)
     {
         this.tabFileMap.remove(tab);
-        this.tabPane.getSelectionModel().selectPrevious();
         this.tabPane.getTabs().remove(tab);
     }
 
