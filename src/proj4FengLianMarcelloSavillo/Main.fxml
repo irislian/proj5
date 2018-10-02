@@ -24,42 +24,42 @@ Date: 10/02/18
 
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj4FengLianMarcelloSavillo.Controller">
     <MenuBar VBox.vgrow="NEVER">
-        <Menu onHidden="#handleFileHidden" onShowing="#handleFileShowing" text="File">
-            <MenuItem fx:id="aboutButton" onAction="#handleAboutButtonAction" text="About..." />
+        <Menu onHidden="#handleFileMenuHidden" onShowing="#handleFileMenuShowing" text="File">
+            <MenuItem fx:id="aboutButton" onAction="#handleAboutMenuitemAction" text="About..." />
             <SeparatorMenuItem />
-            <MenuItem fx:id="newButton" onAction="#handleNewButtonAction" text="New">
+            <MenuItem fx:id="newButton" onAction="#handleNewMenuitemAction" text="New">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="N" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
                 </accelerator></MenuItem>
-            <MenuItem fx:id="openButton" onAction="#handleOpenButtonAction" text="Open...">
+            <MenuItem fx:id="openButton" onAction="#handleOpenMenuitemAction" text="Open...">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="O" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
                 </accelerator></MenuItem>
-            <MenuItem fx:id="closeButton" onAction="#handleCloseButtonAction" text="Close">
+            <MenuItem fx:id="closeButton" onAction="#handleCloseMenuitemAction" text="Close">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="W" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
                 </accelerator></MenuItem>
-            <MenuItem fx:id="saveButton" onAction="#handleSaveButtonAction" text="Save">
+            <MenuItem fx:id="saveButton" onAction="#handleSaveMenuitemAction" text="Save">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
                 </accelerator></MenuItem>
-            <MenuItem fx:id="saveAsButton" onAction="#handleSaveAsButtonAction" text="Save as...">
+            <MenuItem fx:id="saveAsButton" onAction="#handleSaveAsMenuitemAction" text="Save as...">
             <accelerator>
                <KeyCodeCombination alt="UP" code="S" control="UP" meta="DOWN" shift="DOWN" shortcut="UP" />
             </accelerator></MenuItem>
             <SeparatorMenuItem />
-            <MenuItem fx:id="exitButton" onAction="#handleExitButtonAction" text="Exit">
+            <MenuItem fx:id="exitButton" onAction="#handleExitMenuitemAction" text="Exit">
             <accelerator>
                <KeyCodeCombination alt="UP" code="Q" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
             </accelerator></MenuItem>
         </Menu>
-        <Menu onHidden="#handleEditHidden" onShowing="#handleEditShowing" text="Edit">
-            <MenuItem fx:id="undoButton" onAction="#handleUndoButtonAction" text="Undo" />
-            <MenuItem fx:id="redoButton" onAction="#handleRedoButtonAction" text="Redo" />
-            <MenuItem fx:id="cutButton" onAction="#handleCutButtonAction" text="Cut" />
-            <MenuItem fx:id="copyButton" onAction="#handleCopyButtonAction" text="Copy" />
-            <MenuItem fx:id="pasteButton" onAction="#handlePasteButtonAction" text="Paste" />
-            <MenuItem fx:id="selectButton" onAction="#handleSelectAllButtonAction" text="Select all" />
+        <Menu onHidden="#handleEditMenuHidden" onShowing="#handleEditMenuShowing" text="Edit">
+            <MenuItem fx:id="undoButton" onAction="#handleUndoMenuitemAction" text="Undo" />
+            <MenuItem fx:id="redoButton" onAction="#handleRedoMenuitemAction" text="Redo" />
+            <MenuItem fx:id="cutButton" onAction="#handleCutMenuitemAction" text="Cut" />
+            <MenuItem fx:id="copyButton" onAction="#handleCopyMenuitemAction" text="Copy" />
+            <MenuItem fx:id="pasteButton" onAction="#handlePasteMenuitemAction" text="Paste" />
+            <MenuItem fx:id="selectButton" onAction="#handleSelectAllMenuitemAction" text="Select all" />
         </Menu>
     </MenuBar>
     <ToolBar VBox.vgrow="ALWAYS">
@@ -68,7 +68,7 @@ Date: 10/02/18
     </ToolBar>
     <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
         <tabs>
-            <Tab fx:id="untitledTab" onCloseRequest="#handleCloseButtonAction" text="untitled">
+            <Tab fx:id="untitledTab" onCloseRequest="#handleCloseMenuitemAction" text="untitled">
                 <content>
                     <!--<VirtualizedScrollPane>-->
                         <!--<content>-->

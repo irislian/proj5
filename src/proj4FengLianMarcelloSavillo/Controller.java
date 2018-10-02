@@ -16,7 +16,6 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.*;
 
 import java.io.BufferedReader;
@@ -28,7 +27,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 
-import java.nio.file.Paths;
 import javafx.stage.Stage;
 
 
@@ -260,7 +258,7 @@ public class Controller
             // if user presses Yes button, save the file and close the tab
             if (result.get() == buttonYes)
             {
-                this.handleSaveButtonAction();
+                this.handleSaveMenuitemAction();
                 this.removeTab(tab);
                 return true;
             }
@@ -320,7 +318,7 @@ public class Controller
      * Creates a dialog window that displays the authors' names.
      */
     @FXML
-    private void handleAboutButtonAction()
+    private void handleAboutMenuitemAction()
     {
         // create a information dialog window displaying the About text
         Alert dialog = new Alert(Alert.AlertType.INFORMATION);
@@ -346,7 +344,7 @@ public class Controller
      * Sets the newly opened tab to the the topmost one.
      */
     @FXML
-    private void handleNewButtonAction()
+    private void handleNewMenuitemAction()
     {
 
         Tab newTab = new Tab();
@@ -354,7 +352,7 @@ public class Controller
         newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
         // set close action
         //TODO come back later, may not be necessary
-        newTab.setOnCloseRequest(event -> this.handleCloseButtonAction(event));
+        newTab.setOnCloseRequest(event -> this.handleCloseMenuitemAction(event));
 
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
@@ -371,7 +369,7 @@ public class Controller
      * If the user cancels, the dialog disappears without doing anything.
      */
     @FXML
-    private void handleOpenButtonAction()
+    private void handleOpenMenuitemAction()
     {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
@@ -433,7 +431,7 @@ public class Controller
      * appears asking whether you want to save the text before closing it.
      */
     @FXML
-    private void handleCloseButtonAction(Event event)
+    private void handleCloseMenuitemAction(Event event)
     {
         event.consume();
 
@@ -459,7 +457,7 @@ public class Controller
      * If the user presses the Cancel button in the dialog, then the dialog closes and no saving occurs.
      */
     @FXML
-    private void handleSaveAsButtonAction()
+    private void handleSaveAsMenuitemAction()
     {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
@@ -492,7 +490,7 @@ public class Controller
      * to a file, then the text area is saved to that file.
      */
     @FXML
-    private void handleSaveButtonAction()
+    private void handleSaveMenuitemAction()
     {
         // get the selected tab from the tab pane
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
@@ -505,7 +503,7 @@ public class Controller
         // save the content of the active text area to the selected file path
         if (this.tabFileMap.get(selectedTab) == null)
         {
-            this.handleSaveAsButtonAction();
+            this.handleSaveAsMenuitemAction();
         }
         // if the current text area was loaded from a file or previously saved to a file,
         // then the text area is saved to that file
@@ -521,7 +519,7 @@ public class Controller
      * Exits the program when the Exit button is clicked.
      */
     @FXML
-    private void handleExitButtonAction()
+    private void handleExitMenuitemAction()
     {
         ArrayList<Tab> tablist = new ArrayList<>(this.tabFileMap.keySet());
         for (Tab currentTab : tablist)
@@ -541,7 +539,7 @@ public class Controller
      * Undo the actions in the text area.
      */
     @FXML
-    private void handleUndoButtonAction()
+    private void handleUndoMenuitemAction()
     {
         // get the text area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -555,7 +553,7 @@ public class Controller
      * Redo the actions in the text area.
      */
     @FXML
-    private void handleRedoButtonAction()
+    private void handleRedoMenuitemAction()
     {
         // get the text area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -569,7 +567,7 @@ public class Controller
      * Cuts the selected text.
      */
     @FXML
-    private void handleCutButtonAction()
+    private void handleCutMenuitemAction()
     {
         // get the text area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -583,7 +581,7 @@ public class Controller
      * Copies the selected text.
      */
     @FXML
-    private void handleCopyButtonAction()
+    private void handleCopyMenuitemAction()
     {
         // get the text area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -597,7 +595,7 @@ public class Controller
      * Pastes the copied/cut text.
      */
     @FXML
-    private void handlePasteButtonAction()
+    private void handlePasteMenuitemAction()
     {
         // get the code area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -611,7 +609,7 @@ public class Controller
      * Selects all texts in the text area.
      */
     @FXML
-    private void handleSelectAllButtonAction()
+    private void handleSelectAllMenuitemAction()
     {
         // get the code area embedded in the selected tab window
         CodeArea activeCodeArea = this.getCurrentCodeArea();
@@ -620,7 +618,7 @@ public class Controller
     }
 
     @FXML
-    private void handleFileShowing()
+    private void handleFileMenuShowing()
     {
         // Case 1: No tabs
         if (tabPane.getTabs().isEmpty())
@@ -632,7 +630,7 @@ public class Controller
     }
 
     @FXML
-    private void handleFileHidden()
+    private void handleFileMenuHidden()
     {
         closeButton.setDisable(false);
         saveButton.setDisable(false);
@@ -640,7 +638,7 @@ public class Controller
     }
 
     @FXML
-    private void handleEditShowing()
+    private void handleEditMenuShowing()
     {
         // Case 1: No tabs
         if (tabPane.getTabs().isEmpty())
@@ -669,7 +667,7 @@ public class Controller
     }
 
     @FXML
-    private void handleEditHidden()
+    private void handleEditMenuHidden()
     {
         undoButton.setDisable(false);
         redoButton.setDisable(false);
