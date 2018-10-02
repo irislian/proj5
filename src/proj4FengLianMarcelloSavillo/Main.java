@@ -49,7 +49,7 @@ public class Main extends Application
 
         // set controller and stage
         Controller controller = loader.getController();
-        controller.setPrimaryStage(stage);
+        controller.fileMenuController.setPrimaryStage(stage);
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
