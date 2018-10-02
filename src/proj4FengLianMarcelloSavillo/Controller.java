@@ -362,8 +362,6 @@ public class Controller
     {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.txt", "*.txt",
-                "*.java", "*.btm", "*.asm"));
         File openFile = fileChooser.showOpenDialog(null);
 
         if (openFile != null)
@@ -451,8 +449,6 @@ public class Controller
     {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.txt", "*.txt",
-                "*.java", "*.btm", "*.asm"));
 
         // file where the text content is to be saved
         File saveFile = fileChooser.showSaveDialog(null);
