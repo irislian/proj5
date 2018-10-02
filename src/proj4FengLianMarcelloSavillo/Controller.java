@@ -7,6 +7,7 @@ Date: 10/02/18
 
 package proj4FengLianMarcelloSavillo;
 
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -29,6 +30,8 @@ import org.fxmisc.richtext.CodeArea;
 
 import javafx.stage.Stage;
 
+//TODO: update authors and jdocs
+
 
 /**
  * Main controller handles all actions evoked by the Main window.
@@ -39,59 +42,38 @@ import javafx.stage.Stage;
  */
 public class Controller
 {
-    /**
-     * Hello button defined in Main.fxml
-     */
-    @FXML
-    private Button helloButton;
-    /**
-     * Goodbye button defined in Main.fxml
-     */
-    @FXML
-    private Button goodbyeButton;
-    /**
-     * TabPane defined in Main.fxml
-     */
-
     @FXML
     private TabPane tabPane;
-    /**
-     * the default untitled tab defined in Main.fxml
-     */
+
     @FXML
-    private Tab untitledTab;
+    private MenuItem closeMenuItem;
+    @FXML
+    private MenuItem saveMenuItem;
+    @FXML
+    private MenuItem saveAsMenuItem;
+
+    @FXML
+    private MenuItem undoMenuItem;
+    @FXML
+    private MenuItem redoMenuItem;
+    @FXML
+    private MenuItem cutMenuItem;
+    @FXML
+    private MenuItem copyMenuItem;
+    @FXML
+    private MenuItem pasteMenuItem;
+    @FXML
+    private MenuItem selectAllMenuItem;
+
+    @FXML
+    private Stage primaryStage;
 
     /**
      * a HashMap mapping the tabs and associated files
      */
     private Map<Tab, File> tabFileMap = new HashMap<Tab, File>();
 
-    @FXML
-    private MenuItem closeButton;
-    @FXML
-    private MenuItem saveButton;
-    @FXML
-    private MenuItem saveAsButton;
-
-    @FXML
-    private MenuItem undoButton;
-    @FXML
-    private MenuItem redoButton;
-    @FXML
-    private MenuItem cutButton;
-    @FXML
-    private MenuItem copyButton;
-    @FXML
-    private MenuItem pasteButton;
-    @FXML
-    private MenuItem selectButton;
-
-    @FXML
-    private Stage primaryStage;
-
-    public void setPrimaryStage(Stage primaryStage){
-        this.primaryStage = primaryStage;
-    }
+    private int untitledCounter = 1;
 
     /**
      * This function is called after the FXML fields are populated.
@@ -100,13 +82,356 @@ public class Controller
     @FXML
     public void initialize()
     {
-        // put the default tab into the tab file map
-        this.tabFileMap.put(this.untitledTab, null);
-        // set up the code area
-        untitledTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+        this.handleNewMenuItemAction();
+    }
+
+    /**
+     * Handles the About button action.
+     * Creates a dialog window that displays the authors' names.
+     */
+    @FXML
+    private void handleAboutMenuItemAction()
+    {
+        // create a information dialog window displaying the About text
+        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
+
+        // enable to close the window by clicking on the red cross on the top left corner of the window
+        Window window = dialog.getDialogPane().getScene().getWindow();
+        window.setOnCloseRequest(event -> window.hide());
+
+        // set the title and the content of the About window
+        dialog.setTitle("About");
+        dialog.setHeaderText("Authors");
+        dialog.setContentText("Yi Feng,\nIris Lian,\nChristopher Marcello,\nand Evan Savillo");
+
+        // enable to resize the About window
+        dialog.setResizable(true);
+        dialog.showAndWait();
     }
 
 
+    /**
+     * Handles the New button action.
+     * Opens a text area embedded in a new tab.
+     * Sets the newly opened tab to the the topmost one.
+     */
+    @FXML
+    private void handleNewMenuItemAction()
+    {
+        Tab newTab = new Tab();
+        newTab.setText("untitled" + (untitledCounter++) + ".txt");
+
+        newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+
+        // set close action (clicking the 'x')
+        newTab.setOnCloseRequest(this::handleCloseMenuitemAction);
+
+        // add the new tab to the tab pane
+        // set the newly opened tab to the the current (topmost) one
+        this.tabPane.getTabs().add(newTab);
+        this.tabPane.getSelectionModel().select(newTab);
+        this.tabFileMap.put(newTab, null);
+    }
+
+    /**
+     * Handles the open button action.
+     * Opens a dialog in which the user can select a file to open.
+     * If the user chooses a valid file, a new tab is created and the file is loaded into the text area.
+     * If the user cancels, the dialog disappears without doing anything.
+     */
+    @FXML
+    private void handleOpenMenuItemAction()
+    {
+        // create a fileChooser
+        FileChooser fileChooser = new FileChooser();
+        File openFile = fileChooser.showOpenDialog(this.primaryStage);
+
+        if (openFile != null)
+        {
+            // Case: file is already opened in another tab
+            // Behavior: switch to that tab
+            for (Map.Entry<Tab, File> entry : this.tabFileMap.entrySet())
+            {
+                if (entry.getValue() != null)
+                {
+                    if (entry.getValue().equals(openFile))
+                    {
+                        this.tabPane.getSelectionModel().select(entry.getKey());
+                        return;
+                    }
+                }
+            }
+
+            String contentOpenedFile = this.getFileContent(openFile);
+
+            // Case: current text area is unsaved and blank
+            // Behavior: repurpose blank tab to be opened file
+            CodeArea currentCodeArea = this.getCurrentCodeArea();
+            Tab currentTab = this.getCurrentTab();
+
+            if (this.tabFileMap.get(currentTab) == null &&
+                    currentCodeArea.getText().isEmpty())
+            {
+                currentCodeArea.replaceText(contentOpenedFile);
+                currentTab.setText(openFile.getName());
+                //this.tabPane.getSelectionModel().select(currentTab);
+                this.tabFileMap.put(currentTab, openFile);
+            }
+            // Case: current text area is in use and shouldn't be overwritten
+            // Behavior: generate new tab and open the file there
+            else
+            {
+                Tab newTab = new Tab();
+                this.tabPane.getTabs().add(newTab);
+                //current tab is now new tab, so getCurrentCodeArea() can be used below
+                this.tabPane.getSelectionModel().select(newTab);
+
+                newTab.setText(openFile.getName());
+                newTab.setContent(
+                        new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+                this.getCurrentCodeArea().replaceText(contentOpenedFile);
+                newTab.setOnClosed(this::handleCloseMenuitemAction);
+
+                this.tabFileMap.put(newTab, openFile);
+            }
+        }
+    }
+
+    /**
+     * Handles the close button action.
+     * If the current text area has already been saved to a file, then the current tab is closed.
+     * If the current text area has been changed since it was last saved to a file, a dialog
+     * appears asking whether you want to save the text before closing it.
+     */
+    @FXML
+    private void handleCloseMenuitemAction(Event event)
+    {
+        event.consume();
+
+        if (!this.isTabless())
+        {
+            this.closeTab(this.getCurrentTab());
+        }
+    }
+
+    /**
+     * Handles the Save As button action.
+     * Shows a dialog in which the user is asked for the name of the file into
+     * which the contents of the current text area are to be saved.
+     * If the user enters any legal name for a file and presses the OK button in the dialog,
+     * then creates a new text file by that name and write to that file all the current
+     * contents of the text area so that those contents can later be reloaded.
+     * If the user presses the Cancel button in the dialog, then the dialog closes and no saving occurs.
+     */
+    @FXML
+    private void handleSaveAsMenuItemAction()
+    {
+        // create a fileChooser and add file extension restrictions
+        FileChooser fileChooser = new FileChooser();
+
+        // file where the text content is to be saved
+        File saveFile = fileChooser.showSaveDialog(this.primaryStage);
+        if (saveFile != null)
+        {
+            // get the selected tab from the tab pane
+            Tab selectedTab = this.getCurrentTab();
+
+            // get the text area embedded in the selected tab window
+            // save the content of the active text area to the selected file
+            CodeArea activeCodeArea = this.getCurrentCodeArea();
+            this.saveFile(activeCodeArea.getText(), saveFile);
+            // set the title of the tab to the name of the saved file
+            selectedTab.setText(saveFile.getName());
+
+            // map the tab and the associated file
+            this.tabFileMap.put(selectedTab, saveFile);
+        }
+    }
+
+    /**
+     * Handles the save button action.
+     * If a text area was not loaded from a file nor ever saved to a file,
+     * behaves the same as the save as button.
+     * If the current text area was loaded from a file or previously saved
+     * to a file, then the text area is saved to that file.
+     */
+    @FXML
+    private void handleSaveMenuItemAction()
+    {
+        // get the selected tab from the tab pane
+        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+
+        // get the text area embedded in the selected tab window
+        CodeArea activeCodeArea = this.getCurrentCodeArea();
+
+        // if the tab content was not loaded from a file nor ever saved to a file
+        // save the content of the active text area to the selected file path
+        if (this.tabFileMap.get(selectedTab) == null)
+        {
+            this.handleSaveAsMenuItemAction();
+        }
+        // if the current text area was loaded from a file or previously saved to a file,
+        // then the text area is saved to that file
+        else
+        {
+            this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
+        }
+    }
+
+    /**
+     * Handles the Exit button action.
+     * Exits the program when the Exit button is clicked.
+     */
+    @FXML
+    private void handleExitMenuItemAction()
+    {
+        ArrayList<Tab> tablist = new ArrayList<>(this.tabFileMap.keySet());
+        for (Tab tab : tablist)
+        {
+            this.tabPane.getSelectionModel().select(tab);
+            if (!this.closeTab(tab))
+            {
+                return;
+            }
+        }
+
+        Platform.exit();
+    }
+
+    /**
+     * Handles the Undo button action.
+     * Undo the actions in the text area.
+     */
+    @FXML
+    private void handleUndoMenuItemAction()
+    {
+        this.getCurrentCodeArea().undo();
+    }
+
+    /**
+     * Handles the Redo button action.
+     * Redo the actions in the text area.
+     */
+    @FXML
+    private void handleRedoMenuItemAction()
+    {
+        this.getCurrentCodeArea().redo();
+    }
+
+    /**
+     * Handles the Cut button action.
+     * Cuts the selected text.
+     */
+    @FXML
+    private void handleCutMenuItemAction()
+    {
+        this.getCurrentCodeArea().cut();
+    }
+
+
+    /**
+     * Handles the Copy button action.
+     * Copies the selected text.
+     */
+    @FXML
+    private void handleCopyMenuItemAction()
+    {
+        this.getCurrentCodeArea().copy();
+    }
+
+    /**
+     * Handles the Paste button action.
+     * Pastes the copied/cut text.
+     */
+    @FXML
+    private void handlePasteMenuItemAction()
+    {
+        this.getCurrentCodeArea().paste();
+    }
+
+    /**
+     * Handles the SelectAll button action.
+     * Selects all texts in the text area.
+     */
+    @FXML
+    private void handleSelectAllMenuItemAction()
+    {
+        this.getCurrentCodeArea().selectAll();
+    }
+
+    /**
+     * Updates the visual status (greyed or not) of items when user
+     * click open the File menu
+     */
+    @FXML
+    private void handleFileMenuShowing()
+    {
+        // Case 1: No tabs
+        if (isTabless())
+        {
+            this.closeMenuItem.setDisable(true);
+            this.saveMenuItem.setDisable(true);
+            this.saveAsMenuItem.setDisable(true);
+        }
+    }
+
+    /**
+     * Resets the greying out of items when File menu closes
+     */
+    @FXML
+    private void handleFileMenuHidden()
+    {
+        this.closeMenuItem.setDisable(false);
+        this.saveMenuItem.setDisable(false);
+        this.saveAsMenuItem.setDisable(false);
+    }
+
+    /**
+     * Updates the visual status (greyed or not) of items when user
+     * click open the Edit menu
+     */
+    @FXML
+    private void handleEditMenuShowing()
+    {
+        // Case 1: No tabs
+        if (this.isTabless())
+        {
+            this.undoMenuItem.setDisable(true);
+            this.redoMenuItem.setDisable(true);
+            this.cutMenuItem.setDisable(true);
+            this.copyMenuItem.setDisable(true);
+            this.pasteMenuItem.setDisable(true);
+            this.selectAllMenuItem.setDisable(true);
+        }
+        else
+        {
+            // Case 2: No undos
+            if (!getCurrentCodeArea().isUndoAvailable())
+            {
+                this.undoMenuItem.setDisable(true);
+            }
+
+            // Case 3: No redos
+            if (!getCurrentCodeArea().isRedoAvailable())
+            {
+                this.redoMenuItem.setDisable(true);
+            }
+        }
+    }
+
+    /**
+     * Resets the greying out of items when Edit menu closes
+     */
+    @FXML
+    private void handleEditMenuHidden()
+    {
+        this.undoMenuItem.setDisable(false);
+        this.redoMenuItem.setDisable(false);
+        this.cutMenuItem.setDisable(false);
+        this.copyMenuItem.setDisable(false);
+        this.pasteMenuItem.setDisable(false);
+        this.selectAllMenuItem.setDisable(false);
+    }
 
     /**
      * Helper function to save the input string to a specified file.
@@ -125,9 +450,11 @@ public class Controller
                 fileWriter.write(content);
                 fileWriter.close();
             }
-            catch (IOException ex)
+            catch (IOException e)
             {
-                System.out.println("Error saving file.");
+                MyErrorDialog myErrorDialog = new MyErrorDialog(
+                        MyErrorDialogType.SAVING_ERROR, file.getName());
+                myErrorDialog.showAndWait();
             }
         }
         else
@@ -135,7 +462,6 @@ public class Controller
             System.out.println("There are no tabs!");
         }
     }
-
 
     /**
      * Helper function to get the text content of a specified file.
@@ -145,35 +471,34 @@ public class Controller
      */
     private String getFileContent(File file)
     {
-//        String content = "";
-//        try
-//        {
-//            content = new String(Files.readAllBytes(Paths.get(file.toURI())));
-//        }
-//        catch(IOException ex)
-//        {
-//             System.out.println("Error getting file content");
-//        }
-//        return content;
-        String contentString = "";
-        try{
+        StringBuilder contentString = new StringBuilder();
+        try
+        {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
-            try{
-                while ((line = bufferedReader.readLine()) != null){
-                    contentString += line;
+            try
+            {
+                while ((line = bufferedReader.readLine()) != null)
+                {
+                    contentString.append(line).append("\n");
                 }
                 bufferedReader.close();
             }
-            catch (Exception ex){
-                System.out.println("Unable to read file '" + file.toString() + "'");
+            catch (IOException e)
+            {
+                MyErrorDialog myErrorDialog = new MyErrorDialog(
+                        MyErrorDialogType.READING_ERROR, file.getName());
+                myErrorDialog.showAndWait();
             }
         }
-        catch (FileNotFoundException ex){
-            System.out.println("Unable to open file '" + file.toString() + "'");
+        catch (FileNotFoundException e)
+        {
+            MyErrorDialog myErrorDialog = new MyErrorDialog(
+                    MyErrorDialogType.FNF_ERROR, file.getName());
+            myErrorDialog.showAndWait();
         }
-        return contentString;
+        return contentString.toString();
     }
 
 
@@ -207,7 +532,7 @@ public class Controller
 
 
     /**
-     * Helper function to handle closing tag action.
+     * Helper function to handle closing tab action.
      * Checks if the text content within the tab window should be saved.
      *
      * @param tab Tab to be closed
@@ -224,13 +549,15 @@ public class Controller
         // check whether the saved file has been changed or not
         else
         {
-            return this.ifFileChanged((CodeArea)tab.getContent(), this.tabFileMap.get(tab));
+            VirtualizedScrollPane vsp = (VirtualizedScrollPane) tab.getContent();
+            return this.ifFileChanged((CodeArea) vsp.getContent(),
+                    this.tabFileMap.get(tab));
         }
     }
 
-
     /**
-     * Helper function to handle closing tag action.
+     * Helper function to handle closing tab action.
+     * <p>
      * If the text embedded in the tab window has not been saved yet,
      * or if a saved file has been changed, asks the user if to save
      * the file via a dialog window.
@@ -240,10 +567,12 @@ public class Controller
      */
     private boolean closeTab(Tab tab)
     {
+        //TODO: autoclose if unsavedfile is empty?
         // if the file has not been saved or has been changed
         // pop up a dialog window asking whether to save the file
         if (this.ifSaveFile(tab))
         {
+            //TODO replace with custom dialog?
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Save Changes?");
             alert.setHeaderText("Do you want to save the changes you made?");
@@ -258,7 +587,7 @@ public class Controller
             // if user presses Yes button, save the file and close the tab
             if (result.get() == buttonYes)
             {
-                this.handleSaveMenuitemAction();
+                this.handleSaveMenuItemAction();
                 this.removeTab(tab);
                 return true;
             }
@@ -281,406 +610,44 @@ public class Controller
         }
     }
 
+    /**
+     * Simple helper method which returns the currently viewed tab
+     *
+     * @return currently viewed tab
+     */
+    private Tab getCurrentTab()
+    {
+        return this.tabPane.getSelectionModel().getSelectedItem();
+    }
 
     /**
-     * Handles the Hello button action.
-     * Creates a dialog that takes in an integer between 0 and 255 when Hello
-     * button is clicked, and sets the Hello button text to the input number
-     * when ok button inside the dialog is clicked.
+     * Simple helper method which returns the code area  within the currently viewed tab
+     *
+     * @return current viewed code area
      */
-    @FXML
-    private void handleHelloButtonAction()
-    {
-        // set up the number input dialog
-        TextInputDialog dialog = new TextInputDialog("60");
-        dialog.setTitle("Give me a number");
-        dialog.setHeaderText("Give me an integer from 0 to 255:");
-
-        // when ok button is clicked, set the text of the Hello button to the input number
-        final Optional<String> enterValue = dialog.showAndWait();
-        enterValue.ifPresent(s -> this.helloButton.setText(s));
-    }
-
-
-    /**
-     * Handles the Goodbye button action.
-     * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
-     */
-    @FXML
-    private void handleGoodbyeButtonAction()
-    {
-        this.goodbyeButton.setText("Yah, sure!");
-    }
-
-
-    /**
-     * Handles the About button action.
-     * Creates a dialog window that displays the authors' names.
-     */
-    @FXML
-    private void handleAboutMenuitemAction()
-    {
-        // create a information dialog window displaying the About text
-        Alert dialog = new Alert(Alert.AlertType.INFORMATION);
-
-        // enable to close the window by clicking on the red cross on the top left corner of the window
-        Window window = dialog.getDialogPane().getScene().getWindow();
-        window.setOnCloseRequest(event -> window.hide());
-
-        // set the title and the content of the About window
-        dialog.setTitle("About");
-        dialog.setHeaderText("Authors");
-        dialog.setContentText("Yi Feng,\nIris Lian,\nChristopher Marcello,\nand Evan Savillo");
-
-        // enable to resize the About window
-        dialog.setResizable(true);
-        dialog.showAndWait();
-    }
-
-
-    /**
-     * Handles the New button action.
-     * Opens a text area embedded in a new tab.
-     * Sets the newly opened tab to the the topmost one.
-     */
-    @FXML
-    private void handleNewMenuitemAction()
-    {
-
-        Tab newTab = new Tab();
-        newTab.setText("untitled");
-        newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
-        // set close action
-        //TODO come back later, may not be necessary
-        newTab.setOnCloseRequest(event -> this.handleCloseMenuitemAction(event));
-
-        // add the new tab to the tab pane
-        // set the newly opened tab to the the current (topmost) one
-        this.tabPane.getTabs().add(newTab);
-        this.tabPane.getSelectionModel().select(newTab);
-        this.tabFileMap.put(newTab, null);
-    }
-
-
-    /**
-     * Handles the open button action.
-     * Opens a dialog in which the user can select a file to open.
-     * If the user chooses a valid file, a new tab is created and the file is loaded into the text area.
-     * If the user cancels, the dialog disappears without doing anything.
-     */
-    @FXML
-    private void handleOpenMenuitemAction()
-    {
-        // create a fileChooser and add file extension restrictions
-        FileChooser fileChooser = new FileChooser();
-        File openFile = fileChooser.showOpenDialog(this.primaryStage);
-
-        if (openFile != null)
-        {
-            // if the selected file is already open, it cannot be opened twice
-            // the tab containing this file becomes the current (topmost) one
-            for (Map.Entry<Tab, File> entry : this.tabFileMap.entrySet())
-            {
-                if (entry.getValue() != null)
-                {
-                    if (entry.getValue().equals(openFile))
-                    {
-                        this.tabPane.getSelectionModel().select(entry.getKey());
-                        return;
-                    }
-                }
-            }
-
-            String contentString = this.getFileContent(openFile);
-            VirtualizedScrollPane vsp = (VirtualizedScrollPane) this.untitledTab.getContent();
-            CodeArea untitledCodeArea = (CodeArea)vsp.getContent();
-            // if the default text area is empty, then fill that in with the file to be open
-            // this tab becomes the topmost tab
-            if (untitledCodeArea.getText().isEmpty())
-            {
-                untitledCodeArea.replaceText(contentString);
-                this.untitledTab.setText(openFile.getName());
-                this.tabPane.getSelectionModel().select(this.untitledTab);
-                this.tabFileMap.put(this.untitledTab, openFile);
-            }
-            // if the default text area is not empty, open the file in a new tab window
-            else
-            {
-                CodeArea newCodeArea = new CodeArea();
-                newCodeArea.replaceText(contentString);
-
-                Tab newTab = new Tab();
-                newTab.setText(openFile.getName());
-                newTab.setContent(newCodeArea);
-                newTab.setOnClosed(event -> {
-                    this.closeTab(newTab);
-                });
-
-                this.tabPane.getTabs().add(newTab);
-                this.tabPane.getSelectionModel().select(newTab);
-                this.tabFileMap.put(newTab, openFile);
-            }
-        }
-    }
-
-
-    /**
-     * Handles the close button action.
-     * If the current text area has already been saved to a file, then the current tab is closed.
-     * If the current text area has been changed since it was last saved to a file, a dialog
-     * appears asking whether you want to save the text before closing it.
-     */
-    @FXML
-    private void handleCloseMenuitemAction(Event event)
-    {
-        event.consume();
-
-        if (!tabPane.getTabs().isEmpty())
-        {
-            Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-            this.closeTab(selectedTab);
-        }
-        else
-        {
-            System.out.println("There are no tabs!");
-        }
-    }
-
-
-    /**
-     * Handles the Save As button action.
-     * Shows a dialog in which the user is asked for the name of the file into
-     * which the contents of the current text area are to be saved.
-     * If the user enters any legal name for a file and presses the OK button in the dialog,
-     * then creates a new text file by that name and write to that file all the current
-     * contents of the text area so that those contents can later be reloaded.
-     * If the user presses the Cancel button in the dialog, then the dialog closes and no saving occurs.
-     */
-    @FXML
-    private void handleSaveAsMenuitemAction()
-    {
-        // create a fileChooser and add file extension restrictions
-        FileChooser fileChooser = new FileChooser();
-
-        // file where the text content is to be saved
-        File saveFile = fileChooser.showSaveDialog(this.primaryStage);
-        if (saveFile != null)
-        {
-            // get the selected tab from the tab pane
-            Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-
-            // get the text area embedded in the selected tab window
-            // save the content of the active text area to the selected file
-            CodeArea activeCodeArea = this.getCurrentCodeArea();
-            this.saveFile(activeCodeArea.getText(), saveFile);
-            // set the title of the tab to the name of the saved file
-            selectedTab.setText(saveFile.getName());
-
-            // map the tab and the associated file
-            this.tabFileMap.put(selectedTab, saveFile);
-        }
-    }
-
-
-    /**
-     * Handles the save button action.
-     * If a text area was not loaded from a file nor ever saved to a file,
-     * behaves the same as the save as button.
-     * If the current text area was loaded from a file or previously saved
-     * to a file, then the text area is saved to that file.
-     */
-    @FXML
-    private void handleSaveMenuitemAction()
-    {
-        // get the selected tab from the tab pane
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-
-        // get the text area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        ;
-
-        // if the tab content was not loaded from a file nor ever saved to a file
-        // save the content of the active text area to the selected file path
-        if (this.tabFileMap.get(selectedTab) == null)
-        {
-            this.handleSaveAsMenuitemAction();
-        }
-        // if the current text area was loaded from a file or previously saved to a file,
-        // then the text area is saved to that file
-        else
-        {
-            this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
-        }
-    }
-
-
-    /**
-     * Handles the Exit button action.
-     * Exits the program when the Exit button is clicked.
-     */
-    @FXML
-    private void handleExitMenuitemAction()
-    {
-        ArrayList<Tab> tablist = new ArrayList<>(this.tabFileMap.keySet());
-        for (Tab currentTab : tablist)
-        {
-            this.tabPane.getSelectionModel().select(currentTab);
-            if (!this.closeTab(currentTab))
-            {
-                return;
-            }
-        }
-        System.exit(0);
-    }
-
-
-    /**
-     * Handles the Undo button action.
-     * Undo the actions in the text area.
-     */
-    @FXML
-    private void handleUndoMenuitemAction()
-    {
-        // get the text area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        // undo the actions in the text area
-        activeCodeArea.undo();
-    }
-
-
-    /**
-     * Handles the Redo button action.
-     * Redo the actions in the text area.
-     */
-    @FXML
-    private void handleRedoMenuitemAction()
-    {
-        // get the text area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        // redo the actions in the text area
-        activeCodeArea.redo();
-    }
-
-
-    /**
-     * Handles the Cut button action.
-     * Cuts the selected text.
-     */
-    @FXML
-    private void handleCutMenuitemAction()
-    {
-        // get the text area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        // cut the selected text
-        activeCodeArea.cut();
-    }
-
-
-    /**
-     * Handles the Copy button action.
-     * Copies the selected text.
-     */
-    @FXML
-    private void handleCopyMenuitemAction()
-    {
-        // get the text area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        // copy the selected text
-        activeCodeArea.copy();
-    }
-
-
-    /**
-     * Handles the Paste button action.
-     * Pastes the copied/cut text.
-     */
-    @FXML
-    private void handlePasteMenuitemAction()
-    {
-        // get the code area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        // paste the copied/cut text
-        activeCodeArea.paste();
-    }
-
-
-    /**
-     * Handles the SelectAll button action.
-     * Selects all texts in the text area.
-     */
-    @FXML
-    private void handleSelectAllMenuitemAction()
-    {
-        // get the code area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        // select all texts in the text area
-        activeCodeArea.selectAll();
-    }
-
-    @FXML
-    private void handleFileMenuShowing()
-    {
-        // Case 1: No tabs
-        if (tabPane.getTabs().isEmpty())
-        {
-            closeButton.setDisable(true);
-            saveButton.setDisable(true);
-            saveAsButton.setDisable(true);
-        }
-    }
-
-    @FXML
-    private void handleFileMenuHidden()
-    {
-        closeButton.setDisable(false);
-        saveButton.setDisable(false);
-        saveAsButton.setDisable(false);
-    }
-
-    @FXML
-    private void handleEditMenuShowing()
-    {
-        // Case 1: No tabs
-        if (tabPane.getTabs().isEmpty())
-        {
-            undoButton.setDisable(true);
-            redoButton.setDisable(true);
-            cutButton.setDisable(true);
-            copyButton.setDisable(true);
-            pasteButton.setDisable(true);
-            selectButton.setDisable(true);
-        }
-        else
-        {
-            // Case 2: No undos
-            if (!getCurrentCodeArea().isUndoAvailable())
-            {
-                undoButton.setDisable(true);
-            }
-
-            // Case 3: No redos
-            if (!getCurrentCodeArea().isRedoAvailable())
-            {
-                redoButton.setDisable(true);
-            }
-        }
-    }
-
-    @FXML
-    private void handleEditMenuHidden()
-    {
-        undoButton.setDisable(false);
-        redoButton.setDisable(false);
-        cutButton.setDisable(false);
-        copyButton.setDisable(false);
-        pasteButton.setDisable(false);
-        selectButton.setDisable(false);
-    }
-
     private CodeArea getCurrentCodeArea()
     {
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        Tab selectedTab = this.getCurrentTab();
         VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
-        return (CodeArea)vsp.getContent();
+        return (CodeArea) vsp.getContent();
+    }
+
+    /**
+     * Simple helper method
+     *
+     * @return true if there aren't currently any tabs open, else false
+     */
+    private boolean isTabless()
+    {
+        return this.tabPane.getTabs().isEmpty();
+    }
+
+    /**
+     * Reads in the application's main stage.
+     * For use in Filechooser dialogs
+     */
+    public void setPrimaryStage(Stage primaryStage)
+    {
+        this.primaryStage = primaryStage;
     }
 }
