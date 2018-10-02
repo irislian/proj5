@@ -66,11 +66,7 @@ public class Controller
      */
     @FXML
     private Tab untitledTab;
-    /**
-     * the default code area
-     */
-    @FXML
-    private CodeArea codeArea;
+
     /**
      * a HashMap mapping the tabs and associated files
      */
@@ -140,15 +136,18 @@ public class Controller
         // put the default tab into the tab file map
         this.tabFileMap.put(this.untitledTab, null);
         // set up the code area
-        this.setUpCodeArea();
+        untitledTab.setContent(new VirtualizedScrollPane<>(createCodeArea()));
     }
 
     /**
      * Helper function to set up the code area.
      */
-    private void setUpCodeArea()
+    private CodeArea createCodeArea()
     {
-        this.codeArea.setParagraphGraphicFactory(LineNumberFactory.get(this.codeArea));
+        CodeArea codeArea = new CodeArea();
+
+
+        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
 
         // recompute the syntax highlighting 500 ms after user stops editing area
         Subscription cleanupWhenNoLongerNeedIt = codeArea
@@ -163,6 +162,8 @@ public class Controller
 
                 // run the following code block when previous stream emits an event
                 .subscribe(ignore -> codeArea.setStyleSpans(0, computeHighlighting(codeArea.getText())));
+
+        return codeArea;
     }
 
     /**
@@ -179,8 +180,7 @@ public class Controller
         while (matcher.find())
         {
             String styleClass =
-                    matcher.group("KEYWORD") != null ? "keyword" :
-                            matcher.group("PAREN") != null ? "paren" :
+                    matcher.group("KEYWORD") != null ? "keyword" : matcher.group("PAREN") != null ? "paren" :
                                     matcher.group("BRACE") != null ? "brace" :
                                             matcher.group("BRACKET") != null ? "bracket" :
                                                     matcher.group("SEMICOLON") != null ? "semicolon" :
@@ -431,11 +431,10 @@ public class Controller
     @FXML
     private void handleNewButtonAction()
     {
-        CodeArea newCodeArea = new CodeArea();
 
         Tab newTab = new Tab();
         newTab.setText("untitled");
-        newTab.setContent(newCodeArea);
+        newTab.setContent(new VirtualizedScrollPane<>(createCodeArea()));
         // set close action
         //TODO come back later, may not be necessary
         newTab.setOnClosed(event -> this.closeTab(newTab));
@@ -590,22 +589,7 @@ public class Controller
         // save the content of the active text area to the selected file path
         if (this.tabFileMap.get(selectedTab) == null)
         {
-            // create a fileChooser and add file extension restrictions
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.txt", "*.txt"));
-
-            // file where the text content is to be saved
-            File saveFile = fileChooser.showSaveDialog(null);
-            if (saveFile != null)
-            {
-                this.saveFile(activeCodeArea.getText(), saveFile);
-
-                // map the tab and the associated file
-                this.tabFileMap.put(selectedTab, saveFile);
-
-                // set the title of the tab to the name of the saved file
-                selectedTab.setText(saveFile.getName());
-            }
+            this.handleSaveAsButtonAction();
         }
         // if the current text area was loaded from a file or previously saved to a file,
         // then the text area is saved to that file

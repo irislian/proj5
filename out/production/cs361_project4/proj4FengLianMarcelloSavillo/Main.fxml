@@ -70,11 +70,11 @@ Date: 10/02/18
         <tabs>
             <Tab fx:id="untitledTab" onCloseRequest="#handleCloseButtonAction" text="untitled">
                 <content>
-                    <VirtualizedScrollPane>
-                        <content>
-                            <CodeArea fx:id="codeArea" wrapText="true"/>
-                        </content>
-                    </VirtualizedScrollPane>
+                    <!--<VirtualizedScrollPane>-->
+                        <!--<content>-->
+                            <!--<CodeArea fx:id="codeArea" wrapText="true"/>-->
+                        <!--</content>-->
+                    <!--</VirtualizedScrollPane>-->
                 </content>
             </Tab>
         </tabs>
