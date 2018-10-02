@@ -34,10 +34,15 @@ public class Main extends Application {
      *
      * @param stage The stage that contains the window content
      */
-    @Override public void start(Stage stage) throws Exception{
+    @Override
+    public void start(Stage stage) throws Exception{
         // load the fxml file to create the stage and get the root
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/proj4FengLianMarcelloSavillo/Main.fxml"));
         Parent root = loader.load();
+
+        // set controller and stage
+        Controller controller = loader.getController();
+        controller.setPrimaryStage(stage);
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, 640, 480);
@@ -46,6 +51,7 @@ public class Main extends Application {
  
         // configure the stage
         stage.setTitle("Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo's Project 4");
+
         stage.sizeToScene();
         stage.setScene(scene);
         stage.show();

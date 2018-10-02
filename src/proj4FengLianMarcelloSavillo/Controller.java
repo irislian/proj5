@@ -29,6 +29,7 @@ import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 
 import java.nio.file.Paths;
+import javafx.stage.Stage;
 
 
 /**
@@ -87,8 +88,12 @@ public class Controller
     @FXML
     private MenuItem selectButton;
 
+    @FXML
+    private Stage primaryStage;
 
-
+    public void setPrimaryStage(Stage primaryStage){
+        this.primaryStage = primaryStage;
+    }
 
     /**
      * This function is called after the FXML fields are populated.
@@ -370,7 +375,7 @@ public class Controller
     {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
-        File openFile = fileChooser.showOpenDialog(null);
+        File openFile = fileChooser.showOpenDialog(this.primaryStage);
 
         if (openFile != null)
         {
@@ -460,7 +465,7 @@ public class Controller
         FileChooser fileChooser = new FileChooser();
 
         // file where the text content is to be saved
-        File saveFile = fileChooser.showSaveDialog(null);
+        File saveFile = fileChooser.showSaveDialog(this.primaryStage);
         if (saveFile != null)
         {
             // get the selected tab from the tab pane
