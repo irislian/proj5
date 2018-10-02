@@ -21,10 +21,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
-
 import javafx.scene.control.ButtonBar.ButtonData;
 
 import org.fxmisc.flowless.VirtualizedScrollPane;
@@ -178,7 +174,7 @@ public class Controller
             newTab.setContent(
                     new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
-            newTab.setOnClosed(this::handleCloseMenuItemAction);
+            newTab.setOnCloseRequest(this::handleCloseMenuItemAction);
 
             this.tabFileMap.put(newTab, openFile);
 
