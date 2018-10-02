@@ -33,7 +33,7 @@ Date: 10/02/18
                     <KeyCodeCombination alt="UP" code="O" control="UP" meta="DOWN" shift="UP" shortcut="UP"/>
                 </accelerator>
             </MenuItem>
-            <MenuItem fx:id="closeMenuItem" onAction="#handleCloseMenuitemAction" text="Close">
+            <MenuItem fx:id="closeMenuItem" onAction="#handleCloseMenuItemAction" text="Close">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="W" control="UP" meta="DOWN" shift="UP" shortcut="UP"/>
                 </accelerator>
@@ -88,8 +88,6 @@ Date: 10/02/18
             </MenuItem>
         </Menu>
     </MenuBar>
-    <ToolBar VBox.vgrow="ALWAYS">
-    </ToolBar>
     <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
         <tabs>
         </tabs>
