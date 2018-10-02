@@ -164,36 +164,22 @@ public class Controller
 
             String contentOpenedFile = this.getFileContent(openFile);
 
-            // Case: current text area is unsaved and blank
-            // Behavior: repurpose blank tab to be opened file
-            CodeArea currentCodeArea = this.getCurrentCodeArea();
-            Tab currentTab = this.getCurrentTab();
-
-            if (this.tabFileMap.get(currentTab) == null &&
-                    currentCodeArea.getText().isEmpty())
-            {
-                currentCodeArea.replaceText(contentOpenedFile);
-                currentTab.setText(openFile.getName());
-                //this.tabPane.getSelectionModel().select(currentTab);
-                this.tabFileMap.put(currentTab, openFile);
-            }
             // Case: current text area is in use and shouldn't be overwritten
             // Behavior: generate new tab and open the file there
-            else
-            {
-                Tab newTab = new Tab();
-                this.tabPane.getTabs().add(newTab);
-                //current tab is now new tab, so getCurrentCodeArea() can be used below
-                this.tabPane.getSelectionModel().select(newTab);
 
-                newTab.setText(openFile.getName());
-                newTab.setContent(
-                        new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
-                this.getCurrentCodeArea().replaceText(contentOpenedFile);
-                newTab.setOnClosed(this::handleCloseMenuitemAction);
+            Tab newTab = new Tab();
+            this.tabPane.getTabs().add(newTab);
+            //current tab is now new tab, so getCurrentCodeArea() can be used below
+            this.tabPane.getSelectionModel().select(newTab);
 
-                this.tabFileMap.put(newTab, openFile);
-            }
+            newTab.setText(openFile.getName());
+            newTab.setContent(
+                    new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+            this.getCurrentCodeArea().replaceText(contentOpenedFile);
+            newTab.setOnClosed(this::handleCloseMenuitemAction);
+
+            this.tabFileMap.put(newTab, openFile);
+
         }
     }
 
