@@ -16,6 +16,7 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
 
 import java.io.BufferedReader;
@@ -26,6 +27,8 @@ import javafx.scene.control.ButtonBar.ButtonData;
 
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
+
+import java.nio.file.Paths;
 
 
 /**
@@ -139,27 +142,32 @@ public class Controller
      */
     private String getFileContent(File file)
     {
+//        String content = "";
+//        try
+//        {
+//            content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+//        }
+//        catch(IOException ex)
+//        {
+//             System.out.println("Error getting file content");
+//        }
+//        return content;
         String contentString = "";
-        try
-        {
+        try{
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
-            try
-            {
-                while ((line = bufferedReader.readLine()) != null)
-                {
+            try{
+                while ((line = bufferedReader.readLine()) != null){
                     contentString += line;
                 }
                 bufferedReader.close();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex){
                 System.out.println("Unable to read file '" + file.toString() + "'");
             }
         }
-        catch (FileNotFoundException ex)
-        {
+        catch (FileNotFoundException ex){
             System.out.println("Unable to open file '" + file.toString() + "'");
         }
         return contentString;
@@ -174,7 +182,7 @@ public class Controller
      * @param file     File to compare with the the specified TextArea
      * @return Boolean indicating if the TextArea has changed from the File
      */
-    private Boolean ifFileChanged(CodeArea codeArea, File file)
+    private boolean ifFileChanged(CodeArea codeArea, File file)
     {
         String codeAreaContent = codeArea.getText();
         String fileContent = this.getFileContent((file));
@@ -213,7 +221,7 @@ public class Controller
         // check whether the saved file has been changed or not
         else
         {
-            return this.ifFileChanged((CodeArea) tab.getContent(), this.tabFileMap.get(tab));
+            return this.ifFileChanged((CodeArea)tab.getContent(), this.tabFileMap.get(tab));
         }
     }
 
@@ -341,7 +349,7 @@ public class Controller
         newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
         // set close action
         //TODO come back later, may not be necessary
-        newTab.setOnClosed(event -> this.closeTab(newTab));
+        newTab.setOnCloseRequest(event -> this.handleCloseButtonAction(event));
 
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
@@ -381,7 +389,8 @@ public class Controller
             }
 
             String contentString = this.getFileContent(openFile);
-            CodeArea untitledCodeArea = (CodeArea) this.untitledTab.getContent();
+            VirtualizedScrollPane vsp = (VirtualizedScrollPane) this.untitledTab.getContent();
+            CodeArea untitledCodeArea = (CodeArea)vsp.getContent();
             // if the default text area is empty, then fill that in with the file to be open
             // this tab becomes the topmost tab
             if (untitledCodeArea.getText().isEmpty())
@@ -509,7 +518,7 @@ public class Controller
     @FXML
     private void handleExitButtonAction()
     {
-        ArrayList<Tab> tablist = new ArrayList<Tab>(this.tabFileMap.keySet());
+        ArrayList<Tab> tablist = new ArrayList<>(this.tabFileMap.keySet());
         for (Tab currentTab : tablist)
         {
             this.tabPane.getSelectionModel().select(currentTab);
