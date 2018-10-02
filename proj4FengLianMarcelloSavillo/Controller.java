@@ -58,7 +58,6 @@ public class Controller
     /**
      * TabPane defined in Main.fxml
      */
-
     @FXML
     private TabPane tabPane;
     /**
@@ -545,26 +544,29 @@ public class Controller
     @FXML
     private void handleSaveAsButtonAction()
     {
-        // create a fileChooser and add file extension restrictions
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.txt", "*.txt"));
-
-        // file where the text content is to be saved
-        File saveFile = fileChooser.showSaveDialog(null);
-        if (saveFile != null)
+        if (!tabPane.getTabs().isEmpty())
         {
-            // get the selected tab from the tab pane
-            Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+            // create a fileChooser and add file extension restrictions
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.txt", "*.txt"));
 
-            // get the text area embedded in the selected tab window
-            // save the content of the active text area to the selected file
-            CodeArea activeCodeArea = this.getCurrentCodeArea();
-            this.saveFile(activeCodeArea.getText(), saveFile);
-            // set the title of the tab to the name of the saved file
-            selectedTab.setText(saveFile.getName());
+            // file where the text content is to be saved
+            File saveFile = fileChooser.showSaveDialog(null);
+            if (saveFile != null)
+            {
+                // get the selected tab from the tab pane
+                Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
 
-            // map the tab and the associated file
-            this.tabFileMap.put(selectedTab, saveFile);
+                // get the text area embedded in the selected tab window
+                // save the content of the active text area to the selected file
+                CodeArea activeCodeArea = this.getCurrentCodeArea();
+                this.saveFile(activeCodeArea.getText(), saveFile);
+                // set the title of the tab to the name of the saved file
+                selectedTab.setText(saveFile.getName());
+
+                // map the tab and the associated file
+                this.tabFileMap.put(selectedTab, saveFile);
+            }
         }
     }
 
@@ -579,17 +581,15 @@ public class Controller
     @FXML
     private void handleSaveButtonAction()
     {
-        // get the selected tab from the tab pane
-        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-
-        // get the text area embedded in the selected tab window
-        CodeArea activeCodeArea = this.getCurrentCodeArea();
-        ;
-
         // if the tab content was not loaded from a file nor ever saved to a file
         // save the content of the active text area to the selected file path
-        if (this.tabFileMap.get(selectedTab) == null)
+        if (!tabPane.getTabs().isEmpty())
         {
+            // get the selected tab from the tab pane
+            Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+
+            // get the text area embedded in the selected tab window
+            CodeArea activeCodeArea = this.getCurrentCodeArea();
             // create a fileChooser and add file extension restrictions
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.txt", "*.txt"));
@@ -606,12 +606,16 @@ public class Controller
                 // set the title of the tab to the name of the saved file
                 selectedTab.setText(saveFile.getName());
             }
+            // if the current text area was loaded from a file or previously saved to a file,
+            // then the text area is saved to that file
+            else
+            {
+                this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
+            }
         }
-        // if the current text area was loaded from a file or previously saved to a file,
-        // then the text area is saved to that file
         else
         {
-            this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
+            System.out.println("There are no Tabs!");
         }
     }
 
@@ -781,8 +785,10 @@ public class Controller
 
     private CodeArea getCurrentCodeArea()
     {
+
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
-        return (CodeArea)vsp.getContent();
+        return (CodeArea) vsp.getContent();
+
     }
 }
