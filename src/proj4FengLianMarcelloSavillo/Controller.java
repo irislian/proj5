@@ -328,7 +328,6 @@ public class Controller
         this.getCurrentCodeArea().cut();
     }
 
-
     /**
      * Handles the Copy button action.
      * Copies the selected text.
@@ -456,10 +455,6 @@ public class Controller
                         MyErrorDialogType.SAVING_ERROR, file.getName());
                 myErrorDialog.showAndWait();
             }
-        }
-        else
-        {
-            System.out.println("There are no tabs!");
         }
     }
 
