@@ -17,6 +17,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+/*
+ * FileMenuController contains the handler methods for the MenuItems
+ * found in the file menu of our IDE. It also contains a series of helper
+ * methods for these handlers, dealing with saving and loading files
+ * as well as closing/opening tabs. The FileMenuController has no
+ * direct link to the FXML, and relies on the Controller to act as an
+ * intermediary. 
+ */
 class FileMenuController
 {
     private TabPane tabPane;
@@ -485,6 +493,10 @@ class FileMenuController
         this.primaryStage = primaryStage;
     }
 
+    /** 
+     * Simple helper method that gets the FXML objects from the
+     * main controller for use by other methods in the class.
+     */
     void recieveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];
