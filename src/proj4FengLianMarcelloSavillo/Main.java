@@ -27,6 +27,9 @@ import javafx.scene.Parent;
  * @author Liwei Jiang
  * @author Iris Lian
  * @author Tracy Quan
+ * @author Evan Savillo
+ * @author Chris Marcello
+ * @author Yi Feng
  */
 public class Main extends Application
 {
@@ -36,7 +39,8 @@ public class Main extends Application
             "Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo's Project 4";
 
     /**
-     *
+     * Takes in a stage and loads the FXML, creates the controller,
+     * and initializes a scene. 
      * @param stage The stage that contains the window content
      */
     @Override
