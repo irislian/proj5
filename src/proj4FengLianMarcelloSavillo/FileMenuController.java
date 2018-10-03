@@ -282,7 +282,7 @@ public class FileMenuController
             catch (IOException e)
             {
                 MyErrorDialog myErrorDialog = new MyErrorDialog(
-                        MyErrorDialogType.SAVING_ERROR, file.getName());
+                        MyErrorDialog.ErrorType.SAVING_ERROR, file.getName());
                 myErrorDialog.showAndWait();
             }
         }
@@ -304,7 +304,7 @@ public class FileMenuController
         catch (IOException e)
         {
             MyErrorDialog myErrorDialog = new MyErrorDialog(
-                    MyErrorDialogType.READING_ERROR, file.getName());
+                    MyErrorDialog.ErrorType.READING_ERROR, file.getName());
             myErrorDialog.showAndWait();
 
         }
