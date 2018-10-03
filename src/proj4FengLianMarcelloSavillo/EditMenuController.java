@@ -157,6 +157,10 @@ public class EditMenuController
         return this.tabPane.getTabs().isEmpty();
     }
 
+    /** 
+     * Simple helper method that gets the FXML objects from the
+     * main controller for use by other methods in the class.
+     */
     void recieveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];
