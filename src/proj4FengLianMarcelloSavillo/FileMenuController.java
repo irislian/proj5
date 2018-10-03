@@ -1,8 +1,6 @@
 package proj4FengLianMarcelloSavillo;
 
 import javafx.application.Platform;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -43,7 +41,7 @@ class FileMenuController
     /**
      * a HashMap mapping the tabs and associated files
      */
-    private Map<Tab, File> tabFileMap = new HashMap<Tab, File>();
+    private Map<Tab, File> tabFileMap = new HashMap<>();
 
     private int untitledCounter = 1;
 
@@ -85,12 +83,9 @@ class FileMenuController
         newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
 
         // set close action (clicking the 'x')
-        newTab.setOnCloseRequest(new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                event.consume();
-                closeTab(newTab);
-            }
+        newTab.setOnCloseRequest(event -> {
+            event.consume();
+            closeTab(newTab);
         });
 
         // add the new tab to the tab pane
@@ -142,12 +137,9 @@ class FileMenuController
             newTab.setContent(
                     new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
-            newTab.setOnCloseRequest(new EventHandler<Event>() {
-                @Override
-                public void handle(Event event) {
-                    event.consume();
-                    closeTab(newTab);
-                }
+            newTab.setOnCloseRequest(event -> {
+                event.consume();
+                closeTab(newTab);
             });
 
             this.tabFileMap.put(newTab, openFile);

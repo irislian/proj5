@@ -254,7 +254,7 @@ public class Controller
      */
     private Object[] passFXMLElements()
     {
-        Object[] FXMLElementList = {
+        return new Object[]{
                 this.tabPane,
                 this.closeMenuItem,
                 this.saveAsMenuItem,
@@ -266,7 +266,5 @@ public class Controller
                 this.pasteMenuItem,
                 this.selectAllMenuItem
         };
-
-        return FXMLElementList;
     }
 }
