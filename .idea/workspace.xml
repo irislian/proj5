@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="refactored receive/pass">
-      <change beforePath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cs361_project4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cs361_project4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -60,32 +62,33 @@
     <session id="-1409012847">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="1" />
           <entry key="fxml" value="1" />
-          <entry key="java" value="4" />
+          <entry key="java" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="JAVA" value="4" />
+          <entry key="JAVA" value="5" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1290" />
+          <entry key="java" value="1310" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1290" />
+          <entry key="JAVA" value="1310" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -135,8 +138,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="257" column="10" lean-forward="true" selection-start-line="257" selection-start-column="10" selection-end-line="257" selection-end-column="10" />
+            <state relative-caret-position="3015">
+              <caret line="257" column="10" selection-start-line="257" selection-start-column="10" selection-end-line="257" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,10 +160,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
+        <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="124" column="46" lean-forward="true" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+            <state relative-caret-position="257">
+              <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,7 +174,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
+            <state relative-caret-position="2055">
               <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -224,7 +239,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.fxml" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/MyErrorDialogType.java" />
@@ -233,6 +247,7 @@
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
       </list>
     </option>
   </component>
@@ -252,23 +267,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="cs361_proj4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cs361_proj4" type="462c0819:PsiDirectoryNode" />
+              <item name="cs361_project4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs361_project4" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cs361_proj4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cs361_proj4" type="462c0819:PsiDirectoryNode" />
+              <item name="cs361_project4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs361_project4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cs361_proj4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cs361_proj4" type="462c0819:PsiDirectoryNode" />
+              <item name="cs361_project4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs361_project4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="proj4FengLianMarcelloSavillo" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -276,6 +289,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -466,8 +482,8 @@
     <frame x="27" y="39" width="1398" height="747" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56113535" visible="true" weight="0.28687316" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.43886462" side_tool="true" visible="true" weight="0.28687316" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.55877864" visible="true" weight="0.29129794" />
+      <window_info id="Structure" order="1" sideWeight="0.4412214" side_tool="true" visible="true" weight="0.29129794" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Learn" order="4" />
@@ -526,13 +542,6 @@
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/javafx-src.zip!/javafx/event/EventHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -555,6 +564,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-64">
           <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3015">
+          <caret line="257" column="10" selection-start-line="257" selection-start-column="10" selection-end-line="257" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -563,18 +579,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="2055">
           <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="257" column="10" lean-forward="true" selection-start-line="257" selection-start-column="10" selection-end-line="257" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -584,7 +590,17 @@
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
-          <caret line="124" column="46" lean-forward="true" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+          <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
