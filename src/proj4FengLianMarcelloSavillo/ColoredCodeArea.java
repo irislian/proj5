@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  * It contains the creation method createCodeArea and a helper method
  * computeHighlighting which handles the highlighting of the codeArea.
  * It also contains the java keywords and patterns to be colored in the CodeArea.
- * 
+ *
  */
 public class ColoredCodeArea
 {
