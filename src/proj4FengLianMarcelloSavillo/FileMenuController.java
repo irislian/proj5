@@ -281,9 +281,9 @@ public class FileMenuController
             }
             catch (IOException e)
             {
-                MyErrorDialog myErrorDialog = new MyErrorDialog(
-                        MyErrorDialog.ErrorType.SAVING_ERROR, file.getName());
-                myErrorDialog.showAndWait();
+                UserErrorDialog userErrorDialog = new UserErrorDialog(
+                        UserErrorDialog.ErrorType.SAVING_ERROR, file.getName());
+                userErrorDialog.showAndWait();
             }
         }
     }
@@ -303,9 +303,9 @@ public class FileMenuController
         }
         catch (IOException e)
         {
-            MyErrorDialog myErrorDialog = new MyErrorDialog(
-                    MyErrorDialog.ErrorType.READING_ERROR, file.getName());
-            myErrorDialog.showAndWait();
+            UserErrorDialog userErrorDialog = new UserErrorDialog(
+                    UserErrorDialog.ErrorType.READING_ERROR, file.getName());
+            userErrorDialog.showAndWait();
 
         }
         return content;

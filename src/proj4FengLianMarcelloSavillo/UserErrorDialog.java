@@ -1,5 +1,5 @@
 /*
-File: ErrorType.java
+File: UserErrorDialog.java
 CS361 Project 4
 Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
 Date: 10/02/18
@@ -17,7 +17,7 @@ import javafx.scene.control.ButtonType;
  * @author Evan Savillo
  * @see javafx.scene.control.Alert
  */
-class MyErrorDialog extends Alert
+class UserErrorDialog extends Alert
 {
     /**
      * enumeration which defines the contents of error alerts of certain types
@@ -53,7 +53,7 @@ class MyErrorDialog extends Alert
      * @param filename optionally pass the name of the file with which the error
      *                 occurred.
      */
-    MyErrorDialog(ErrorType type, String filename)
+    UserErrorDialog(ErrorType type, String filename)
     {
         super(AlertType.NONE);
 
@@ -67,7 +67,7 @@ class MyErrorDialog extends Alert
     /**
      * Fallback constructor
      */
-    MyErrorDialog(ErrorType type)
+    UserErrorDialog(ErrorType type)
     {
         this(type, "in question");
     }
