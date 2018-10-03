@@ -18,13 +18,13 @@ import java.util.*;
 
 public class FileMenuController
 {
-    TabPane tabPane;
+    private TabPane tabPane;
 
-    MenuItem closeMenuItem;
-    MenuItem saveMenuItem;
-    MenuItem saveAsMenuItem;
+    private MenuItem closeMenuItem;
+    private MenuItem saveMenuItem;
+    private MenuItem saveAsMenuItem;
 
-    Stage primaryStage;
+    private Stage primaryStage;
 
     /**
      * a HashMap mapping the tabs and associated files
@@ -445,7 +445,7 @@ public class FileMenuController
      *
      * @return true if there aren't currently any tabs open, else false
      */
-    boolean isTabless()
+    private boolean isTabless()
     {
         return this.tabPane.getTabs().isEmpty();
     }
@@ -465,6 +465,5 @@ public class FileMenuController
         closeMenuItem = (MenuItem) list[1];
         saveMenuItem = (MenuItem) list[2];
         saveAsMenuItem = (MenuItem) list[3];
-        primaryStage = (Stage) list[10];
     }
 }

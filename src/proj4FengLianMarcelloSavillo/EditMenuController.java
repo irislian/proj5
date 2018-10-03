@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 public class EditMenuController
 {
-    TabPane tabPane;
+    private TabPane tabPane;
 
-    MenuItem undoMenuItem;
-    MenuItem redoMenuItem;
-    MenuItem cutMenuItem;
-    MenuItem copyMenuItem;
-    MenuItem pasteMenuItem;
-    MenuItem selectAllMenuItem;
+    private MenuItem undoMenuItem;
+    private MenuItem redoMenuItem;
+    private MenuItem cutMenuItem;
+    private MenuItem copyMenuItem;
+    private MenuItem pasteMenuItem;
+    private MenuItem selectAllMenuItem;
 
     /**
      * Handles the Undo button action.
