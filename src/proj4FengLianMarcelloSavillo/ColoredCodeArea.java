@@ -21,7 +21,11 @@ import java.util.regex.Pattern;
 
 
 /**
- * TODO: doc here
+ * This class is used to set up a CodeArea for the IDE.
+ * It contains a. the java keywords and patterns to be colored in the CodeArea.
+ *             b. a helper method to highlight the keywords.
+ *             c. a method to create a CodeArea in which keywords are highlighted
+ *
  */
 public class ColoredCodeArea
 {
@@ -67,7 +71,7 @@ public class ColoredCodeArea
     );
 
     /**
-     * Helper function which creates and sets up a code area.
+     * Helper method which creates and sets up a code area.
      */
     public static CodeArea createCodeArea()
     {
@@ -98,7 +102,7 @@ public class ColoredCodeArea
     }
 
     /**
-     * Helper function which highlights the keywords, integers and symbols, as defined
+     * Helper method which highlights the keywords, integers and symbols, as defined
      * in the PATTERN field.
      *
      * @param text String that is in the code area
