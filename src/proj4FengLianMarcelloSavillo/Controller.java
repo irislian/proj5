@@ -13,22 +13,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Controller
 {
-    Object[] FXMLElementList = {
-            this.tabPane,
-            this.closeMenuItem,
-            this.saveAsMenuItem,
-            this.saveMenuItem,
-            this.undoMenuItem,
-            this.redoMenuItem,
-            this.cutMenuItem,
-            this.copyMenuItem,
-            this.pasteMenuItem,
-            this.selectAllMenuItem,
-            this.primaryStage
-    };
-
     @FXML
     TabPane tabPane;
 
@@ -247,9 +235,28 @@ public class Controller
      */
     public void initialize()
     {
-        fileMenuController.recieveFXMLElements(this.FXMLElementList);
-        editMenuController.recieveFXMLElements(this.FXMLElementList);
+        fileMenuController.recieveFXMLElements(this.passFXMLElements());
+        editMenuController.recieveFXMLElements(this.passFXMLElements());
 
         this.handleNewMenuItemAction();
+    }
+
+    public Object[] passFXMLElements()
+    {
+        Object[] FXMLElementList = {
+                this.tabPane,
+                this.closeMenuItem,
+                this.saveAsMenuItem,
+                this.saveMenuItem,
+                this.undoMenuItem,
+                this.redoMenuItem,
+                this.cutMenuItem,
+                this.copyMenuItem,
+                this.pasteMenuItem,
+                this.selectAllMenuItem,
+                this.primaryStage
+        };
+
+        return FXMLElementList;
     }
 }
