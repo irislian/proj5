@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
-import javafx.stage.Stage;
 
 
 public class Controller
@@ -40,7 +39,7 @@ public class Controller
     private MenuItem selectAllMenuItem;
 
     FileMenuController fileMenuController = new FileMenuController();
-    EditMenuController editMenuController = new EditMenuController();
+    private EditMenuController editMenuController = new EditMenuController();
 
     /**
      * Handles the About button action.
@@ -237,7 +236,7 @@ public class Controller
         this.handleNewMenuItemAction();
     }
 
-    public Object[] passFXMLElements()
+    private Object[] passFXMLElements()
     {
         Object[] FXMLElementList = {
                 this.tabPane,

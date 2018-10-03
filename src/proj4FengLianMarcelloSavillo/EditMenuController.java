@@ -6,9 +6,15 @@ import javafx.scene.control.TabPane;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 
-import java.util.ArrayList;
 
-public class EditMenuController
+
+/* 
+ * This class handles the Edit menu, as a helper to the main Controller.
+ * This includes the individual handler methods for the MenuItems as 
+ * well as logic for determining deactivating the buttons when
+ * appropriate.
+ */
+class EditMenuController
 {
     private TabPane tabPane;
 
@@ -150,6 +156,10 @@ public class EditMenuController
         return this.tabPane.getTabs().isEmpty();
     }
 
+    /** 
+     * Simple helper method that gets the FXML objects from the
+     * main controller for use by other methods in the class.
+     */
     void recieveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];

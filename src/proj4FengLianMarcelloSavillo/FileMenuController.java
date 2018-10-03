@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class FileMenuController
+class FileMenuController
 {
     private TabPane tabPane;
 
@@ -454,7 +454,7 @@ public class FileMenuController
      * Reads in the application's main stage.
      * For use in Filechooser dialogs
      */
-    public void setPrimaryStage(Stage primaryStage)
+    void setPrimaryStage(Stage primaryStage)
     {
         this.primaryStage = primaryStage;
     }
