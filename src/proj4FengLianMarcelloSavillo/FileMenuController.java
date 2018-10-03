@@ -336,10 +336,11 @@ public class FileMenuController
      */
     private void removeTab(Tab tab)
     {
-        this.tabFileMap.remove(tab);
         if(this.tabPane.getTabs().size() > 1)
             this.tabPane.getSelectionModel().selectPrevious();
         this.tabPane.getTabs().remove(tab);
+        this.tabFileMap.remove(tab);
+
     }
 
 
@@ -385,34 +386,35 @@ public class FileMenuController
         if (this.ifSaveFile(tab))
         {
             //TODO replace with custom dialog?
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Save Changes?");
-            alert.setHeaderText("Do you want to save the changes you made?");
-            alert.setContentText("Your changes will be lost if you don't save them.");
+            Alert alert = new Alert(
+                    Alert.AlertType.CONFIRMATION,
+                    "Want to save before exit?",
+                    ButtonType.YES,
+                    ButtonType.NO,
+                    ButtonType.CANCEL
+            );
+            alert.setTitle("Alert");
 
-            ButtonType buttonYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
-            ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.NO);
-            ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-            alert.getButtonTypes().setAll(buttonYes, buttonNo, buttonCancel);
 
             Optional<ButtonType> result = alert.showAndWait();
             // if user presses Yes button, save the file and close the tab
-            if (result.get() == buttonYes)
+            if (result.get() == ButtonType.YES)
             {
                 this.handleSaveMenuItemAction();
                 this.removeTab(tab);
                 return true;
             }
             // if user presses No button, close the tab without saving
-            else if (result.get() == buttonNo)
+            else if (result.get() == ButtonType.NO)
             {
                 this.removeTab(tab);
                 return true;
             }
-            else
+            else if (result.get() == ButtonType.CANCEL)
             {
                 return false;
             }
+            return true;
         }
         // if the file has not been changed, close the tab
         else

@@ -7,14 +7,13 @@ Date: 10/02/18
 
 package proj4FengLianMarcelloSavillo;
 
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Controller
@@ -105,7 +104,7 @@ public class Controller
      * appears asking whether you want to save the text before closing it.
      */
     @FXML
-    private void handleCloseMenuItemAction(Event event)
+    private void handleCloseMenuItemAction(ActionEvent event)
     {
         fileMenuController.handleCloseMenuItemAction(event);
     }
