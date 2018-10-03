@@ -17,13 +17,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-/*
+/**
  * FileMenuController contains the handler methods for the MenuItems
  * found in the file menu of our IDE. It also contains a series of helper
  * methods for these handlers, dealing with saving and loading files
  * as well as closing/opening tabs. The FileMenuController has no
  * direct link to the FXML, and relies on the Controller to act as an
- * intermediary. 
+ * intermediary.
+ *
+ *  @author Yi Feng
+ *  @author Iris Lian
+ *  @author Chris Marcello
+ *  @author Evan Savillo
  */
 class FileMenuController
 {

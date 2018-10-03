@@ -7,12 +7,16 @@ import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 
 
-
-/* 
+/**
  * This class handles the Edit menu, as a helper to the main Controller.
  * This includes the individual handler methods for the MenuItems as 
  * well as logic for determining deactivating the buttons when
  * appropriate.
+ *
+ *  @author Yi Feng
+ *  @author Iris Lian
+ *  @author Chris Marcello
+ *  @author Evan Savillo
  */
 class EditMenuController
 {

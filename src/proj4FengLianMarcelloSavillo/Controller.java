@@ -7,13 +7,22 @@ Date: 10/02/18
 
 package proj4FengLianMarcelloSavillo;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 
 
+/**
+ * Controller is the main controller for the application.
+ * It itself doesn't handle much. What it does is delegate
+ * tasks to either of the sub controllers, FileMenuController or
+ * EditMenuController.
+ *
+ *  @author Yi Feng
+ *  @author Iris Lian
+ *  @author Chris Marcello
+ *  @author Evan Savillo
+ */
 public class Controller
 {
     @FXML
@@ -237,6 +246,12 @@ public class Controller
         this.handleNewMenuItemAction();
     }
 
+    /**
+     * Method which creates an array of necessary elements needed by
+     * the subcontrollers, which is passed in initialize().
+     *
+     * @return list containing necessary elements
+     */
     private Object[] passFXMLElements()
     {
         Object[] FXMLElementList = {
