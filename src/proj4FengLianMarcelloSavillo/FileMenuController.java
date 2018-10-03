@@ -336,9 +336,12 @@ public class FileMenuController
      */
     private void removeTab(Tab tab)
     {
+//        if (!tab.isSelected())
+//        {
+//            this.tabPane.getSelectionModel().select(tab);
+//        }
+        this.tabPane.getSelectionModel().selectPrevious();
         this.tabFileMap.remove(tab);
-        if(this.tabPane.getTabs().size() > 1)
-            this.tabPane.getSelectionModel().selectPrevious();
         this.tabPane.getTabs().remove(tab);
     }
 

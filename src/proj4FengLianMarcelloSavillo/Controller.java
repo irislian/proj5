@@ -14,8 +14,6 @@ import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class Controller
 {
