@@ -6,9 +6,8 @@ import javafx.scene.control.TabPane;
 import org.fxmisc.flowless.VirtualizedScrollPane;
 import org.fxmisc.richtext.CodeArea;
 
-import java.util.ArrayList;
 
-public class EditMenuController
+class EditMenuController
 {
     private TabPane tabPane;
 
