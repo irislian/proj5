@@ -125,7 +125,6 @@ public class FileMenuController
             newTab.setOnCloseRequest(this::handleCloseMenuItemAction);
 
             this.tabFileMap.put(newTab, openFile);
-
         }
     }
 
