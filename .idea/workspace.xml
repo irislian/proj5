@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="refactored receive/pass">
-      <change beforePath="$PROJECT_DIR$/cs361_project4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cs361_project4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/EditMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/EditMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/FileMenuController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,9 +64,11 @@
     <session id="-1409012847">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -80,12 +87,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1310" />
+          <entry key="java" value="1850" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1310" />
+          <entry key="JAVA" value="1850" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -135,8 +142,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2880">
-              <caret line="252" column="10" selection-start-line="252" selection-start-column="10" selection-end-line="252" selection-end-column="10" />
+            <state relative-caret-position="1155">
+              <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+              <folding>
+                <element signature="e#1110#1111#0" expanded="true" />
+                <element signature="e#1172#1173#0" expanded="true" />
+                <element signature="e#1391#1392#0" expanded="true" />
+                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1813#1814#0" expanded="true" />
+                <element signature="e#1874#1875#0" expanded="true" />
+                <element signature="e#2258#2259#0" expanded="true" />
+                <element signature="e#2320#2321#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,17 +161,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4684">
-              <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+            <state relative-caret-position="-733">
+              <caret line="202" column="90" selection-start-line="202" selection-start-column="90" selection-end-line="202" selection-end-column="90" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#790#801#0" expanded="true" />
-                <element signature="e#14128#14129#0" expanded="true" />
-                <element signature="e#14201#14202#0" expanded="true" />
-                <element signature="e#14748#14749#0" expanded="true" />
-                <element signature="e#14803#14804#0" expanded="true" />
-                <element signature="e#14962#14963#0" expanded="true" />
-                <element signature="e#15010#15011#0" expanded="true" />
+                <element signature="e#14516#14517#0" expanded="true" />
+                <element signature="e#14589#14590#0" expanded="true" />
+                <element signature="e#15136#15137#0" expanded="true" />
+                <element signature="e#15191#15192#0" expanded="true" />
+                <element signature="e#15343#15344#0" expanded="true" />
+                <element signature="e#15391#15392#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,7 +180,7 @@
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+              <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -175,8 +191,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2055">
-              <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+            <state relative-caret-position="2145">
+              <caret line="171" column="5" selection-start-line="171" selection-start-column="5" selection-end-line="171" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -195,35 +211,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SaveAs</find>
-      <find>handleSave</find>
-      <find>.txt</find>
-      <find>getflile</find>
-      <find>getFileCon</find>
-      <find>Boolean</find>
-      <find>isUndoAvailable</find>
-      <find>ioexception</find>
-      <find>filecontent</find>
-      <find>stage</find>
-      <find>try</find>
-      <find>catch</find>
       <find>getFileContent</find>
       <find>Vir</find>
       <find>ifFileChanged</find>
       <find>Virtualized</find>
       <find>initial</find>
-      <find>closetab</find>
       <find>ifsavefile</find>
       <find>handlenew</find>
       <find>showOpenDia</find>
       <find>showOpen</find>
       <find>showSave</find>
       <find>vsp</find>
-      <find>handleclose</find>
       <find>content</find>
       <find>private</find>
-      <find>private</find>
       <find>@FXML</find>
+      <find>handleCloseMenuItemAction</find>
+      <find>closeTab</find>
+      <find>handleopen</find>
+      <find>removetab</find>
+      <find>ifsave</find>
+      <find>cancel</find>
+      <find>handleSaveAsMenuItemAction()</find>
+      <find>handlesave</find>
+      <find>handleSaveMenuItemAction</find>
+      <find>handleSaveAsMenuItemAction</find>
+      <find>return</find>
+      <find>setonc</find>
+      <find>handleclose</find>
+      <find>closetab</find>
+      <find>saveas</find>
+      <find>boolean</find>
     </findStrings>
     <replaceStrings>
       <replace>@Override</replace>
@@ -246,18 +263,18 @@
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/MyErrorDialog.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/UserErrorDialog.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" />
-        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="27" />
-    <option name="y" value="39" />
-    <option name="width" value="1398" />
-    <option name="height" value="747" />
+    <option name="x" value="190" />
+    <option name="y" value="40" />
+    <option name="width" value="1219" />
+    <option name="height" value="855" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -268,6 +285,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -290,9 +308,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -480,11 +497,11 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="27" y="39" width="1398" height="747" extended-state="0" />
+    <frame x="190" y="40" width="1219" height="855" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.55877864" visible="true" weight="0.29129794" />
-      <window_info id="Structure" order="1" sideWeight="0.4412214" side_tool="true" visible="true" weight="0.29129794" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5566343" visible="true" weight="0.3415463" />
+      <window_info id="Structure" order="1" sideWeight="0.4433657" side_tool="true" visible="true" weight="0.3415463" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Learn" order="4" />
@@ -493,7 +510,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30076337" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19003932" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -504,7 +521,7 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3290653" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.327654" />
       <window_info anchor="bottom" id="Terminal" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -565,13 +582,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-64">
           <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2055">
-          <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+        <state relative-caret-position="2145">
+          <caret line="171" column="5" selection-start-line="171" selection-start-column="5" selection-end-line="171" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -581,7 +601,7 @@
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+          <caret line="29" column="2" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -590,24 +610,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2880">
-          <caret line="252" column="10" selection-start-line="252" selection-start-column="10" selection-end-line="252" selection-end-column="10" />
+        <state relative-caret-position="1155">
+          <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+          <folding>
+            <element signature="e#1110#1111#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1813#1814#0" expanded="true" />
+            <element signature="e#1874#1875#0" expanded="true" />
+            <element signature="e#2258#2259#0" expanded="true" />
+            <element signature="e#2320#2321#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4684">
-          <caret line="124" column="46" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+        <state relative-caret-position="-733">
+          <caret line="202" column="90" selection-start-line="202" selection-start-column="90" selection-end-line="202" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#790#801#0" expanded="true" />
-            <element signature="e#14128#14129#0" expanded="true" />
-            <element signature="e#14201#14202#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#14803#14804#0" expanded="true" />
-            <element signature="e#14962#14963#0" expanded="true" />
-            <element signature="e#15010#15011#0" expanded="true" />
+            <element signature="e#14516#14517#0" expanded="true" />
+            <element signature="e#14589#14590#0" expanded="true" />
+            <element signature="e#15136#15137#0" expanded="true" />
+            <element signature="e#15191#15192#0" expanded="true" />
+            <element signature="e#15343#15344#0" expanded="true" />
+            <element signature="e#15391#15392#0" expanded="true" />
           </folding>
         </state>
       </provider>

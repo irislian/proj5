@@ -2,6 +2,7 @@ package proj4FengLianMarcelloSavillo;
 
 import javafx.application.Platform;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -71,7 +72,13 @@ class FileMenuController
         newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
 
         // set close action (clicking the 'x')
-        newTab.setOnCloseRequest(this::handleCloseMenuItemAction);
+        newTab.setOnCloseRequest(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                event.consume();
+                closeTab(newTab);
+            }
+        });
 
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
@@ -122,7 +129,13 @@ class FileMenuController
             newTab.setContent(
                     new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
-            newTab.setOnCloseRequest(this::handleCloseMenuItemAction);
+            newTab.setOnCloseRequest(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    event.consume();
+                    closeTab(newTab);
+                }
+            });
 
             this.tabFileMap.put(newTab, openFile);
         }
@@ -134,14 +147,11 @@ class FileMenuController
      * If the current text area has been changed since it was last saved to a file, a dialog
      * appears asking whether you want to save the text before closing it.
      */
-    void handleCloseMenuItemAction(Event event)
-    {
-        event.consume();
 
-        if (!this.isTabless())
-        {
-            this.closeTab(this.getCurrentTab());
-        }
+    void handleCloseMenuItemAction() {
+
+        Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+        this.closeTab(selectedTab);
     }
 
     /**
@@ -152,8 +162,10 @@ class FileMenuController
      * then creates a new text file by that name and write to that file all the current
      * contents of the text area so that those contents can later be reloaded.
      * If the user presses the Cancel button in the dialog, then the dialog closes and no saving occurs.
+     *
+     * @return true if the user chooses to save the file (i.e., clicks OK), false if canceled
      */
-    void handleSaveAsMenuItemAction()
+    boolean handleSaveAsMenuItemAction()
     {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
@@ -174,6 +186,10 @@ class FileMenuController
 
             // map the tab and the associated file
             this.tabFileMap.put(selectedTab, saveFile);
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -183,8 +199,10 @@ class FileMenuController
      * behaves the same as the save as button.
      * If the current text area was loaded from a file or previously saved
      * to a file, then the text area is saved to that file.
+     *
+     * @return true if the tab is saved, false if the user clicks CANCEL in the saveDialog
      */
-    void handleSaveMenuItemAction()
+    boolean handleSaveMenuItemAction()
     {
         // get the selected tab from the tab pane
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
@@ -196,13 +214,14 @@ class FileMenuController
         // save the content of the active text area to the selected file path
         if (this.tabFileMap.get(selectedTab) == null)
         {
-            this.handleSaveAsMenuItemAction();
+            return this.handleSaveAsMenuItemAction();
         }
         // if the current text area was loaded from a file or previously saved to a file,
         // then the text area is saved to that file
         else
         {
             this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
+            return true;
         }
     }
 
@@ -308,7 +327,7 @@ class FileMenuController
      *
      * @param codeArea TextArea to compare with the the specified File
      * @param file     File to compare with the the specified TextArea
-     * @return Boolean indicating if the TextArea has changed from the File
+     * @return boolean indicating if the TextArea has changed from the File
      */
     private boolean ifFileChanged(CodeArea codeArea, File file)
     {
@@ -326,14 +345,14 @@ class FileMenuController
      */
     private void removeTab(Tab tab)
     {
-        if (!tab.isSelected())
-        {
-            this.tabPane.getSelectionModel().select(tab);
-        }
-        this.tabPane.getSelectionModel().selectPrevious();
+//        if (!tab.isSelected())
+//        {
+//            this.tabPane.getSelectionModel().select(tab);
+//        }
+//        this.tabPane.getSelectionModel().selectPrevious();
         this.tabFileMap.remove(tab);
         this.tabPane.getTabs().remove(tab);
-        this.tabFileMap.remove(tab);
+//        this.tabFileMap.remove(tab);
 
     }
 
@@ -374,12 +393,14 @@ class FileMenuController
      */
     private boolean closeTab(Tab tab)
     {
-        //TODO: autoclose if unsavedfile is empty?
+
+        if (tab == null) {
+            return true;
+        }
         // if the file has not been saved or has been changed
         // pop up a dialog window asking whether to save the file
         if (this.ifSaveFile(tab))
         {
-            //TODO replace with custom dialog?
             Alert alert = new Alert(
                     Alert.AlertType.CONFIRMATION,
                     "Want to save before exit?",
@@ -394,9 +415,13 @@ class FileMenuController
             // if user presses Yes button, save the file and close the tab
             if (result.get() == ButtonType.YES)
             {
-                this.handleSaveMenuItemAction();
-                this.removeTab(tab);
-                return true;
+                if(this.handleSaveMenuItemAction()) {
+                    this.removeTab(tab);
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
             // if user presses No button, close the tab without saving
             else if (result.get() == ButtonType.NO)
@@ -406,6 +431,7 @@ class FileMenuController
             }
             else if (result.get() == ButtonType.CANCEL)
             {
+                System.out.println("return false");
                 return false;
             }
             return true;

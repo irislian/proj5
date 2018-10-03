@@ -8,6 +8,7 @@ Date: 10/02/18
 package proj4FengLianMarcelloSavillo;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
@@ -81,9 +82,9 @@ public class Controller
      * appears asking whether you want to save the text before closing it.
      */
     @FXML
-    private void handleCloseMenuItemAction(ActionEvent event)
+    private void handleCloseMenuItemAction()
     {
-        fileMenuController.handleCloseMenuItemAction(event);
+        fileMenuController.handleCloseMenuItemAction();
     }
 
     /**
