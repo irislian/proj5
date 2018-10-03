@@ -26,15 +26,6 @@ public class FileMenuController
 
     Stage primaryStage;
 
-    void recieveFXMLElements(ArrayList<Object> list)
-    {
-        tabPane = (TabPane)list.get(0);
-        closeMenuItem = (MenuItem)list.get(1);
-        saveMenuItem = (MenuItem)list.get(2);
-        saveAsMenuItem = (MenuItem)list.get(3);
-        primaryStage = (Stage)list.get(10);
-    }
-
     /**
      * a HashMap mapping the tabs and associated files
      */
@@ -336,10 +327,10 @@ public class FileMenuController
      */
     private void removeTab(Tab tab)
     {
-//        if (!tab.isSelected())
-//        {
-//            this.tabPane.getSelectionModel().select(tab);
-//        }
+        if (!tab.isSelected())
+        {
+            this.tabPane.getSelectionModel().select(tab);
+        }
         this.tabPane.getSelectionModel().selectPrevious();
         this.tabFileMap.remove(tab);
         this.tabPane.getTabs().remove(tab);
@@ -464,5 +455,14 @@ public class FileMenuController
     public void setPrimaryStage(Stage primaryStage)
     {
         this.primaryStage = primaryStage;
+    }
+
+    void recieveFXMLElements(Object[] list)
+    {
+        tabPane = (TabPane) list[0];
+        closeMenuItem = (MenuItem) list[1];
+        saveMenuItem = (MenuItem) list[2];
+        saveAsMenuItem = (MenuItem) list[3];
+        primaryStage = (Stage) list[10];
     }
 }

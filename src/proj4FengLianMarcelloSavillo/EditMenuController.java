@@ -19,17 +19,6 @@ public class EditMenuController
     MenuItem pasteMenuItem;
     MenuItem selectAllMenuItem;
 
-    void recieveFXMLElements(ArrayList<Object> list)
-    {
-        tabPane = (TabPane) list.get(0);
-        undoMenuItem = (MenuItem) list.get(4);
-        redoMenuItem = (MenuItem) list.get(5);
-        cutMenuItem = (MenuItem) list.get(6);
-        copyMenuItem = (MenuItem) list.get(7);
-        pasteMenuItem = (MenuItem) list.get(8);
-        selectAllMenuItem = (MenuItem) list.get(9);
-    }
-
     /**
      * Handles the Undo button action.
      * Undo the actions in the text area.
@@ -159,5 +148,16 @@ public class EditMenuController
     private boolean isTabless()
     {
         return this.tabPane.getTabs().isEmpty();
+    }
+
+    void recieveFXMLElements(Object[] list)
+    {
+        tabPane = (TabPane) list[0];
+        undoMenuItem = (MenuItem) list[4];
+        redoMenuItem = (MenuItem) list[5];
+        cutMenuItem = (MenuItem) list[6];
+        copyMenuItem = (MenuItem) list[7];
+        pasteMenuItem = (MenuItem) list[8];
+        selectAllMenuItem = (MenuItem) list[9];
     }
 }

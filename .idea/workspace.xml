@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="renamed ErrorDialog">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="fixed bug where final tab would not close">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cs361_project4/proj4FengLianMarcelloSavillo/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,14 +108,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
-          <entry key="java" value="1143" />
-          <entry key="txt" value="226" />
+          <entry key="java" value="1376" />
+          <entry key="txt" value="327" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1143" />
-          <entry key="PLAIN_TEXT" value="234" />
+          <entry key="JAVA" value="1376" />
+          <entry key="PLAIN_TEXT" value="335" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -131,11 +135,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+            <state relative-caret-position="124">
+              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,11 +147,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="235" column="5" lean-forward="true" selection-start-line="235" selection-start-column="5" selection-end-line="235" selection-end-column="5" />
+            <state relative-caret-position="235">
+              <caret line="458" selection-start-line="458" selection-end-line="458" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -158,8 +162,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+            <state relative-caret-position="379">
+              <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,12 +230,12 @@
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.fxml" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.java" />
-        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" />
-        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/MyErrorDialogType.java" />
-        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/MyErrorDialog.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/UserErrorDialog.java" />
+        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" />
       </list>
     </option>
   </component>
@@ -427,7 +431,21 @@
       <option name="project" value="LOCAL" />
       <updated>1538530722076</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed bug where final tab would not close by only selecting previous&#10;if there are more than 2 tabs">
+      <created>1538533795245</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1538533795246</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed bug where final tab would not close">
+      <created>1538534934833</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1538534934833</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -437,7 +455,7 @@
     <frame x="27" y="39" width="1398" height="747" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.56113535" visible="true" weight="0.28687316" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.56113535" visible="true" weight="0.28687316" />
       <window_info id="Structure" order="1" sideWeight="0.43886462" side_tool="true" visible="true" weight="0.28687316" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -447,7 +465,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30076337" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30076337" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -483,7 +501,9 @@
     <MESSAGE value="bifurcated controooooooooooller" />
     <MESSAGE value="cleaned and polished custom ErrorDialog stuff" />
     <MESSAGE value="renamed ErrorDialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed ErrorDialog" />
+    <MESSAGE value="fixed bug where final tab would not close by only selecting previous&#10;if there are more than 2 tabs" />
+    <MESSAGE value="fixed bug where final tab would not close" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug where final tab would not close" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -519,16 +539,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/UserErrorDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-64">
@@ -541,8 +551,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+        <state relative-caret-position="379">
+          <caret line="161" column="5" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -551,8 +561,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="235" column="5" lean-forward="true" selection-start-line="235" selection-start-column="5" selection-end-line="235" selection-end-column="5" />
+        <state relative-caret-position="235">
+          <caret line="458" selection-start-line="458" selection-end-line="458" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
