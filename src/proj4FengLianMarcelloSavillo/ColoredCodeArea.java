@@ -21,7 +21,10 @@ import java.util.regex.Pattern;
 
 
 /**
- * TODO: doc here
+ * This class handles the creation of CodeAreas, as well as keyword 
+ * highlighting and syntax recognition.
+ * It contains the creation method createCodeArea and a helper method
+ * computeHighlighting which handles the highlighting of the codeArea.
  */
 public class ColoredCodeArea
 {
