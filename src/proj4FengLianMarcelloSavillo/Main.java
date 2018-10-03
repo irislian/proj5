@@ -55,9 +55,16 @@ public class Main extends Application
         Controller controller = loader.getController();
         controller.fileMenuController.setPrimaryStage(stage);
 
+        // eats the command to quit from the window itself, so that cancel works
+        // minor behavior issue currently but not a real bad bug
+        // when quitting is prompts dialog twice on cancel after confirmed save
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            controller.handleExitMenuItemAction();
+        });
+
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/proj4FengLianMarcelloSavillo/Main.css");
         scene.getStylesheets().add("/proj4FengLianMarcelloSavillo/java-keywords.css");
 
         // configure the stage

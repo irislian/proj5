@@ -120,7 +120,7 @@ public class Controller
      * Exits the program when the Exit button is clicked.
      */
     @FXML
-    private void handleExitMenuItemAction()
+    void handleExitMenuItemAction()
     {
         fileMenuController.handleExitMenuItemAction();
     }

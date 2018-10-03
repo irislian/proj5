@@ -155,7 +155,6 @@ class FileMenuController
      * If the current text area has been changed since it was last saved to a file, a dialog
      * appears asking whether you want to save the text before closing it.
      */
-
     void handleCloseMenuItemAction() {
 
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
@@ -474,7 +473,7 @@ class FileMenuController
         return (CodeArea) vsp.getContent();
     }
 
-    /**
+    /*
      * Simple helper method
      *
      * @return true if there aren't currently any tabs open, else false
