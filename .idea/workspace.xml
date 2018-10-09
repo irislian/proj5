@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="last bug and some jdocs">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/trash1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/trash1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs361_project4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs361_project4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/proj5LianDurstCoyne.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/EditMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/UserErrorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/UserErrorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/java-keywords.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/java-keywords.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -149,12 +144,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="15" />
+          <entry key="dummy" value="29" />
+          <entry key="java" value="359" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="15" />
+          <entry key="JAVA" value="359" />
+          <entry key="PLAIN_TEXT" value="29" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -167,8 +175,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+            <state relative-caret-position="146">
+              <caret line="342" column="51" lean-forward="true" selection-start-line="342" selection-start-column="51" selection-end-line="342" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,8 +187,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+            <state relative-caret-position="341">
+              <caret line="166" column="11" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -188,9 +199,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3743">
-              <caret line="255" column="5" selection-start-line="255" selection-start-column="5" selection-end-line="255" selection-end-column="5" />
+            <state relative-caret-position="126">
+              <caret line="95" column="35" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="35" />
               <folding>
+                <element signature="e#0#7159#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -200,8 +212,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
-              <caret line="57" column="80" selection-start-line="57" selection-start-column="80" selection-end-line="57" selection-end-column="80" />
+            <state relative-caret-position="76">
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -209,11 +221,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-266">
+              <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -229,22 +238,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Vir</find>
-      <find>ifFileChanged</find>
-      <find>Virtualized</find>
-      <find>initial</find>
-      <find>ifsavefile</find>
-      <find>handlenew</find>
-      <find>showOpenDia</find>
-      <find>showOpen</find>
-      <find>showSave</find>
-      <find>vsp</find>
-      <find>content</find>
-      <find>private</find>
-      <find>@FXML</find>
-      <find>handleCloseMenuItemAction</find>
-      <find>closeTab</find>
-      <find>handleopen</find>
       <find>removetab</find>
       <find>ifsave</find>
       <find>cancel</find>
@@ -259,6 +252,22 @@
       <find>saveas</find>
       <find>boolean</find>
       <find>return fal</find>
+      <find>handle</find>
+      <find>handleF</find>
+      <find>handleN</find>
+      <find>handleNew</find>
+      <find>isSa</find>
+      <find>ifSa</find>
+      <find>ifS</find>
+      <find>tabN</find>
+      <find>ifFileChan</find>
+      <find>ifFileChanged</find>
+      <find>saveFile</find>
+      <find>handleCl</find>
+      <find>dialog</find>
+      <find>closeTab</find>
+      <find>contentsMatch</find>
+      <find>System.</find>
     </findStrings>
     <replaceStrings>
       <replace>@Override</replace>
@@ -284,6 +293,11 @@
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" />
       </list>
     </option>
   </component>
@@ -333,7 +347,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538529504332" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539105229563" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../richtextfx-fat-0.9.1.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -527,8 +541,8 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5435169" visible="true" weight="0.17975709" />
-      <window_info id="Structure" order="1" sideWeight="0.45648313" side_tool="true" visible="true" weight="0.17975709" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.54353565" visible="true" weight="0.17975709" />
+      <window_info id="Structure" order="1" sideWeight="0.45646438" side_tool="true" visible="true" weight="0.17975709" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Learn" order="4" />
@@ -537,7 +551,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18978103" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3268206" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -580,6 +594,17 @@
     <MESSAGE value="last bug and some jdocs" />
     <option name="LAST_COMMIT_MESSAGE" value="last bug and some jdocs" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java</url>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
@@ -605,38 +630,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3743">
-          <caret line="255" column="5" selection-start-line="255" selection-start-column="5" selection-end-line="255" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-266">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="57" column="80" selection-start-line="57" selection-start-column="80" selection-end-line="57" selection-end-column="80" />
+        <state relative-caret-position="76">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java">
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="341">
+          <caret line="166" column="11" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java">
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        <state relative-caret-position="126">
+          <caret line="95" column="35" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="35" />
           <folding>
+            <element signature="e#0#7159#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -644,8 +667,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        <state relative-caret-position="146">
+          <caret line="342" column="51" lean-forward="true" selection-start-line="342" selection-start-column="51" selection-end-line="342" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,8 +1,8 @@
 /*
 File: Main.java
-CS361 Project 4
-Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
-Date: 10/02/18
+CS361 Project 5
+Names: Iris Lian, Robert Durst, and Michael Coyne
+Date: 10/09/18
 */
 
 package proj5LianDurstCoyne;
@@ -36,7 +36,7 @@ public class Main extends Application
     private static final int SCENE_WIDTH = 640;
     private static final int SCENE_HEIGHT = 480;
     private static final String STAGE_TITLE =
-            "Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo's Project 4";
+            "Iris Lian, Robert Durst, and Michael Coyne's Project 5";
 
     /**
      * Takes in a stage and loads the FXML, creates the controller,

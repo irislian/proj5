@@ -33,7 +33,7 @@ class EditMenuController
      * Handles the Undo button action.
      * Undo the actions in the text area.
      */
-    void handleUndoMenuItemAction()
+    public void handleUndoMenuItemAction()
     {
         this.getCurrentCodeArea().undo();
     }
@@ -42,7 +42,7 @@ class EditMenuController
      * Handles the Redo button action.
      * Redo the actions in the text area.
      */
-    void handleRedoMenuItemAction()
+    public void handleRedoMenuItemAction()
     {
         this.getCurrentCodeArea().redo();
     }
@@ -51,7 +51,7 @@ class EditMenuController
      * Handles the Cut button action.
      * Cuts the selected text.
      */
-    void handleCutMenuItemAction()
+    public void handleCutMenuItemAction()
     {
         this.getCurrentCodeArea().cut();
     }
@@ -60,7 +60,7 @@ class EditMenuController
      * Handles the Copy button action.
      * Copies the selected text.
      */
-    void handleCopyMenuItemAction()
+    public void handleCopyMenuItemAction()
     {
         this.getCurrentCodeArea().copy();
     }
@@ -69,7 +69,7 @@ class EditMenuController
      * Handles the Paste button action.
      * Pastes the copied/cut text.
      */
-    void handlePasteMenuItemAction()
+    public void handlePasteMenuItemAction()
     {
         this.getCurrentCodeArea().paste();
     }
@@ -78,7 +78,7 @@ class EditMenuController
      * Handles the SelectAll button action.
      * Selects all texts in the text area.
      */
-    void handleSelectAllMenuItemAction()
+    public void handleSelectAllMenuItemAction()
     {
         this.getCurrentCodeArea().selectAll();
     }
@@ -87,7 +87,7 @@ class EditMenuController
      * Updates the visual status (greyed or not) of items when user
      * click open the Edit menu
      */
-    void handleEditMenuShowing()
+    public void handleEditMenuShowing()
     {
         // Case 1: No tabs
         if (this.isTabless())
@@ -118,7 +118,7 @@ class EditMenuController
     /**
      * Resets the greying out of items when Edit menu closes
      */
-    void handleEditMenuHidden()
+    public void handleEditMenuHidden()
     {
         this.undoMenuItem.setDisable(false);
         this.redoMenuItem.setDisable(false);
@@ -164,7 +164,7 @@ class EditMenuController
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
-    void recieveFXMLElements(Object[] list)
+    public void recieveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];
         undoMenuItem = (MenuItem) list[4];

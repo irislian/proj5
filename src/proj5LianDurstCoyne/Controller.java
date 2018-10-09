@@ -1,8 +1,8 @@
 /*
 File: Controller.java
-CS361 Project 4
-Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
-Date: 10/02/18
+CS361 Project 5
+Names: Iris Lian, Robert Durst, and Michael Coyne
+Date: 10/09/18
 */
 
 package proj5LianDurstCoyne;
