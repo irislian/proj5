@@ -5,7 +5,7 @@ Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
 Date: 10/02/18
 */
 
-package proj4FengLianMarcelloSavillo;
+package proj5LianDurstCoyne;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;

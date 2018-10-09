@@ -5,7 +5,7 @@ Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
 Date: 10/02/18
 */
 
-package proj4FengLianMarcelloSavillo;
+package proj5LianDurstCoyne;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -48,7 +48,7 @@ public class Main extends Application
     {
         // load the fxml file to create the stage and get the root
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/proj4FengLianMarcelloSavillo/Main.fxml"));
+                getClass().getResource("/proj5LianDurstCoyne/Main.fxml"));
         Parent root = loader.load();
 
         // set controller and stage
@@ -65,7 +65,7 @@ public class Main extends Application
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/proj4FengLianMarcelloSavillo/java-keywords.css");
+        scene.getStylesheets().add("/proj5LianDurstCoyne/java-keywords.css");
 
         // configure the stage
         stage.setTitle(STAGE_TITLE);
