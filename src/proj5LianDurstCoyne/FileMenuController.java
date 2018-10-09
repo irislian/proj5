@@ -467,7 +467,7 @@ class FileMenuController
      */
     private Tab createNewTab(){
         Tab newTab = new Tab();
-        newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+        newTab.setContent(new VirtualizedScrollPane<>(new ColoredCodeArea()));
 
         // set close action (clicking the 'x')
         newTab.setOnCloseRequest(event -> {

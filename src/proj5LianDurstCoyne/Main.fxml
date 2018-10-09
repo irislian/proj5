@@ -16,6 +16,8 @@ Date: 10/02/18
 <?import javafx.scene.layout.VBox?>
 
 
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="proj5LianDurstCoyne.Controller">
     <MenuBar VBox.vgrow="NEVER">
@@ -87,6 +89,10 @@ Date: 10/02/18
             </MenuItem>
         </Menu>
     </MenuBar>
+    <ToolBar VBox.vgrow="ALWAYS">
+        <Button text="Hello" fx:id="helloButton" onAction="#handleHelloButtonAction"/>
+        <Button text="Goodbye" fx:id="goodbyeButton" onAction="#handleGoodbyeButtonAction"/>
+    </ToolBar>
     <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
         <tabs>
         </tabs>

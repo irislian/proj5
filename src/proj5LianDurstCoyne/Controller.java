@@ -8,8 +8,12 @@ Date: 10/09/18
 package proj5LianDurstCoyne;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextInputDialog;
+
+import java.util.Optional;
 
 
 /**
@@ -47,6 +51,15 @@ public class Controller
     private MenuItem pasteMenuItem;
     @FXML
     private MenuItem selectAllMenuItem;
+
+    /**
+     * Hello button defined in Main.fxml
+     */
+    @FXML private Button helloButton;
+    /**
+     * Goodbye button defined in Main.fxml
+     */
+    @FXML private Button goodbyeButton;
 
     FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
@@ -129,7 +142,7 @@ public class Controller
      * Exits the program when the Exit button is clicked.
      */
     @FXML
-    void handleExitMenuItemAction()
+    public void handleExitMenuItemAction()
     {
         fileMenuController.handleExitMenuItemAction();
     }
@@ -266,5 +279,35 @@ public class Controller
                 this.pasteMenuItem,
                 this.selectAllMenuItem
         };
+    }
+
+
+    /**
+     * TODO: MAYBE ANOTHER CONTROLLER FOR TOOLBAR?
+     * Handles the Hello button action.
+     * Creates a dialog that takes in an integer between 0 and 255 when Hello
+     * button is clicked, and sets the Hello button text to the input number
+     * when ok button inside the dialog is clicked.
+     */
+    @FXML private void handleHelloButtonAction() {
+        // set up the number input dialog
+        TextInputDialog dialog = new TextInputDialog("60");
+        dialog.setTitle("Give me a number");
+        dialog.setHeaderText("Give me an integer from 0 to 255:");
+
+        // when ok button is clicked, set the text of the Hello button to the input number
+        final Optional<String> enterValue = dialog.showAndWait();
+        if (enterValue.isPresent()) {
+            this.helloButton.setText(enterValue.get());
+        }
+    }
+
+
+    /**
+     * Handles the Goodbye button action.
+     * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
+     */
+    @FXML private void handleGoodbyeButtonAction() {
+        this.goodbyeButton.setText("Yah, sure!");
     }
 }

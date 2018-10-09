@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  *  @author Yi Feng
  *  @author Iris Lian
  */
-public class ColoredCodeArea
+public class ColoredCodeArea extends CodeArea
 {
     /**
      * Keywords which need to be highlighted
@@ -74,37 +74,6 @@ public class ColoredCodeArea
     );
 
     /**
-     * Helper method which creates and sets up a code area.
-     */
-    public static CodeArea createCodeArea()
-    {
-        CodeArea codeArea = new CodeArea();
-
-        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-
-        //  recompute the syntax highlighting 500 ms after user stops editing area
-        Subscription cleanupWhenNoLongerNeedIt = codeArea
-
-                //  plain changes = ignore style changes that are emitted when
-                //      syntax highlighting is reapplied
-                //  multi plain changes = save computation by not rerunning
-                //      the code multiple times
-                //  when making multiple changes (e.g. renaming a method
-                //      at multiple parts in file)
-                .multiPlainChanges()
-
-                //  do not emit an event until 500 ms have passed since
-                //      the last emission of previous stream
-                .successionEnds(Duration.ofMillis(500))
-
-                //  run the following code block when previous stream emits an event
-                .subscribe(ignore -> codeArea.setStyleSpans(0,
-                        computeHighlighting(codeArea.getText())));
-
-        return codeArea;
-    }
-
-    /**
      * Helper method which highlights the keywords, integers and symbols, as defined
      * in the PATTERN field.
      *
@@ -136,4 +105,33 @@ public class ColoredCodeArea
         return spansBuilder.create();
     }
 
+    /**
+     * Helper method which creates and sets up a code area.
+     */
+    public ColoredCodeArea()
+    {
+        super();
+
+        this.setParagraphGraphicFactory(LineNumberFactory.get(this));
+
+        //  recompute the syntax highlighting 500 ms after user stops editing area
+        Subscription cleanupWhenNoLongerNeedIt = this
+
+                //  plain changes = ignore style changes that are emitted when
+                //      syntax highlighting is reapplied
+                //  multi plain changes = save computation by not rerunning
+                //      the code multiple times
+                //  when making multiple changes (e.g. renaming a method
+                //      at multiple parts in file)
+                .multiPlainChanges()
+
+                //  do not emit an event until 500 ms have passed since
+                //      the last emission of previous stream
+                .successionEnds(Duration.ofMillis(500))
+
+                //  run the following code block when previous stream emits an event
+                .subscribe(ignore -> this.setStyleSpans(0,
+                        computeHighlighting(this.getText())));
+
+    }
 }
