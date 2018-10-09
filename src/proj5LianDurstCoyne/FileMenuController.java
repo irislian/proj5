@@ -77,21 +77,9 @@ class FileMenuController
      */
     public void handleNewMenuItemAction()
     {
-        Tab newTab = new Tab();
+        Tab newTab = this.createNewTab();
+
         newTab.setText("untitled" + (untitledCounter++) + ".txt");
-
-        newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
-
-        // set close action (clicking the 'x')
-        newTab.setOnCloseRequest(event -> {
-            event.consume();
-            closeTab(newTab);
-        });
-
-        // add the new tab to the tab pane
-        // set the newly opened tab to the the current (topmost) one
-        this.tabPane.getTabs().add(newTab);
-        this.tabPane.getSelectionModel().select(newTab);
         this.tabFileMap.put(newTab, null);
     }
 
@@ -128,21 +116,11 @@ class FileMenuController
             // Case: current text area is in use and shouldn't be overwritten
             // Behavior: generate new tab and open the file there
 
-            Tab newTab = new Tab();
-            this.tabPane.getTabs().add(newTab);
-            //current tab is now new tab, so getCurrentCodeArea() can be used below
-            this.tabPane.getSelectionModel().select(newTab);
+            Tab newTab = this.createNewTab();
 
             newTab.setText(openFile.getName());
-            newTab.setContent(
-                    new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
-            this.getCurrentCodeArea().replaceText(contentOpenedFile);
-            newTab.setOnCloseRequest(event -> {
-                event.consume();
-                closeTab(newTab);
-            });
-
             this.tabFileMap.put(newTab, openFile);
+            this.getCurrentCodeArea().replaceText(contentOpenedFile);
         }
     }
 
@@ -480,6 +458,29 @@ class FileMenuController
     private boolean isTabless()
     {
         return this.tabPane.getTabs().isEmpty();
+    }
+
+    /*
+     * Simple helper method
+     * TODO: Modify javadoc header
+     * @return true if there aren't currently any tabs open, else false
+     */
+    private Tab createNewTab(){
+        Tab newTab = new Tab();
+        newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+
+        // set close action (clicking the 'x')
+        newTab.setOnCloseRequest(event -> {
+            event.consume();
+            closeTab(newTab);
+        });
+
+        // add the new tab to the tab pane
+        // set the newly opened tab to the the current (topmost) one
+        this.tabPane.getTabs().add(newTab);
+        this.tabPane.getSelectionModel().select(newTab);
+
+        return newTab;
     }
 
     /**
