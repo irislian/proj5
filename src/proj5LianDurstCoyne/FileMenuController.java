@@ -129,6 +129,7 @@ class FileMenuController
             newTab.setText(openFile.getName());
             this.tabFileMap.put(newTab, openFile);
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
+            this.tabPane.getSelectionModel().select(newTab);
         }
     }
 
@@ -141,7 +142,9 @@ class FileMenuController
     public void handleCloseMenuItemAction() {
 
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+        System.out.println(selectedTab.getText());
         this.closeTab(selectedTab);
+        System.out.println(this.tabPane.getSelectionModel().getSelectedItem().getText());
     }
 
     /**
@@ -436,7 +439,9 @@ class FileMenuController
         // set close action (clicking the 'x')
         newTab.setOnCloseRequest(event -> {
             event.consume();
+            System.out.println(this.tabPane.getSelectionModel().getSelectedItem().getText());
             closeTab(newTab);
+            System.out.println(this.tabPane.getSelectionModel().getSelectedItem().getText());
         });
 
         // add the new tab to the tab pane

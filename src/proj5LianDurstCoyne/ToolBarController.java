@@ -25,6 +25,7 @@ public class ToolBarController {
 
         // get the corresponding file of the selected tab from the tab pane
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        System.out.println("In Toolbar: "+selectedTab.getText());
         File file = tabFileMap.get(selectedTab);
 
         if(file == null){
@@ -33,13 +34,10 @@ public class ToolBarController {
         }
 
         System.out.println(Paths.get(file.toURI()).toString());
-        // creating list of commands
-        List<String> commands = new ArrayList<String>();
-        commands.add("javac");
-        commands.add(Paths.get(file.toURI()).toString());
+        String filePath = Paths.get(file.toURI()).toString();
 
         // creating the process
-        ProcessBuilder pb = new ProcessBuilder(commands);
+        ProcessBuilder pb = new ProcessBuilder("javac", filePath);
 
         // redirect error to error file
         File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
@@ -50,7 +48,7 @@ public class ToolBarController {
 
         // wait for the process to complete or throw an error
         int errCode = process.waitFor();
-        System.out.println("Compile executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+        System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
         // if there is an error, print the error
         if (errCode != 0) {
             System.out.println("\nPrint Error:");
@@ -65,19 +63,14 @@ public class ToolBarController {
             fr.close();
             System.out.println("*********************************");
         }
-
     }
 
 
     public void handleCprunButton()
             throws InterruptedException, IOException {
         // compile first
-//        handleCompileButton(filename);
+        handleCompileButton();
 
-//        // creating list of commands
-//        List<String> commands = new ArrayList<String>();
-//        commands.add("java"); // command
-//        commands.add("test.Main");
         // get the corresponding file of the selected tab from the tab pane
         Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
         File file = tabFileMap.get(selectedTab);
@@ -86,7 +79,7 @@ public class ToolBarController {
             System.out.println("file is not in the map");
             return;
         }
-        
+
         String pathToFile = Paths.get(file.toURI()).toString();
         String[] splitByJava = pathToFile.split(".ja");
         String pathNoJava = splitByJava[0];
