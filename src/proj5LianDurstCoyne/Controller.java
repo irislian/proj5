@@ -15,6 +15,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
+
 /**
  * Controller is the main controller for the application.
  * It itself doesn't handle much. What it does is delegate
@@ -250,9 +252,9 @@ public class Controller
         try {
             toolBarController.handleCompileButton();
         } catch (IOException e1) {
-
+            printStackTrace(e1);
         } catch (InterruptedException e2){
-
+            printStackTrace(e2);
         }
     }
 
@@ -264,9 +266,9 @@ public class Controller
         try {
             toolBarController.handleCprunButton();
         } catch (IOException e) {
-
+            printStackTrace(e);
         }catch (InterruptedException e2){
-
+            printStackTrace(e2);
         }
     }
 

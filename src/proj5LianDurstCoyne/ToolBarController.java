@@ -50,7 +50,7 @@ public class ToolBarController {
 
         // wait for the process to complete or throw an error
         int errCode = process.waitFor();
-        System.out.println("Compiling executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+        System.out.println("Compile executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
         // if there is an error, print the error
         if (errCode != 0) {
             System.out.println("\nPrint Error:");
@@ -86,15 +86,17 @@ public class ToolBarController {
             System.out.println("file is not in the map");
             return;
         }
+        
         String pathToFile = Paths.get(file.toURI()).toString();
-        System.out.println("PTF: "+pathToFile);
+        String[] splitByJava = pathToFile.split(".ja");
+        String pathNoJava = splitByJava[0];
+        String[] splitBySep = pathNoJava.split("\\\\");
+        String className = splitBySep[splitBySep.length-1];
+        String classPath = pathNoJava.split("\\\\"+className)[0];
 
-//        String classPath = System.getProperty("java.class.path");
-//        System.out.println("CP: "+classPath);
-        String[] parts = pathToFile.split(".");
-        String className = parts[-2];
+//        System.out.println("class path: "+classPath);
         // creating the process
-        ProcessBuilder pb = new ProcessBuilder("java", "-cp", pathToFile, className);
+        ProcessBuilder pb = new ProcessBuilder("java", "-cp", classPath, className);
 
         // redirect error to error file
         File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
@@ -102,6 +104,8 @@ public class ToolBarController {
 
         // start the process
         Process process = pb.start();
+
+//        IOThreadHandler outputHandler = new IOThreadHandler(process.getInputStream());
 
         // wait for the process to complete or throw an error
         int errCode = process.waitFor();
