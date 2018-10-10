@@ -10,6 +10,12 @@ package proj5LianDurstCoyne;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.fxmisc.flowless.VirtualizedScrollPane;
+import org.fxmisc.richtext.CodeArea;
+
+import java.lang.*;
+import java.io.*;
+import java.util.*;
 
 import java.util.Optional;
 
@@ -300,17 +306,27 @@ public class Controller
      * when ok button inside the dialog is clicked.
      */
     @FXML private void handleCompileButtonAction() {
-        // set up the number input dialog
-        TextInputDialog dialog = new TextInputDialog("60");
-        dialog.setTitle("Give me a number");
-        dialog.setHeaderText("Give me an integer from 0 to 255:");
+//        // set up the number input dialog
+//        TextInputDialog dialog = new TextInputDialog("60");
+//        dialog.setTitle("Give me a number");
+//        dialog.setHeaderText("Give me an integer from 0 to 255:");
+//
+//        // when ok button is clicked, set the text of the Hello button to the input number
+//        final Optional<String> enterValue = dialog.showAndWait();
+//        if (enterValue.isPresent()) {
+//            this.compileButton.setText(enterValue.get());
+//        }
 
-        // when ok button is clicked, set the text of the Hello button to the input number
-        final Optional<String> enterValue = dialog.showAndWait();
-        if (enterValue.isPresent()) {
-            this.compileButton.setText(enterValue.get());
+        try {
+            this.tabPane.getSelectionModel().getSelectedItem();
+            proj5LianDurstCoyne.Processes.compile("test.java");
+            proj5LianDurstCoyne.Processes.run("test");
+        } catch (IOException e) {
+
         }
     }
+
+
 
 
     /**
