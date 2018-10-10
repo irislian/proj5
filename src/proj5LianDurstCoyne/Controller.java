@@ -240,25 +240,6 @@ public class Controller
         editMenuController.handleSelectAllMenuItemAction();
     }
 
-//    /**
-//     * Updates the visual status (greyed or not) of items when user
-//     * click open the Edit menu
-//     */
-//    @FXML
-//    private void handleEditMenuShowing()
-//    {
-//        editMenuController.handleEditMenuShowing();
-//    }
-//
-//    /**
-//     * Resets the greying out of items when Edit menu closes
-//     */
-//    @FXML
-//    private void handleEditMenuHidden()
-//    {
-//        editMenuController.handleEditMenuHidden();
-//    }
-
     /**
      * This function is called after the FXML fields are populated.
      * Initializes the tab file map with the default tab.
@@ -316,9 +297,6 @@ public class Controller
 
         }
     }
-
-
-
 
     /**
      * Handles the Goodbye button action.

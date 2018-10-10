@@ -2,9 +2,7 @@ package proj5LianDurstCoyne;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.SimpleListProperty;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import org.fxmisc.flowless.VirtualizedScrollPane;
@@ -25,14 +23,6 @@ import org.fxmisc.richtext.CodeArea;
 class EditMenuController
 {
     private TabPane tabPane;
-
-//    private MenuItem undoMenuItem;
-//    private MenuItem redoMenuItem;
-//    private MenuItem cutMenuItem;
-//    private MenuItem copyMenuItem;
-//    private MenuItem pasteMenuItem;
-//    private MenuItem selectAllMenuItem;
-
     private Menu editMenu;
 
     public void bindEditMenu() {
@@ -94,51 +84,6 @@ class EditMenuController
         this.getCurrentCodeArea().selectAll();
     }
 
-//    /**
-//     * Updates the visual status (greyed or not) of items when user
-//     * click open the Edit menu
-//     */
-//    public void handleEditMenuShowing()
-//    {
-//        // Case 1: No tabs
-//        if (this.isTabless())
-//        {
-//            this.undoMenuItem.setDisable(true);
-//            this.redoMenuItem.setDisable(true);
-//            this.cutMenuItem.setDisable(true);
-//            this.copyMenuItem.setDisable(true);
-//            this.pasteMenuItem.setDisable(true);
-//            this.selectAllMenuItem.setDisable(true);
-//        }
-//        else
-//        {
-//            // Case 2: No undos
-//            if (!getCurrentCodeArea().isUndoAvailable())
-//            {
-//                this.undoMenuItem.setDisable(true);
-//            }
-//
-//            // Case 3: No redos
-//            if (!getCurrentCodeArea().isRedoAvailable())
-//            {
-//                this.redoMenuItem.setDisable(true);
-//            }
-//        }
-//    }
-//
-//    /**
-//     * Resets the greying out of items when Edit menu closes
-//     */
-//    public void handleEditMenuHidden()
-//    {
-//        this.undoMenuItem.setDisable(false);
-//        this.redoMenuItem.setDisable(false);
-//        this.cutMenuItem.setDisable(false);
-//        this.copyMenuItem.setDisable(false);
-//        this.pasteMenuItem.setDisable(false);
-//        this.selectAllMenuItem.setDisable(false);
-//    }
-
     /**
      * Simple helper method which returns the currently viewed tab
      *
@@ -161,16 +106,6 @@ class EditMenuController
         return (CodeArea) vsp.getContent();
     }
 
-    /**
-     * Simple helper method
-     *
-     * @return true if there aren't currently any tabs open, else false
-     */
-    private boolean isTabless()
-    {
-        return this.tabPane.getTabs().isEmpty();
-    }
-
     /** 
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
@@ -178,12 +113,6 @@ class EditMenuController
     public void recieveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];
-//        undoMenuItem = (MenuItem) list[4];
-//        redoMenuItem = (MenuItem) list[5];
-//        cutMenuItem = (MenuItem) list[6];
-//        copyMenuItem = (MenuItem) list[7];
-//        pasteMenuItem = (MenuItem) list[8];
-//        selectAllMenuItem = (MenuItem) list[9];
         editMenu = (Menu) list[10];
     }
 }

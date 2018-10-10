@@ -236,33 +236,6 @@ class FileMenuController
         Platform.exit();
     }
 
-
-//    /**
-//     * Updates the visual status (greyed or not) of items when user
-//     * click open the File menu
-//     */
-//    public void handleFileMenuShowing()
-//    {
-//        // Case 1: No tabs
-//        if (isTabless())
-//        {
-//            this.closeMenuItem.setDisable(true);
-//            this.saveMenuItem.setDisable(true);
-//            this.saveAsMenuItem.setDisable(true);
-//        }
-//    }
-//
-//    /**
-//     * Resets the greying out of items when File menu closes
-//     */
-//    public void handleFileMenuHidden()
-//    {
-//        this.closeMenuItem.setDisable(false);
-//        this.saveMenuItem.setDisable(false);
-//        this.saveAsMenuItem.setDisable(false);
-//    }
-
-
     /**
      * Helper function to save the input string to a specified file.
      *
@@ -340,15 +313,8 @@ class FileMenuController
      */
     private void removeTab(Tab tab)
     {
-//        if (!tab.isSelected())
-//        {
-//            this.tabPane.getSelectionModel().select(tab);
-//        }
-//        this.tabPane.getSelectionModel().selectPrevious();
         this.tabFileMap.remove(tab);
         this.tabPane.getTabs().remove(tab);
-//        this.tabFileMap.remove(tab);
-
     }
 
 
@@ -459,16 +425,6 @@ class FileMenuController
         VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
         return (CodeArea) vsp.getContent();
     }
-
-//    /*
-//     * Simple helper method
-//     *
-//     * @return true if there aren't currently any tabs open, else false
-//     */
-//    private boolean isTabless()
-//    {
-//        return this.tabPane.getTabs().isEmpty();
-//    }
 
     /*
      * Simple helper method
