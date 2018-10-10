@@ -460,15 +460,15 @@ class FileMenuController
         return (CodeArea) vsp.getContent();
     }
 
-    /*
-     * Simple helper method
-     *
-     * @return true if there aren't currently any tabs open, else false
-     */
-    private boolean isTabless()
-    {
-        return this.tabPane.getTabs().isEmpty();
-    }
+//    /*
+//     * Simple helper method
+//     *
+//     * @return true if there aren't currently any tabs open, else false
+//     */
+//    private boolean isTabless()
+//    {
+//        return this.tabPane.getTabs().isEmpty();
+//    }
 
     /*
      * Simple helper method
@@ -512,6 +512,5 @@ class FileMenuController
         closeMenuItem = (MenuItem) list[1];
         saveMenuItem = (MenuItem) list[2];
         saveAsMenuItem = (MenuItem) list[3];
-//        fileMenu = (Menu) list[10];
     }
 }
