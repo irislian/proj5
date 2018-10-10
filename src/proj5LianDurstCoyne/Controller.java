@@ -75,6 +75,7 @@ public class Controller
 
     FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
+    private ToolBarController toolBarController = new ToolBarController();
 
     /**
      * Handles the About button action.
@@ -267,6 +268,7 @@ public class Controller
     {
         fileMenuController.recieveFXMLElements(this.passFXMLElements());
         editMenuController.recieveFXMLElements(this.passFXMLElements());
+        toolBarController.recieveFXMLElements(this.passFXMLElements());
 
         this.handleNewMenuItemAction();
         fileMenuController.bindFileMenu();
@@ -292,8 +294,10 @@ public class Controller
                 this.copyMenuItem,
                 this.pasteMenuItem,
                 this.selectAllMenuItem,
-                this.editMenu
-//                this.fileMenu
+                this.editMenu,
+                this.compileButton,
+                this.cprunButton,
+                this.stopButton
         };
     }
 
@@ -306,21 +310,8 @@ public class Controller
      * when ok button inside the dialog is clicked.
      */
     @FXML private void handleCompileButtonAction() {
-//        // set up the number input dialog
-//        TextInputDialog dialog = new TextInputDialog("60");
-//        dialog.setTitle("Give me a number");
-//        dialog.setHeaderText("Give me an integer from 0 to 255:");
-//
-//        // when ok button is clicked, set the text of the Hello button to the input number
-//        final Optional<String> enterValue = dialog.showAndWait();
-//        if (enterValue.isPresent()) {
-//            this.compileButton.setText(enterValue.get());
-//        }
-
         try {
-            this.tabPane.getSelectionModel().getSelectedItem();
-            proj5LianDurstCoyne.Processes.compile("test.java");
-            proj5LianDurstCoyne.Processes.run("test");
+            toolBarController.handleCompileButton("SOME FIEL NAME");
         } catch (IOException e) {
 
         }
@@ -334,7 +325,11 @@ public class Controller
      * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
      */
     @FXML private void handleCpRunButtonAction() {
-        this.cprunButton.setText("Yah, sure!");
+        try {
+            toolBarController.handleStopButton("SOME OTHER FIEL NAME");
+        } catch (IOException e) {
+
+        }
     }
 
     /**
