@@ -439,9 +439,9 @@ class FileMenuController
         // set close action (clicking the 'x')
         newTab.setOnCloseRequest(event -> {
             event.consume();
-            System.out.println(this.tabPane.getSelectionModel().getSelectedItem().getText());
+//            System.out.println("In Filemenu: "+this.tabPane.getSelectionModel().getSelectedItem().getText());
             closeTab(newTab);
-            System.out.println(this.tabPane.getSelectionModel().getSelectedItem().getText());
+//            System.out.println("In Filemenu: "+this.tabPane.getSelectionModel().getSelectedItem().getText());
         });
 
         // add the new tab to the tab pane

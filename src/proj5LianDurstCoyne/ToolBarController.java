@@ -23,9 +23,18 @@ public class ToolBarController {
     public void handleCompileButton()
             throws InterruptedException, IOException {
 
+        Tab selectedTab;
+        System.out.print(this.tabPane.getTabs().size()+"\n");
+        // TEMPORARILY SOLVES THE PROBLEM
+        if (this.tabPane.getTabs().size() > 1){
         // get the corresponding file of the selected tab from the tab pane
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
-        System.out.println("In Toolbar: "+selectedTab.getText());
+            selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+        }
+        else{
+            selectedTab = (Tab)this.tabPane.getTabs().toArray()[0];
+            this.tabPane.getSelectionModel().select(selectedTab);
+        }
+        System.out.println("In Toolbar C: "+selectedTab.getText());
         File file = tabFileMap.get(selectedTab);
 
         if(file == null){
@@ -72,7 +81,18 @@ public class ToolBarController {
         handleCompileButton();
 
         // get the corresponding file of the selected tab from the tab pane
-        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        Tab selectedTab;
+        System.out.print(this.tabPane.getTabs().size()+"\n");
+        // TEMPORARILY SOLVES THE PROBLEM
+        if (this.tabPane.getTabs().size() > 1){
+            // get the corresponding file of the selected tab from the tab pane
+            selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+        }
+        else{
+            selectedTab = (Tab)this.tabPane.getTabs().toArray()[0];
+            this.tabPane.getSelectionModel().select(selectedTab);
+        }
+        System.out.println("In Toolbar CR: "+selectedTab.getText());
         File file = tabFileMap.get(selectedTab);
 
         if(file == null){
