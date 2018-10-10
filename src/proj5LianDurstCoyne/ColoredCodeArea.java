@@ -21,9 +21,9 @@ import java.util.regex.Pattern;
 
 
 /**
- * This class handles the creation of CodeAreas, as well as keyword 
+ * This class inherits CodeArea class, adding keyword
  * highlighting and syntax recognition.
- * It contains the creation method createCodeArea and a helper method
+ * It has the constructor of ColoredCodeArea and has a helper method
  * computeHighlighting which handles the highlighting of the codeArea.
  * It also contains the java keywords and patterns to be colored in the CodeArea.
  *
@@ -106,7 +106,7 @@ public class ColoredCodeArea extends CodeArea
     }
 
     /**
-     * Helper method which creates and sets up a code area.
+     * Constructor which creates and sets up a colored code area.
      */
     public ColoredCodeArea()
     {

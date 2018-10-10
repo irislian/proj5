@@ -1,0 +1,37 @@
+/*
+ * File: buttons.css
+ * F18 CS361 Project 5
+ * Names: Liwei Jiang, Iris Lian, Tracy Quan
+ * Cascading Style Sheet for the buttons in Controller.java, defining the design styles of the GUI elements
+ * Date: 10/09/2018
+ */
+
+/* style of Hello button */
+#compileButton {
+	/* set button color to pale turquoise */
+    -fx-background-color:"PaleTurquoise";
+    /* set button border to black */
+    -fx-border-color: black; 
+    /* set button border to bold */
+    -fx-border-radius: 5; 
+}
+
+/* style of Goodbye button */
+#cprunButton {
+	/* set button color to pale green */
+    -fx-background-color:"PaleGreen";
+    /* set button border to black */
+    -fx-border-color: black;
+    /* set button border to bold */
+    -fx-border-radius: 5; 
+}
+
+/* style of Goodbye button */
+#stopButton {
+	/* set button color to pale violet red */
+    -fx-background-color:"PaleVioletRed";
+    /* set button border to black */
+    -fx-border-color: black;
+    /* set button border to bold */
+    -fx-border-radius: 5;
+}

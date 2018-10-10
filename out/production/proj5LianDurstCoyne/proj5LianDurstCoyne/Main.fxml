@@ -90,8 +90,9 @@ Date: 10/02/18
         </Menu>
     </MenuBar>
     <ToolBar VBox.vgrow="ALWAYS">
-        <Button text="Hello" fx:id="helloButton" onAction="#handleHelloButtonAction"/>
-        <Button text="Goodbye" fx:id="goodbyeButton" onAction="#handleGoodbyeButtonAction"/>
+        <Button text="Compile" fx:id="compileButton" onAction="#handleCompileButtonAction"/>
+        <Button text="Compile and Run" fx:id="cprunButton" onAction="#handleCpRunButtonAction"/>
+        <Button text="Stop" fx:id="stopButton" onAction="#handleStopButtonAction"/>
     </ToolBar>
     <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
         <tabs>

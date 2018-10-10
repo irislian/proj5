@@ -53,13 +53,17 @@ public class Controller
     private MenuItem selectAllMenuItem;
 
     /**
-     * Hello button defined in Main.fxml
+     * Compile button defined in Main.fxml
      */
-    @FXML private Button helloButton;
+    @FXML private Button compileButton;
     /**
-     * Goodbye button defined in Main.fxml
+     * Compile and Run button defined in Main.fxml
      */
-    @FXML private Button goodbyeButton;
+    @FXML private Button cprunButton;
+    /**
+     * Stop button defined in Main.fxml
+     */
+    @FXML private Button stopButton;
 
     FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
@@ -289,7 +293,7 @@ public class Controller
      * button is clicked, and sets the Hello button text to the input number
      * when ok button inside the dialog is clicked.
      */
-    @FXML private void handleHelloButtonAction() {
+    @FXML private void handleCompileButtonAction() {
         // set up the number input dialog
         TextInputDialog dialog = new TextInputDialog("60");
         dialog.setTitle("Give me a number");
@@ -298,7 +302,7 @@ public class Controller
         // when ok button is clicked, set the text of the Hello button to the input number
         final Optional<String> enterValue = dialog.showAndWait();
         if (enterValue.isPresent()) {
-            this.helloButton.setText(enterValue.get());
+            this.compileButton.setText(enterValue.get());
         }
     }
 
@@ -307,7 +311,15 @@ public class Controller
      * Handles the Goodbye button action.
      * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
      */
-    @FXML private void handleGoodbyeButtonAction() {
-        this.goodbyeButton.setText("Yah, sure!");
+    @FXML private void handleCpRunButtonAction() {
+        this.cprunButton.setText("Yah, sure!");
+    }
+
+    /**
+     * Handles the Goodbye button action.
+     * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
+     */
+    @FXML private void handleStopButtonAction() {
+        this.stopButton.setText("Stop!");
     }
 }
