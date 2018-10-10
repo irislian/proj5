@@ -7,11 +7,9 @@ Date: 10/09/18
 
 package proj5LianDurstCoyne;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 
 import java.util.Optional;
 
@@ -64,6 +62,10 @@ public class Controller
      * Stop button defined in Main.fxml
      */
     @FXML private Button stopButton;
+
+    @FXML private Menu fileMenu;
+
+    @FXML private Menu editMenu;
 
     FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
@@ -152,24 +154,24 @@ public class Controller
     }
 
 
-    /**
-     * Updates the visual status (greyed or not) of items when user
-     * click open the File menu
-     */
-    @FXML
-    private void handleFileMenuShowing()
-    {
-        fileMenuController.handleFileMenuShowing();
-    }
-
-    /**
-     * Resets the greying out of items when File menu closes
-     */
-    @FXML
-    private void handleFileMenuHidden()
-    {
-        fileMenuController.handleFileMenuHidden();
-    }
+//    /**
+//     * Updates the visual status (greyed or not) of items when user
+//     * click open the File menu
+//     */
+//    @FXML
+//    private void handleFileMenuShowing()
+//    {
+//        fileMenuController.handleFileMenuShowing();
+//    }
+//
+//    /**
+//     * Resets the greying out of items when File menu closes
+//     */
+//    @FXML
+//    private void handleFileMenuHidden()
+//    {
+//        fileMenuController.handleFileMenuHidden();
+//    }
 
     /**
      * Handles the Undo button action.
@@ -231,24 +233,24 @@ public class Controller
         editMenuController.handleSelectAllMenuItemAction();
     }
 
-    /**
-     * Updates the visual status (greyed or not) of items when user
-     * click open the Edit menu
-     */
-    @FXML
-    private void handleEditMenuShowing()
-    {
-        editMenuController.handleEditMenuShowing();
-    }
-
-    /**
-     * Resets the greying out of items when Edit menu closes
-     */
-    @FXML
-    private void handleEditMenuHidden()
-    {
-        editMenuController.handleEditMenuHidden();
-    }
+//    /**
+//     * Updates the visual status (greyed or not) of items when user
+//     * click open the Edit menu
+//     */
+//    @FXML
+//    private void handleEditMenuShowing()
+//    {
+//        editMenuController.handleEditMenuShowing();
+//    }
+//
+//    /**
+//     * Resets the greying out of items when Edit menu closes
+//     */
+//    @FXML
+//    private void handleEditMenuHidden()
+//    {
+//        editMenuController.handleEditMenuHidden();
+//    }
 
     /**
      * This function is called after the FXML fields are populated.
@@ -261,6 +263,8 @@ public class Controller
         editMenuController.recieveFXMLElements(this.passFXMLElements());
 
         this.handleNewMenuItemAction();
+        fileMenuController.bindFileMenu();
+        editMenuController.bindEditMenu();
     }
 
     /**
@@ -281,7 +285,9 @@ public class Controller
                 this.cutMenuItem,
                 this.copyMenuItem,
                 this.pasteMenuItem,
-                this.selectAllMenuItem
+                this.selectAllMenuItem,
+                this.editMenu
+//                this.fileMenu
         };
     }
 

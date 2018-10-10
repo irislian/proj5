@@ -1,6 +1,8 @@
 package proj5LianDurstCoyne;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -36,6 +38,8 @@ class FileMenuController
     private MenuItem saveMenuItem;
     private MenuItem saveAsMenuItem;
 
+//    private Menu fileMenu;
+
     private Stage primaryStage;
 
     /**
@@ -45,6 +49,12 @@ class FileMenuController
 
     private int untitledCounter = 1;
 
+    public void bindFileMenu() {
+        BooleanBinding emptyBinding = Bindings.isEmpty(tabPane.getTabs());
+        closeMenuItem.disableProperty().bind(emptyBinding);
+        saveMenuItem.disableProperty().bind(emptyBinding);
+        saveAsMenuItem.disableProperty().bind(emptyBinding);
+    }
     /**
      * Handles the About button action.
      * Creates a dialog window that displays the authors' names.
@@ -227,30 +237,30 @@ class FileMenuController
     }
 
 
-    /**
-     * Updates the visual status (greyed or not) of items when user
-     * click open the File menu
-     */
-    public void handleFileMenuShowing()
-    {
-        // Case 1: No tabs
-        if (isTabless())
-        {
-            this.closeMenuItem.setDisable(true);
-            this.saveMenuItem.setDisable(true);
-            this.saveAsMenuItem.setDisable(true);
-        }
-    }
-
-    /**
-     * Resets the greying out of items when File menu closes
-     */
-    public void handleFileMenuHidden()
-    {
-        this.closeMenuItem.setDisable(false);
-        this.saveMenuItem.setDisable(false);
-        this.saveAsMenuItem.setDisable(false);
-    }
+//    /**
+//     * Updates the visual status (greyed or not) of items when user
+//     * click open the File menu
+//     */
+//    public void handleFileMenuShowing()
+//    {
+//        // Case 1: No tabs
+//        if (isTabless())
+//        {
+//            this.closeMenuItem.setDisable(true);
+//            this.saveMenuItem.setDisable(true);
+//            this.saveAsMenuItem.setDisable(true);
+//        }
+//    }
+//
+//    /**
+//     * Resets the greying out of items when File menu closes
+//     */
+//    public void handleFileMenuHidden()
+//    {
+//        this.closeMenuItem.setDisable(false);
+//        this.saveMenuItem.setDisable(false);
+//        this.saveAsMenuItem.setDisable(false);
+//    }
 
 
     /**
@@ -502,5 +512,6 @@ class FileMenuController
         closeMenuItem = (MenuItem) list[1];
         saveMenuItem = (MenuItem) list[2];
         saveAsMenuItem = (MenuItem) list[3];
+//        fileMenu = (Menu) list[10];
     }
 }

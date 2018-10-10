@@ -21,7 +21,7 @@ Date: 10/02/18
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="proj5LianDurstCoyne.Controller">
     <MenuBar VBox.vgrow="NEVER">
-        <Menu onHidden="#handleFileMenuHidden" onShowing="#handleFileMenuShowing" text="File">
+        <Menu fx:id="fileMenu" text="File">
             <MenuItem fx:id="aboutMenuItem" onAction="#handleAboutMenuItemAction" text="About..."/>
             <SeparatorMenuItem/>
             <MenuItem fx:id="newMenuItem" onAction="#handleNewMenuItemAction" text="New">
@@ -56,7 +56,7 @@ Date: 10/02/18
                 </accelerator>
             </MenuItem>
         </Menu>
-        <Menu onHidden="#handleEditMenuHidden" onShowing="#handleEditMenuShowing" text="Edit">
+        <Menu fx:id="editMenu" text="Edit">
             <MenuItem fx:id="undoMenuItem" onAction="#handleUndoMenuItemAction" text="Undo">
                 <accelerator>
                     <KeyCodeCombination alt="UP" code="Z" control="UP" meta="DOWN" shift="UP" shortcut="UP"/>

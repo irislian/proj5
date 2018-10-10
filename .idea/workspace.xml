@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="last bug and some jdocs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -146,16 +145,16 @@
         <counts>
           <entry key="css" value="146" />
           <entry key="dummy" value="29" />
-          <entry key="fxml" value="64" />
-          <entry key="java" value="714" />
+          <entry key="fxml" value="100" />
+          <entry key="java" value="1328" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="146" />
-          <entry key="JAVA" value="714" />
+          <entry key="JAVA" value="1328" />
           <entry key="PLAIN_TEXT" value="29" />
-          <entry key="XML" value="64" />
+          <entry key="XML" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -183,8 +182,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="471" column="46" selection-start-line="471" selection-start-column="46" selection-end-line="471" selection-end-column="46" />
+            <state relative-caret-position="143">
+              <caret line="514" column="37" lean-forward="true" selection-start-line="514" selection-end-line="515" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -195,21 +194,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2698">
-              <caret line="166" column="11" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="11" />
+            <state relative-caret-position="56">
+              <caret line="180" selection-start-line="180" selection-start-column="2" selection-end-line="185" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1355#1356#0" expanded="true" />
+                <element signature="e#1403#1404#0" expanded="true" />
+                <element signature="e#1550#1551#0" expanded="true" />
+                <element signature="e#1598#1599#0" expanded="true" />
+                <element signature="e#1732#1733#0" expanded="true" />
+                <element signature="e#1779#1780#0" expanded="true" />
+                <element signature="e#1917#1918#0" expanded="true" />
+                <element signature="e#1965#1966#0" expanded="true" />
+                <element signature="e#2107#2108#0" expanded="true" />
+                <element signature="e#2156#2157#0" expanded="true" />
+                <element signature="e#2314#2315#0" expanded="true" />
+                <element signature="e#2367#2368#0" expanded="true" />
+                <element signature="e#3935#3936#0" expanded="true" />
+                <element signature="e#4008#4009#0" expanded="true" />
+                <element signature="e#4555#4556#0" expanded="true" />
+                <element signature="e#4610#4611#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            <state relative-caret-position="114">
+              <caret line="288" column="29" lean-forward="true" selection-start-line="288" selection-start-column="29" selection-end-line="288" selection-end-column="29" />
               <folding>
+                <element signature="e#0#8905#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -219,7 +235,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
+            <state relative-caret-position="403">
               <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
               <folding>
                 <element signature="e#0#2678#0" expanded="true" />
@@ -228,11 +244,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/buttons.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+            <state relative-caret-position="73">
+              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -243,22 +259,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+            <state relative-caret-position="118">
+              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -275,15 +279,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>handlesave</find>
-      <find>handleSaveMenuItemAction</find>
-      <find>handleSaveAsMenuItemAction</find>
-      <find>return</find>
-      <find>setonc</find>
-      <find>handleclose</find>
-      <find>closetab</find>
-      <find>saveas</find>
-      <find>boolean</find>
       <find>return fal</find>
       <find>handle</find>
       <find>handleF</find>
@@ -305,6 +300,15 @@
       <find>createCod</find>
       <find>styl</find>
       <find>css</find>
+      <find>colored</find>
+      <find>hid</find>
+      <find>setDisable</find>
+      <find>handleEditMenuShowing</find>
+      <find>handleEditMenuS</find>
+      <find>getTab</find>
+      <find>handleEditMenuHidden</find>
+      <find>handleFileM</find>
+      <find>handleFileMenuHidden</find>
     </findStrings>
     <replaceStrings>
       <replace>@Override</replace>
@@ -330,14 +334,14 @@
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/ColoredCodeArea.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/Controller.java" />
         <option value="$PROJECT_DIR$/src/proj4FengLianMarcelloSavillo/FileMenuController.java" />
-        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" />
-        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" />
         <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java" />
-        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml" />
-        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" />
         <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.css" />
         <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java" />
         <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/buttons.css" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java" />
+        <option value="$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java" />
       </list>
     </option>
   </component>
@@ -393,7 +397,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539129680263" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539133832100" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -596,7 +600,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30373" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -671,16 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2698">
-          <caret line="166" column="11" selection-start-line="166" selection-start-column="11" selection-end-line="166" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -691,40 +685,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/java-keywords.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/buttons.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        <state relative-caret-position="118">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="471" column="46" selection-start-line="471" selection-start-column="46" selection-end-line="471" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/java-keywords.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="403">
           <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
           <folding>
             <element signature="e#0#2678#0" expanded="true" />
@@ -732,10 +713,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/buttons.css">
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        <state relative-caret-position="143">
+          <caret line="514" column="37" lean-forward="true" selection-start-line="514" selection-end-line="515" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/EditMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="180" selection-start-line="180" selection-start-column="2" selection-end-line="185" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1355#1356#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1598#1599#0" expanded="true" />
+            <element signature="e#1732#1733#0" expanded="true" />
+            <element signature="e#1779#1780#0" expanded="true" />
+            <element signature="e#1917#1918#0" expanded="true" />
+            <element signature="e#1965#1966#0" expanded="true" />
+            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+            <element signature="e#2314#2315#0" expanded="true" />
+            <element signature="e#2367#2368#0" expanded="true" />
+            <element signature="e#3935#3936#0" expanded="true" />
+            <element signature="e#4008#4009#0" expanded="true" />
+            <element signature="e#4555#4556#0" expanded="true" />
+            <element signature="e#4610#4611#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="288" column="29" lean-forward="true" selection-start-line="288" selection-start-column="29" selection-end-line="288" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#8905#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
