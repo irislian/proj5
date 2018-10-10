@@ -7,18 +7,13 @@ Date: 10/09/18
 
 package proj5LianDurstCoyne;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.fxmisc.flowless.VirtualizedScrollPane;
-import org.fxmisc.richtext.CodeArea;
 
 import java.lang.*;
 import java.io.*;
-import java.util.*;
-
-import java.util.Optional;
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Controller is the main controller for the application.
@@ -43,19 +38,6 @@ public class Controller
     @FXML
     private MenuItem saveAsMenuItem;
 
-    @FXML
-    private MenuItem undoMenuItem;
-    @FXML
-    private MenuItem redoMenuItem;
-    @FXML
-    private MenuItem cutMenuItem;
-    @FXML
-    private MenuItem copyMenuItem;
-    @FXML
-    private MenuItem pasteMenuItem;
-    @FXML
-    private MenuItem selectAllMenuItem;
-
     /**
      * Compile button defined in Main.fxml
      */
@@ -69,9 +51,9 @@ public class Controller
      */
     @FXML private Button stopButton;
 
-    @FXML private Menu fileMenu;
-
     @FXML private Menu editMenu;
+
+    private Map<Tab, File> tabFileMap = new HashMap<>();
 
     FileMenuController fileMenuController = new FileMenuController();
     private EditMenuController editMenuController = new EditMenuController();
@@ -160,26 +142,6 @@ public class Controller
         fileMenuController.handleExitMenuItemAction();
     }
 
-
-//    /**
-//     * Updates the visual status (greyed or not) of items when user
-//     * click open the File menu
-//     */
-//    @FXML
-//    private void handleFileMenuShowing()
-//    {
-//        fileMenuController.handleFileMenuShowing();
-//    }
-//
-//    /**
-//     * Resets the greying out of items when File menu closes
-//     */
-//    @FXML
-//    private void handleFileMenuHidden()
-//    {
-//        fileMenuController.handleFileMenuHidden();
-//    }
-
     /**
      * Handles the Undo button action.
      * Undo the actions in the text area.
@@ -247,9 +209,9 @@ public class Controller
      */
     public void initialize()
     {
-        fileMenuController.recieveFXMLElements(this.passFXMLElements());
-        editMenuController.recieveFXMLElements(this.passFXMLElements());
-        toolBarController.recieveFXMLElements(this.passFXMLElements());
+        fileMenuController.receiveFXMLElements(this.passFXMLElements());
+        editMenuController.receiveFXMLElements(this.passFXMLElements());
+        toolBarController.receiveFXMLElements(this.passFXMLElements());
 
         this.handleNewMenuItemAction();
         fileMenuController.bindFileMenu();
@@ -269,22 +231,16 @@ public class Controller
                 this.closeMenuItem,
                 this.saveAsMenuItem,
                 this.saveMenuItem,
-                this.undoMenuItem,
-                this.redoMenuItem,
-                this.cutMenuItem,
-                this.copyMenuItem,
-                this.pasteMenuItem,
-                this.selectAllMenuItem,
                 this.editMenu,
                 this.compileButton,
                 this.cprunButton,
-                this.stopButton
+                this.stopButton,
+                this.tabFileMap
         };
     }
 
 
     /**
-     * TODO: MAYBE ANOTHER CONTROLLER FOR TOOLBAR?
      * Handles the Hello button action.
      * Creates a dialog that takes in an integer between 0 and 255 when Hello
      * button is clicked, and sets the Hello button text to the input number
@@ -292,8 +248,10 @@ public class Controller
      */
     @FXML private void handleCompileButtonAction() {
         try {
-            toolBarController.handleCompileButton("SOME FIEL NAME");
-        } catch (IOException e) {
+            toolBarController.handleCompileButton();
+        } catch (IOException e1) {
+
+        } catch (InterruptedException e2){
 
         }
     }
@@ -304,8 +262,10 @@ public class Controller
      */
     @FXML private void handleCpRunButtonAction() {
         try {
-            toolBarController.handleStopButton("SOME OTHER FIEL NAME");
+            toolBarController.handleCprunButton();
         } catch (IOException e) {
+
+        }catch (InterruptedException e2){
 
         }
     }
@@ -317,4 +277,14 @@ public class Controller
     @FXML private void handleStopButtonAction() {
         this.stopButton.setText("Stop!");
     }
+
+//    /**
+//     * Simple helper method which gets the file mapped with the given tab
+//     * TODO: Modify javadoc header
+//     * @param tab Tab which the corresponding file is desired
+//     * @return a file
+//     */
+//    public File getFile(Tab tab){
+//        return fileMenuController.getFile(tab);
+//    }
 }

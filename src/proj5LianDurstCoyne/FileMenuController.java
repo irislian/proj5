@@ -38,14 +38,12 @@ class FileMenuController
     private MenuItem saveMenuItem;
     private MenuItem saveAsMenuItem;
 
-//    private Menu fileMenu;
-
     private Stage primaryStage;
 
     /**
      * a HashMap mapping the tabs and associated files
      */
-    private Map<Tab, File> tabFileMap = new HashMap<>();
+    private Map<Tab, File> tabFileMap;
 
     private int untitledCounter = 1;
 
@@ -344,7 +342,7 @@ class FileMenuController
 
     /**
      * Helper function to handle closing tab action.
-     * <p>
+     *
      * If the text embedded in the tab window has not been saved yet,
      * or if a saved file has been changed, asks the user if to save
      * the file via a dialog window.
@@ -426,10 +424,10 @@ class FileMenuController
         return (CodeArea) vsp.getContent();
     }
 
-    /*
-     * Simple helper method
+    /**
+     * Simple helper method which creates a new tab and adds it to the tab pane
      * TODO: Modify javadoc header
-     * @return true if there aren't currently any tabs open, else false
+     * @return a new tab
      */
     private Tab createNewTab(){
         Tab newTab = new Tab();
@@ -458,15 +456,26 @@ class FileMenuController
         this.primaryStage = primaryStage;
     }
 
+//    /**
+//     * Simple helper method which gets the file mapped with the given tab
+//     * TODO: Modify javadoc header
+//     * @param tab Tab which the corresponding file is desired
+//     * @return a file
+//     */
+//    public File getFile(Tab tab){
+//        return this.tabFileMap.get(tab);
+//    }
+
     /** 
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
-    public void recieveFXMLElements(Object[] list)
+    public void receiveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];
         closeMenuItem = (MenuItem) list[1];
         saveMenuItem = (MenuItem) list[2];
         saveAsMenuItem = (MenuItem) list[3];
+        tabFileMap = (Map<Tab, File>) list[8];
     }
 }
