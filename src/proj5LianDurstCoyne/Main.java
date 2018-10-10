@@ -48,7 +48,7 @@ public class Main extends Application
     {
         // load the fxml file to create the stage and get the root
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/proj5LianDurstCoyne/Main.fxml"));
+                getClass().getResource("/Main.fxml"));
         Parent root = loader.load();
 
         // set controller and stage
@@ -65,8 +65,8 @@ public class Main extends Application
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/proj5LianDurstCoyne/java-keywords.css");
-        scene.getStylesheets().add("/proj5LianDurstCoyne/buttons.css");
+        scene.getStylesheets().add("/java-keywords.css");
+        scene.getStylesheets().add("/buttons.css");
 
         // configure the stage
         stage.setTitle(STAGE_TITLE);
