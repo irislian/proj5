@@ -26,9 +26,6 @@ public class ToolBarController {
     // initialize to null if no running threads
     private Thread runningThread = null;
 
-//    private ObservableBooleanValue rnOBV = new ObservableBoolean(false);
-//    private ObservableBooleanValue noRnOBV = null;
-
 
     /**
      *
@@ -77,8 +74,11 @@ public class ToolBarController {
         this.consolePane.appendText("Compiling: "+filePath+"\n");
         this.doCompilation(filePath);
         this.consolePane.appendText("Done compiling: "+filePath+"\n");
-        this.disableCpCpRunButtons(false); //enable compile and compile run
-        this.stopButton.setDisable(true); //disable stop
+
+        if (this.runningThread.isDaemon()){
+            this.disableCpCpRunButtons(false); //enable compile and compile run
+            this.stopButton.setDisable(true);//disable stop
+        }
     }
 
 
@@ -86,8 +86,8 @@ public class ToolBarController {
         //        System.out.println("class path: "+classPath);
 
         CompileRunThread compileRunThread = new CompileRunThread(this.consolePane, filePath, classPath, className);
-        this.stopButton.setDisable(false);
-        System.out.print("In doRun: disable property is " + this.stopButton.isDisable());
+//        this.stopButton.setDisable(false);
+//        System.out.print("In doRun: disable property is " + this.stopButton.isDisable());
         compileRunThread.start();
         this.runningThread = compileRunThread;
     }
@@ -121,12 +121,16 @@ public class ToolBarController {
 
         String pathNoJava = splitByJava[0];
         System.out.println(Paths.get(pathNoJava));
-        String[] splitBySep = pathNoJava.split(File.separator);
+        String[] splitBySep = pathNoJava.split("\\\\");
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split(File.separator+className)[0];
-        doRun(classPath, className, pathToFile);
-        this.disableCpCpRunButtons(false); //enable compile and compile run
-        this.stopButton.setDisable(true); //disable stop
+        String classPath = pathNoJava.split("\\\\"+className)[0];
+
+        this.doRun(classPath, className, pathToFile);
+
+        if (this.runningThread.isDaemon()){
+            this.disableCpCpRunButtons(false); //enable compile and compile run
+            this.stopButton.setDisable(true);//disable stop
+        }
     }
 
     
