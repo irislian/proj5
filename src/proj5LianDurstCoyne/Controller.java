@@ -255,13 +255,13 @@ public class Controller
      * when ok button inside the dialog is clicked.
      */
     @FXML private void handleCompileButtonAction() {
-        try {
+//        try {
             toolBarController.handleCompileButton();
-        } catch (IOException e1) {
-            printStackTrace(e1);
-        } catch (InterruptedException e2){
-            printStackTrace(e2);
-        }
+//        } catch (IOException e1) {
+//            printStackTrace(e1);
+//        } catch (InterruptedException e2){
+//            printStackTrace(e2);
+//        }
     }
 
     /**

@@ -23,14 +23,15 @@ public class ToolBarController {
     private Button cprunButton;
     private Button stopButton;
 
-    public void doCompilation() {
+    private void doCompilation(String filePath) {
         Thread thread = new Thread() {
 
             Process process;
             int errCode;
-            FileReader fr;
+//            FileReader fr;
 
-            public void run(String filePath) {
+            public void run() {
+                consolePane.appendText("In Run\n");
                 // creating the process
                 ProcessBuilder pb = new ProcessBuilder("javac", filePath);
                 // redirect error to error file
@@ -44,19 +45,19 @@ public class ToolBarController {
                     System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
                     // if there is an error, print the error
                     if (errCode != 0) {
-                        System.out.println("\nPrint Error:");
-                        System.out.println("*********************************");
-                        fr = new FileReader(errorFile);
+                        consolePane.appendText("Error:\n");
+                        FileReader fr = new FileReader(errorFile);
+                        BufferedReader br = new BufferedReader(fr);
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            consolePane.appendText(line+"\n");
+                        }
+                        br.close();
+                        fr.close();
+                    } else {
+                        consolePane.appendText("Success!\n");
                     }
-                    BufferedReader br = new BufferedReader(fr);
-                    String line;
-
-                    while ((line = br.readLine()) != null) {
-                        System.out.println(line);
-                    }
-                    br.close();
-                    fr.close();
-                } catch (IOException e) {
+                } catch (IOException e ) {
                     System.out.println(e.getMessage());
                 } catch (InterruptedException e) {
                     System.out.println(e.getMessage());
@@ -64,10 +65,10 @@ public class ToolBarController {
                 System.out.println("*********************************");
             }
         };
+        thread.start();
     }
 
-    public void handleCompileButton()
-            throws InterruptedException, IOException {
+    public void handleCompileButton(){
 
         consolePane.clear();
 
@@ -92,9 +93,68 @@ public class ToolBarController {
         }
         String filePath = Paths.get(file.toURI()).toString();
         consolePane.appendText("Compiling: "+filePath+"\n");
-        doCompilation();
+        this.doCompilation(filePath);
+        consolePane.appendText("Done compiling: "+filePath+"\n");
     }
-    
+
+//    public void handleCompileButton()
+//            throws InterruptedException, IOException {
+//
+////        consolePane.clear();
+//
+//        Tab selectedTab;
+//        System.out.print(this.tabPane.getTabs().size()+"\n");
+//
+//        // TEMPORARILY SOLVES THE PROBLEM
+//        if (this.tabPane.getTabs().size() > 1){
+//        // get the corresponding file of the selected tab from the tab pane
+//            selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
+//        }
+//        else{
+//            selectedTab = (Tab)this.tabPane.getTabs().toArray()[0];
+//            this.tabPane.getSelectionModel().select(selectedTab);
+//        }
+//
+//        File file = tabFileMap.get(selectedTab);
+//
+//        if(file == null){
+//            consolePane.appendText("file not saved yet in the map\n");
+//            return;
+//        }
+//
+//        String filePath = Paths.get(file.toURI()).toString();
+//
+//        consolePane.appendText("Compiling: "+filePath+"\n");
+//
+//        // creating the process
+//        ProcessBuilder pb = new ProcessBuilder("javac", filePath);
+//
+//        // redirect error to error file
+//        File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
+//        pb.redirectError(errorFile);
+//
+//        // start the process
+//        Process process = pb.start();
+//
+//        // wait for the process to complete or throw an error
+//        int errCode = process.waitFor();
+////        System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+//        // if there is an error, print the error
+//        if (errCode != 0) {
+//            consolePane.appendText("Error:\n");
+//            FileReader fr = new FileReader(errorFile);
+//            BufferedReader br = new BufferedReader(fr);
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                consolePane.appendText(line+"\n");
+//            }
+//            br.close();
+//            fr.close();
+//        } else {
+//            consolePane.appendText("Success!\n");
+//        }
+//    }
+
 
     public void handleCprunButton()
             throws InterruptedException, IOException {
