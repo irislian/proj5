@@ -25,51 +25,7 @@ public class ToolBarController {
     private Button stopButton;
 
     private void doCompilation(String filePath) {
-        Thread thread = new Thread() {
-
-            Process process;
-            int errCode;
-
-            public void run() {
-                // creating the process
-                ProcessBuilder pb = new ProcessBuilder("javac", filePath);
-                // redirect error to error file
-                File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
-                pb.redirectError(errorFile);
-                // start the process
-                try {
-                    process = pb.start();
-                    errCode = process.waitFor();
-                    Platform.runLater(
-                        () -> consolePane.appendText("Compilation executed, any errors? "
-                                                  + (errCode == 0 ? "No" : "Yes") + "\n")
-                    );
-                    // if there is an error, print the error
-                    if (errCode != 0) {
-                        StringBuilder acc = new StringBuilder();
-                        FileReader fr = new FileReader(errorFile);
-                        BufferedReader br = new BufferedReader(fr);
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            acc.append(line+"\n");
-                        }
-                        Platform.runLater(
-                            () -> consolePane.appendText("Error:\n +" +acc.toString() + "\n")
-                        );
-                        br.close();
-                        fr.close();
-                    } else {
-                        Platform.runLater(
-                            () -> consolePane.appendText("Success!\n")
-                        );
-                    }
-                } catch (IOException e ) {
-                    System.out.println(e.getMessage());
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        };
+        CompilationThread thread = new CompilationThread(consolePane, filePath);
         thread.start();
     }
 
@@ -103,10 +59,15 @@ public class ToolBarController {
     }
 
 
-    public void handleCprunButton()
-            throws InterruptedException, IOException {
-        // compile first
-        this.handleCompileButton();
+    private void doRun(String classPath, String className, String filePath) {
+        //        System.out.println("class path: "+classPath);
+
+        RunThread runThread = new RunThread(consolePane, filePath, classPath, className);
+        runThread.start();
+    }
+
+
+    public void handleCprunButton() {
 
 //        consolePane.clear();
 
@@ -139,46 +100,7 @@ public class ToolBarController {
 //        System.out.println(Paths.get(pathNoJava);
         String className = splitBySep[splitBySep.length-1];
         String classPath = pathNoJava.split(File.separator+className)[0];
-
-//        System.out.println("class path: "+classPath);
-        // creating the process
-        ProcessBuilder pb = new ProcessBuilder("java", "-cp", classPath, className);
-
-        // redirect error to error file
-        File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
-        pb.redirectError(errorFile);
-
-        // start the process
-        Process process = pb.start();
-
-        // wait for the process to complete or throw an error
-        int errCode = process.waitFor();
-        System.out.println("Run executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
-        // if there is an error, print the error
-        if (errCode != 0) {
-            FileReader fr = new FileReader(errorFile);
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            while ((line = br.readLine()) != null) {
-                consolePane.appendText(line);
-                consolePane.appendText("\n");
-            }
-            br.close();
-            fr.close(); }
-
-        // print the output
-        StringBuilder sb = new StringBuilder();
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line + System.getProperty("line.separator"));
-            }
-        } finally {
-            br.close();
-        }
-        consolePane.appendText(sb.toString());
+        doRun(classPath, className, pathToFile);
     }
 
     public void handleStopButton(String filename) throws IOException {
