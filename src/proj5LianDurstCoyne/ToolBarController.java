@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
+import javafx.application.Platform;
+
 import java.io.*;
 import java.nio.file.Paths;
 
@@ -19,14 +21,19 @@ public class ToolBarController {
     private TabPane tabPane;
     private Map<Tab, File> tabFileMap;
     private StyleClassedTextArea consolePane;
+    private Process currentProcess;
 
     private Button compileButton;
     private Button cprunButton;
     private Button stopButton;
 
+    // initialize to null if no running threads
+    private Thread runningThread = null;
+
     private void doCompilation(String filePath) {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
         thread.start();
+        runningThread = thread;
     }
 
     public void handleCompileButton(){
@@ -64,6 +71,7 @@ public class ToolBarController {
 
         RunThread runThread = new RunThread(consolePane, filePath, classPath, className);
         runThread.start();
+        runningThread = runThread;
     }
 
 
@@ -103,8 +111,12 @@ public class ToolBarController {
         doRun(classPath, className, pathToFile);
     }
 
-    public void handleStopButton(String filename) throws IOException {
-        // TODO: add some code
+    
+    public void handleStopButton() {
+        if (runningThread != null) {
+            runningThread.interrupt();
+            runningThread = null;
+        }
     }
 
     public void bindToolBar() {

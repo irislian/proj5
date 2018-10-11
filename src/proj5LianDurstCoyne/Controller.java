@@ -277,7 +277,7 @@ public class Controller
      * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
      */
     @FXML private void handleStopButtonAction() {
-        this.stopButton.setText("Stop!");
+        toolBarController.handleStopButton();
     }
 
 }
