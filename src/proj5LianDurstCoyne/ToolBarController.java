@@ -28,10 +28,8 @@ public class ToolBarController {
 
             Process process;
             int errCode;
-//            FileReader fr;
 
             public void run() {
-//                consolePane.appendText("In Run\n");
                 // creating the process
                 ProcessBuilder pb = new ProcessBuilder("javac", filePath);
                 // redirect error to error file
@@ -159,7 +157,7 @@ public class ToolBarController {
     public void handleCprunButton()
             throws InterruptedException, IOException {
         // compile first
-        handleCompileButton();
+        this.handleCompileButton();
 
 //        consolePane.clear();
 
@@ -183,8 +181,6 @@ public class ToolBarController {
             return;
         }
 
-
-
         String pathToFile = Paths.get(file.toURI()).toString();
         String[] splitByJava = pathToFile.split(".ja");
 
@@ -205,8 +201,6 @@ public class ToolBarController {
 
         // start the process
         Process process = pb.start();
-
-//        IOThreadHandler outputHandler = new IOThreadHandler(process.getInputStream());
 
         // wait for the process to complete or throw an error
         int errCode = process.waitFor();
