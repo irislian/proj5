@@ -40,6 +40,8 @@ class FileMenuController
 
     private Stage primaryStage;
 
+    private ToolBar toolBar;
+
     /**
      * a HashMap mapping the tabs and associated files
      */
@@ -89,6 +91,8 @@ class FileMenuController
 
         newTab.setText("untitled" + (untitledCounter++) + ".txt");
         this.tabFileMap.put(newTab, null);
+
+        if(this.toolBar.isDisabled()){this.toolBar.setDisable(false);}
     }
 
     /**
@@ -130,6 +134,8 @@ class FileMenuController
             this.tabFileMap.put(newTab, openFile);
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
             this.tabPane.getSelectionModel().select(newTab);
+
+            if(this.toolBar.isDisabled()){this.toolBar.setDisable(false);}
         }
     }
 
@@ -439,9 +445,10 @@ class FileMenuController
         // set close action (clicking the 'x')
         newTab.setOnCloseRequest(event -> {
             event.consume();
-//            System.out.println("In Filemenu: "+this.tabPane.getSelectionModel().getSelectedItem().getText());
             closeTab(newTab);
-//            System.out.println("In Filemenu: "+this.tabPane.getSelectionModel().getSelectedItem().getText());
+            if(this.isTabless()){
+                this.toolBar.setDisable(true);
+            }
         });
 
         // add the new tab to the tab pane
@@ -461,15 +468,15 @@ class FileMenuController
         this.primaryStage = primaryStage;
     }
 
-//    /**
-//     * Simple helper method which gets the file mapped with the given tab
-//     * TODO: Modify javadoc header
-//     * @param tab Tab which the corresponding file is desired
-//     * @return a file
-//     */
-//    public File getFile(Tab tab){
-//        return this.tabFileMap.get(tab);
-//    }
+    /*
+     * Simple helper method
+     *
+     * @return true if there aren't currently any tabs open, else false
+     */
+    private boolean isTabless()
+    {
+        return this.tabPane.getTabs().isEmpty();
+    }
 
     /** 
      * Simple helper method that gets the FXML objects from the
@@ -482,5 +489,6 @@ class FileMenuController
         saveMenuItem = (MenuItem) list[2];
         saveAsMenuItem = (MenuItem) list[3];
         tabFileMap = (Map<Tab, File>) list[8];
+        toolBar = (ToolBar) list[10];
     }
 }

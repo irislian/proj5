@@ -49,7 +49,7 @@ public class Controller
     /**
      * Compile and Run button defined in Main.fxml
      */
-    @FXML private Button cprunButton;
+    @FXML private Button cpRunButton;
     /**
      * Stop button defined in Main.fxml
      */
@@ -58,6 +58,8 @@ public class Controller
     @FXML private Menu editMenu;
 
     @FXML private StyleClassedTextArea consolePane;
+
+    @FXML private ToolBar toolBar;
 
     private Map<Tab, File> tabFileMap = new HashMap<>();
 
@@ -222,7 +224,7 @@ public class Controller
         this.handleNewMenuItemAction();
         fileMenuController.bindFileMenu();
         editMenuController.bindEditMenu();
-        toolBarController.bindToolBar();
+//        this.stopButton.setDisable(true);
     }
 
     /**
@@ -240,10 +242,11 @@ public class Controller
                 this.saveMenuItem,
                 this.editMenu,
                 this.compileButton,
-                this.cprunButton,
+                this.cpRunButton,
                 this.stopButton,
                 this.tabFileMap,
                 this.consolePane,
+                this.toolBar
         };
     }
 

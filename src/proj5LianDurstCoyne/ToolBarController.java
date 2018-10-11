@@ -2,18 +2,17 @@ package proj5LianDurstCoyne;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ObservableBooleanValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.beans.property.SimpleBooleanProperty;
 
 import java.io.*;
 import java.nio.file.Paths;
 
 import java.util.Map;
 
+import javafx.scene.control.ToolBar;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 public class ToolBarController {
@@ -25,9 +24,14 @@ public class ToolBarController {
     private Button compileButton;
     private Button cpRunButton;
     private Button stopButton;
+//    private ToolBar toolBar;
 
     // initialize to null if no running threads
     private Thread runningThread = null;
+
+//    private ObservableBooleanValue rnOBV = new ObservableBoolean(false);
+//    private ObservableBooleanValue noRnOBV = null;
+
 
     /**
      *
@@ -37,11 +41,19 @@ public class ToolBarController {
      */
     private void doCompilation(String filePath) {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
+        this.stopButton.setDisable(false);
+        System.out.print("In doRun: disable property is " + this.stopButton.isDisable());
         thread.start();
-        runningThread = thread;
+        this.runningThread = thread;
     }
 
+    /**
+     *
+     */
     public void handleCompileButton(){
+        if(this.isTabless()){this.compileButton.setDisable(true);}
+        this.disableCpCpRunButtons(true);
+//        this.stopButton.setDisable(false);
 
         consolePane.clear();
 
@@ -68,6 +80,8 @@ public class ToolBarController {
         this.consolePane.appendText("Compiling: "+filePath+"\n");
         this.doCompilation(filePath);
         this.consolePane.appendText("Done compiling: "+filePath+"\n");
+        this.disableCpCpRunButtons(false); //enable compile and compile run
+        this.stopButton.setDisable(true); //disable stop
     }
 
 
@@ -75,18 +89,20 @@ public class ToolBarController {
         //        System.out.println("class path: "+classPath);
 
         CompileRunThread compileRunThread = new CompileRunThread(this.consolePane, filePath, classPath, className);
+        this.stopButton.setDisable(false);
+        System.out.print("In doRun: disable property is " + this.stopButton.isDisable());
         compileRunThread.start();
         this.runningThread = compileRunThread;
     }
 
 
     public void handleCprunButton() {
-
+        this.disableCpCpRunButtons(true);
+//        this.stopButton.setDisable(false);
 //        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
         Tab selectedTab;
-        System.out.print(this.tabPane.getTabs().size()+"\n");
         // TEMPORARILY SOLVES THE PROBLEM
         if (this.tabPane.getTabs().size() > 1){
             // get the corresponding file of the selected tab from the tab pane
@@ -96,7 +112,6 @@ public class ToolBarController {
             selectedTab = (Tab)this.tabPane.getTabs().toArray()[0];
             this.tabPane.getSelectionModel().select(selectedTab);
         }
-        System.out.println("In Toolbar CR: "+selectedTab.getText());
         File file = tabFileMap.get(selectedTab);
 
         if(file == null){
@@ -114,31 +129,38 @@ public class ToolBarController {
         String className = splitBySep[splitBySep.length-1];
         String classPath = pathNoJava.split("\\\\"+className)[0];
         doRun(classPath, className, pathToFile);
+        this.disableCpCpRunButtons(false); //enable compile and compile run
+        this.stopButton.setDisable(true); //disable stop
     }
 
     
     public void handleStopButton() {
-        if (runningThread != null) {
-            runningThread.interrupt();
-            runningThread = null;
+        if (this.runningThread != null) {
+            this.runningThread.interrupt();
+            this.runningThread = null;
         }
+        System.out.println("STOP IS PRESSED");
     }
 
-    public void bindToolBar() {
-        BooleanBinding emptyBinding = Bindings.isEmpty(this.tabPane.getTabs());
-        BooleanBinding threadBinding = Bindings.createBooleanBinding(()->
-                {   if( runningThread == null){
-                        return false;
-                    }
-                    else{
-                        return this.runningThread.isAlive();
-                    }
-                });
-        BooleanBinding inappropriate = Bindings.or(emptyBinding, threadBinding);
-        compileButton.disableProperty().bind(inappropriate);
-        cpRunButton.disableProperty().bind(inappropriate);
-        stopButton.disableProperty().bind(inappropriate);
+//    public void bindToolBar() {
+//        BooleanBinding emptyBinding = Bindings.isEmpty(this.tabPane.getTabs());
+//        this.compileButton.disableProperty().bind(emptyBinding);
+//        this.cpRunButton.disableProperty().bind(emptyBinding);
+//        this.stopButton.disableProperty().bind(emptyBinding);
+//    }
+
+    public void disableCpCpRunButtons(boolean disable){
+        this.compileButton.setDisable(disable);
+        this.cpRunButton.setDisable(disable);
+//        this.stopButton.setDisable(!b);
     }
+
+    /*
+     * Simple helper method
+     *
+     * @return true if there aren't currently any tabs open, else false
+     */
+    private boolean isTabless() { return this.tabPane.getTabs().isEmpty(); }
 
     /**
      * Simple helper method that gets the FXML objects from the
@@ -152,5 +174,6 @@ public class ToolBarController {
         stopButton = (Button) list[7];
         tabFileMap = (Map<Tab, File>) list[8];
         consolePane = (StyleClassedTextArea) list[9];
+//        toolBar = (ToolBar) list[10];
     }
 }

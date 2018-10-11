@@ -17,7 +17,7 @@
 }
 
 /* style of Goodbye button */
-#cprunButton {
+#cpRunButton {
 	/* set button color to pale green */
     -fx-background-color:"PaleGreen";
     /* set button border to black */
