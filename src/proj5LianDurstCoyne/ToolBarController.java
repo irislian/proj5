@@ -2,9 +2,12 @@ package proj5LianDurstCoyne;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -18,7 +21,6 @@ public class ToolBarController {
     private TabPane tabPane;
     private Map<Tab, File> tabFileMap;
     private StyleClassedTextArea consolePane;
-    private Process currentProcess;
 
     private Button compileButton;
     private Button cpRunButton;
@@ -124,9 +126,18 @@ public class ToolBarController {
 
     public void bindToolBar() {
         BooleanBinding emptyBinding = Bindings.isEmpty(this.tabPane.getTabs());
-        compileButton.disableProperty().bind(emptyBinding);
-        cpRunButton.disableProperty().bind(emptyBinding);
-        stopButton.disableProperty().bind(emptyBinding);
+        BooleanBinding threadBinding = Bindings.createBooleanBinding(()->
+                {   if( runningThread == null){
+                        return false;
+                    }
+                    else{
+                        return this.runningThread.isAlive();
+                    }
+                });
+        BooleanBinding inappropriate = Bindings.or(emptyBinding, threadBinding);
+        compileButton.disableProperty().bind(inappropriate);
+        cpRunButton.disableProperty().bind(inappropriate);
+        stopButton.disableProperty().bind(inappropriate);
     }
 
     /**
