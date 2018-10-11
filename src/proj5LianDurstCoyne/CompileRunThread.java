@@ -7,13 +7,13 @@ import java.io.*;
 
 public class CompileRunThread extends Thread {
 
-    private StyleClassedTextArea consolePane;
+    private ConsolePane consolePane;
     private String filePath;
     private ProcessBuilder pb;
     private File errorFile;
 
     public CompileRunThread(
-            StyleClassedTextArea consolePane, String filePath,
+            ConsolePane consolePane, String filePath,
             String classPath, String className) {
         this.consolePane = consolePane;
         this.filePath = filePath;

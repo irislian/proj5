@@ -14,11 +14,9 @@ Date: 10/02/18
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.VBox?>
-<?import org.fxmisc.richtext.StyleClassedTextArea?>
-
-
-        <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Button?>
+<?import proj5LianDurstCoyne.ConsolePane?>
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="proj5LianDurstCoyne.Controller">
     <MenuBar VBox.vgrow="NEVER">
@@ -99,6 +97,6 @@ Date: 10/02/18
         <tabs>
         </tabs>
     </TabPane>
-    <StyleClassedTextArea fx:id="consolePane" VBox.vgrow="ALWAYS">
-    </StyleClassedTextArea>
+    <ConsolePane fx:id="consolePane" VBox.vgrow="ALWAYS">
+    </ConsolePane>
 </VBox>

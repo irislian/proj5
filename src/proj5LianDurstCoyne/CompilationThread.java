@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class CompilationThread extends Thread {
     private String filePath;
-    private StyleClassedTextArea consolePane;
+    private ConsolePane consolePane;
 
-    public CompilationThread(StyleClassedTextArea consolePane, String filePath) {
+    public CompilationThread(ConsolePane consolePane, String filePath) {
         this.filePath = filePath;
         this.consolePane = consolePane;
     }
