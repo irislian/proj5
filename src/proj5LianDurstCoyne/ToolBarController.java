@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 import org.fxmisc.richtext.StyleClassedTextArea;
+import sun.jvm.hotspot.opto.Compile;
 
 public class ToolBarController {
 
@@ -25,52 +26,7 @@ public class ToolBarController {
     private Button stopButton;
 
     private void doCompilation(String filePath) {
-        Thread thread = new Thread() {
-
-            Process process;
-            int errCode;
-
-            public void run() {
-                // creating the process
-                ProcessBuilder pb = new ProcessBuilder("javac", filePath);
-                // redirect error to error file
-                File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
-                pb.redirectError(errorFile);
-                // start the process
-                try {
-                    process = pb.start();
-                    errCode = process.waitFor();
-                    Platform.runLater(
-                        () -> consolePane.appendText("Compilation executed, any errors? "
-                                                  + (errCode == 0 ? "No" : "Yes"))
-                    );
-                    // if there is an error, print the error
-                    if (errCode != 0) {
-                        StringBuilder acc = new StringBuilder();
-                        FileReader fr = new FileReader(errorFile);
-                        BufferedReader br = new BufferedReader(fr);
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            acc.append(line+"\n");
-                        }
-                        Platform.runLater(
-                            () -> consolePane.appendText("Error:\n +" +acc.toString() + "\n")
-                        );
-                        br.close();
-                        fr.close();
-                    } else {
-                        Platform.runLater(
-                            () -> consolePane.appendText("Success!\n")
-                        );
-                    }
-                } catch (IOException e ) {
-                    System.out.println(e.getMessage());
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
-                System.out.println("*********************************");
-            }
-        };
+        CompilationThread thread = new CompilationThread(consolePane, filePath);
         thread.start();
     }
 
@@ -115,9 +71,13 @@ public class ToolBarController {
 
             public void run() {
                 try {
-                    Thread compileThread = new Thread(() ->  doCompilation(filePath) );
+                    CompilationThread compileThread = new CompilationThread(consolePane, filePath);
                     compileThread.start();
-                    compileThread.join();
+                    try{
+                        compileThread.join();
+                    }catch(InterruptedException e) {
+                        System.out.println(e.getMessage());
+                    }
                     // start the process
                     Process process = pb.start();
                     StringBuilder sb = new StringBuilder();
