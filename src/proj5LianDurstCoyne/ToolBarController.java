@@ -1,13 +1,10 @@
 package proj5LianDurstCoyne;
 
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-
-import javafx.application.Platform;
 
 import java.io.*;
 import java.nio.file.Paths;
@@ -24,12 +21,18 @@ public class ToolBarController {
     private Process currentProcess;
 
     private Button compileButton;
-    private Button cprunButton;
+    private Button cpRunButton;
     private Button stopButton;
 
     // initialize to null if no running threads
     private Thread runningThread = null;
 
+    /**
+     *
+     * @param filePath
+     *
+     * TODO: DO A TRY CATCH and this should return a boolean indicating whether it succeeds
+     */
     private void doCompilation(String filePath) {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
         thread.start();
@@ -60,18 +63,18 @@ public class ToolBarController {
             return;
         }
         String filePath = Paths.get(file.toURI()).toString();
-        consolePane.appendText("Compiling: "+filePath+"\n");
+        this.consolePane.appendText("Compiling: "+filePath+"\n");
         this.doCompilation(filePath);
-        consolePane.appendText("Done compiling: "+filePath+"\n");
+        this.consolePane.appendText("Done compiling: "+filePath+"\n");
     }
 
 
     private void doRun(String classPath, String className, String filePath) {
         //        System.out.println("class path: "+classPath);
 
-        RunThread runThread = new RunThread(consolePane, filePath, classPath, className);
-        runThread.start();
-        runningThread = runThread;
+        CompileRunThread compileRunThread = new CompileRunThread(this.consolePane, filePath, classPath, className);
+        compileRunThread.start();
+        this.runningThread = compileRunThread;
     }
 
 
@@ -122,7 +125,7 @@ public class ToolBarController {
     public void bindToolBar() {
         BooleanBinding emptyBinding = Bindings.isEmpty(this.tabPane.getTabs());
         compileButton.disableProperty().bind(emptyBinding);
-        cprunButton.disableProperty().bind(emptyBinding);
+        cpRunButton.disableProperty().bind(emptyBinding);
         stopButton.disableProperty().bind(emptyBinding);
     }
 
@@ -134,7 +137,7 @@ public class ToolBarController {
     {
         tabPane = (TabPane) list[0];
         compileButton = (Button) list[5];
-        cprunButton = (Button) list[6];
+        cpRunButton = (Button) list[6];
         stopButton = (Button) list[7];
         tabFileMap = (Map<Tab, File>) list[8];
         consolePane = (StyleClassedTextArea) list[9];

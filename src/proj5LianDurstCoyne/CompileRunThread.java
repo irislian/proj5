@@ -5,14 +5,14 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 
 import java.io.*;
 
-public class RunThread extends Thread {
+public class CompileRunThread extends Thread {
 
-    StyleClassedTextArea consolePane;
-    String filePath;
-    ProcessBuilder pb;
-    File errorFile;
+    private StyleClassedTextArea consolePane;
+    private String filePath;
+    private ProcessBuilder pb;
+    private File errorFile;
 
-    public RunThread(
+    public CompileRunThread(
             StyleClassedTextArea consolePane, String filePath,
             String classPath, String className) {
         this.consolePane = consolePane;

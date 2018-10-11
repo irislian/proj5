@@ -9,12 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CompilationThread extends Thread {
-    Process process;
-    int errCode;
-    String filePath;
-    StyleClassedTextArea consolePane;
+    private String filePath;
+    private StyleClassedTextArea consolePane;
 
-    CompilationThread(StyleClassedTextArea consolePane, String filePath) {
+    public CompilationThread(StyleClassedTextArea consolePane, String filePath) {
         this.filePath = filePath;
         this.consolePane = consolePane;
     }
@@ -27,8 +25,8 @@ public class CompilationThread extends Thread {
         pb.redirectError(errorFile);
         // start the process
         try {
-            process = pb.start();
-            errCode = process.waitFor();
+            Process process = pb.start();
+            int errCode = process.waitFor();
             Platform.runLater(
                     () -> consolePane.appendText("Compilation executed, any errors? "
                             + (errCode == 0 ? "No\n" : "Yes\n"))
@@ -57,6 +55,5 @@ public class CompilationThread extends Thread {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("*********************************");
     }
 }
