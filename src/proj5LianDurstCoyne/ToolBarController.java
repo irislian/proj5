@@ -1,20 +1,20 @@
 package proj5LianDurstCoyne;
 
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.Button;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
+
+import org.fxmisc.richtext.StyleClassedTextArea;
 
 public class ToolBarController {
 
     private TabPane tabPane;
     private Map<Tab, File> tabFileMap;
+    private StyleClassedTextArea consolePane;
 
 //    private Button compileButton;
 //    private Button cprunButton;
@@ -23,8 +23,11 @@ public class ToolBarController {
     public void handleCompileButton()
             throws InterruptedException, IOException {
 
+        consolePane.clear();
+
         Tab selectedTab;
         System.out.print(this.tabPane.getTabs().size()+"\n");
+
         // TEMPORARILY SOLVES THE PROBLEM
         if (this.tabPane.getTabs().size() > 1){
         // get the corresponding file of the selected tab from the tab pane
@@ -34,16 +37,17 @@ public class ToolBarController {
             selectedTab = (Tab)this.tabPane.getTabs().toArray()[0];
             this.tabPane.getSelectionModel().select(selectedTab);
         }
-        System.out.println("In Toolbar C: "+selectedTab.getText());
+
         File file = tabFileMap.get(selectedTab);
 
         if(file == null){
-            System.out.println("file is not in the map");
+            consolePane.appendText("file not saved yet in the map\n");
             return;
         }
 
-        System.out.println(Paths.get(file.toURI()).toString());
         String filePath = Paths.get(file.toURI()).toString();
+
+        consolePane.appendText("Compiling: "+filePath+"\n");
 
         // creating the process
         ProcessBuilder pb = new ProcessBuilder("javac", filePath);
@@ -57,20 +61,20 @@ public class ToolBarController {
 
         // wait for the process to complete or throw an error
         int errCode = process.waitFor();
-        System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+//        System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
         // if there is an error, print the error
         if (errCode != 0) {
-            System.out.println("\nPrint Error:");
-            System.out.println("*********************************");
+            consolePane.appendText("Error:\n");
             FileReader fr = new FileReader(errorFile);
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                consolePane.appendText(line+"\n");
             }
             br.close();
             fr.close();
-            System.out.println("*********************************");
+        } else {
+            consolePane.appendText("Success!\n");
         }
     }
 
@@ -79,6 +83,8 @@ public class ToolBarController {
             throws InterruptedException, IOException {
         // compile first
         handleCompileButton();
+
+        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
         Tab selectedTab;
@@ -100,12 +106,17 @@ public class ToolBarController {
             return;
         }
 
+
+
         String pathToFile = Paths.get(file.toURI()).toString();
         String[] splitByJava = pathToFile.split(".ja");
+
         String pathNoJava = splitByJava[0];
-        String[] splitBySep = pathNoJava.split("\\\\");
+        System.out.println(Paths.get(pathNoJava));
+        String[] splitBySep = pathNoJava.split(File.separator);
+//        System.out.println(Paths.get(pathNoJava);
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split("\\\\"+className)[0];
+        String classPath = pathNoJava.split(File.separator+className)[0];
 
 //        System.out.println("class path: "+classPath);
         // creating the process
@@ -125,18 +136,15 @@ public class ToolBarController {
         System.out.println("Run executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
         // if there is an error, print the error
         if (errCode != 0) {
-            System.out.println("\nPrint Error:");
-            System.out.println("*********************************");
             FileReader fr = new FileReader(errorFile);
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                consolePane.appendText(line);
+                consolePane.appendText("\n");
             }
             br.close();
-            fr.close();
-            System.out.println("*********************************");
-        }
+            fr.close(); }
 
         // print the output
         StringBuilder sb = new StringBuilder();
@@ -150,7 +158,7 @@ public class ToolBarController {
         } finally {
             br.close();
         }
-        System.out.println("Output:\n" + sb.toString());
+        consolePane.appendText(sb.toString());
     }
 
     public void handleStopButton(String filename) throws IOException {
@@ -169,5 +177,6 @@ public class ToolBarController {
 //        cprunButton = (Button) list[6];
 //        stopButton = (Button) list[7];
         tabFileMap = (Map<Tab, File>) list[8];
+        consolePane = (StyleClassedTextArea) list[9];
     }
 }

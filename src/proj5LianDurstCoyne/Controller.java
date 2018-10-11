@@ -15,6 +15,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.fxmisc.richtext.StyleClassedTextArea;
+
 import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
 /**
@@ -54,6 +56,8 @@ public class Controller
     @FXML private Button stopButton;
 
     @FXML private Menu editMenu;
+
+    @FXML private StyleClassedTextArea consolePane;
 
     private Map<Tab, File> tabFileMap = new HashMap<>();
 
@@ -237,7 +241,8 @@ public class Controller
                 this.compileButton,
                 this.cprunButton,
                 this.stopButton,
-                this.tabFileMap
+                this.tabFileMap,
+                this.consolePane,
         };
     }
 
