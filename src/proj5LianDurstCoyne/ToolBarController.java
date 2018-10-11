@@ -69,6 +69,7 @@ public class ToolBarController {
 
     public void handleCprunButton() {
 
+
 //        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
@@ -100,7 +101,6 @@ public class ToolBarController {
 //        System.out.println(Paths.get(pathNoJava);
         String className = splitBySep[splitBySep.length-1];
         String classPath = pathNoJava.split(File.separator+className)[0];
-        System.out.printf("file is %s%n", pathToFile);
         doRun(classPath, className, pathToFile);
     }
 
