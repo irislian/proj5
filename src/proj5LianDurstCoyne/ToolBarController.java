@@ -12,14 +12,11 @@ import java.nio.file.Paths;
 
 import java.util.Map;
 
-import javafx.scene.control.ToolBar;
-import org.fxmisc.richtext.StyleClassedTextArea;
-
 public class ToolBarController {
 
     private TabPane tabPane;
     private Map<Tab, File> tabFileMap;
-    private StyleClassedTextArea consolePane;
+    private ConsolePane consolePane;
 
     private Button compileButton;
     private Button cpRunButton;
@@ -124,10 +121,9 @@ public class ToolBarController {
 
         String pathNoJava = splitByJava[0];
         System.out.println(Paths.get(pathNoJava));
-        String[] splitBySep = pathNoJava.split("\\\\");
-//        System.out.println(Paths.get(pathNoJava);
+        String[] splitBySep = pathNoJava.split(File.separator);
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split("\\\\"+className)[0];
+        String classPath = pathNoJava.split(File.separator+className)[0];
         doRun(classPath, className, pathToFile);
         this.disableCpCpRunButtons(false); //enable compile and compile run
         this.stopButton.setDisable(true); //disable stop
@@ -164,7 +160,7 @@ public class ToolBarController {
 
     /**
      * Simple helper method that gets the FXML objects from the
-     * main controller for use by other methods in the class.
+     * main controller for use by oth®®er methods in the class.
      */
     public void receiveFXMLElements(Object[] list)
     {
@@ -173,7 +169,6 @@ public class ToolBarController {
         cpRunButton = (Button) list[6];
         stopButton = (Button) list[7];
         tabFileMap = (Map<Tab, File>) list[8];
-        consolePane = (StyleClassedTextArea) list[9];
-//        toolBar = (ToolBar) list[10];
+        consolePane = (ConsolePane) list[9];
     }
 }

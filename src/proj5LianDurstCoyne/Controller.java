@@ -57,7 +57,7 @@ public class Controller
 
     @FXML private Menu editMenu;
 
-    @FXML private StyleClassedTextArea consolePane;
+    @FXML private ConsolePane consolePane;
 
     @FXML private ToolBar toolBar;
 
