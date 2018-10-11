@@ -1,0 +1,2 @@
+Error: Could not find or load main class Thing
+Caused by: java.lang.ClassNotFoundException: Thing

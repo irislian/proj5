@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="fxmisc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/fxmisc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

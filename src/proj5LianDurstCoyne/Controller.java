@@ -269,13 +269,7 @@ public class Controller
      * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
      */
     @FXML private void handleCpRunButtonAction() {
-        try {
             toolBarController.handleCprunButton();
-        } catch (IOException e) {
-            printStackTrace(e);
-        }catch (InterruptedException e2){
-            printStackTrace(e2);
-        }
     }
 
     /**
