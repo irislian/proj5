@@ -1,5 +1,6 @@
 package proj5LianDurstCoyne;
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.scene.control.Button;
@@ -28,10 +29,8 @@ public class ToolBarController {
 
             Process process;
             int errCode;
-//            FileReader fr;
 
             public void run() {
-//                consolePane.appendText("In Run\n");
                 // creating the process
                 ProcessBuilder pb = new ProcessBuilder("javac", filePath);
                 // redirect error to error file
@@ -41,21 +40,28 @@ public class ToolBarController {
                 try {
                     process = pb.start();
                     errCode = process.waitFor();
-
-                    System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+                    Platform.runLater(
+                        () -> consolePane.appendText("Compilation executed, any errors? "
+                                                  + (errCode == 0 ? "No" : "Yes"))
+                    );
                     // if there is an error, print the error
                     if (errCode != 0) {
-                        consolePane.appendText("Error:\n");
+                        StringBuilder acc = new StringBuilder();
                         FileReader fr = new FileReader(errorFile);
                         BufferedReader br = new BufferedReader(fr);
                         String line;
                         while ((line = br.readLine()) != null) {
-                            consolePane.appendText(line+"\n");
+                            acc.append(line+"\n");
                         }
+                        Platform.runLater(
+                            () -> consolePane.appendText("Error:\n +" +acc.toString() + "\n")
+                        );
                         br.close();
                         fr.close();
                     } else {
-                        consolePane.appendText("Success!\n");
+                        Platform.runLater(
+                            () -> consolePane.appendText("Success!\n")
+                        );
                     }
                 } catch (IOException e ) {
                     System.out.println(e.getMessage());
@@ -190,10 +196,10 @@ public class ToolBarController {
 
         String pathNoJava = splitByJava[0];
         System.out.println(Paths.get(pathNoJava));
-        String[] splitBySep = pathNoJava.split("\\\\"); //File.separator for mac
+        String[] splitBySep = pathNoJava.split(File.separator); //File.separator for mac
 //        System.out.println(Paths.get(pathNoJava);
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split("\\\\"+className)[0];
+        String classPath = pathNoJava.split(File.separator+className)[0];
 
 //        System.out.println("class path: "+classPath);
         // creating the process
