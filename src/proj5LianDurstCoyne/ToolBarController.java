@@ -1,8 +1,5 @@
 package proj5LianDurstCoyne;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -45,14 +42,14 @@ public class ToolBarController {
      *
      */
     public void handleCompileButton(){
-        if(this.isTabless()){this.compileButton.setDisable(true);}
         this.disableCpCpRunButtons(true);
+        this.stopButton.setDisable(false);
 //        this.stopButton.setDisable(false);
 
         consolePane.clear();
 
         Tab selectedTab;
-        System.out.print(this.tabPane.getTabs().size()+"\n");
+//        System.out.print(this.tabPane.getTabs().size()+"\n");
 
         // TEMPORARILY SOLVES THE PROBLEM
         if (this.tabPane.getTabs().size() > 1){
@@ -95,7 +92,7 @@ public class ToolBarController {
 
     public void handleCprunButton() {
         this.disableCpCpRunButtons(true);
-//        this.stopButton.setDisable(false);
+        this.stopButton.setDisable(false);
 //        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
@@ -120,7 +117,6 @@ public class ToolBarController {
         String[] splitByJava = pathToFile.split(".ja");
 
         String pathNoJava = splitByJava[0];
-        System.out.println(Paths.get(pathNoJava));
         String[] splitBySep = pathNoJava.split("\\\\");
         String className = splitBySep[splitBySep.length-1];
         String classPath = pathNoJava.split("\\\\"+className)[0];

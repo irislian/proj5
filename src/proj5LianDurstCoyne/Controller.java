@@ -224,7 +224,7 @@ public class Controller
         this.handleNewMenuItemAction();
         fileMenuController.bindFileMenu();
         editMenuController.bindEditMenu();
-//        this.stopButton.setDisable(true);
+        this.stopButton.setDisable(true);
     }
 
     /**
