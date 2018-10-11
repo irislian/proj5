@@ -1,5 +1,8 @@
 package proj5LianDurstCoyne;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
@@ -16,9 +19,52 @@ public class ToolBarController {
     private Map<Tab, File> tabFileMap;
     private StyleClassedTextArea consolePane;
 
-//    private Button compileButton;
-//    private Button cprunButton;
-//    private Button stopButton;
+    private Button compileButton;
+    private Button cprunButton;
+    private Button stopButton;
+
+    public void doCompilation() {
+        Thread thread = new Thread() {
+
+            Process process;
+            int errCode;
+            FileReader fr;
+
+            public void run(String filePath) {
+                // creating the process
+                ProcessBuilder pb = new ProcessBuilder("javac", filePath);
+                // redirect error to error file
+                File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
+                pb.redirectError(errorFile);
+                // start the process
+                try {
+                    process = pb.start();
+                    errCode = process.waitFor();
+
+                    System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
+                    // if there is an error, print the error
+                    if (errCode != 0) {
+                        System.out.println("\nPrint Error:");
+                        System.out.println("*********************************");
+                        fr = new FileReader(errorFile);
+                    }
+                    BufferedReader br = new BufferedReader(fr);
+                    String line;
+
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                    br.close();
+                    fr.close();
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
+                System.out.println("*********************************");
+            }
+        };
+    }
 
     public void handleCompileButton()
             throws InterruptedException, IOException {
@@ -30,7 +76,7 @@ public class ToolBarController {
 
         // TEMPORARILY SOLVES THE PROBLEM
         if (this.tabPane.getTabs().size() > 1){
-        // get the corresponding file of the selected tab from the tab pane
+            // get the corresponding file of the selected tab from the tab pane
             selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
         }
         else{
@@ -44,47 +90,18 @@ public class ToolBarController {
             consolePane.appendText("file not saved yet in the map\n");
             return;
         }
-
         String filePath = Paths.get(file.toURI()).toString();
-
         consolePane.appendText("Compiling: "+filePath+"\n");
-
-        // creating the process
-        ProcessBuilder pb = new ProcessBuilder("javac", filePath);
-
-        // redirect error to error file
-        File errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
-        pb.redirectError(errorFile);
-
-        // start the process
-        Process process = pb.start();
-
-        // wait for the process to complete or throw an error
-        int errCode = process.waitFor();
-//        System.out.println("Compilation executed, any errors? " + (errCode == 0 ? "No" : "Yes"));
-        // if there is an error, print the error
-        if (errCode != 0) {
-            consolePane.appendText("Error:\n");
-            FileReader fr = new FileReader(errorFile);
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            while ((line = br.readLine()) != null) {
-                consolePane.appendText(line+"\n");
-            }
-            br.close();
-            fr.close();
-        } else {
-            consolePane.appendText("Success!\n");
-        }
+        doCompilation();
     }
-
+    
 
     public void handleCprunButton()
             throws InterruptedException, IOException {
         // compile first
         handleCompileButton();
 
-        consolePane.clear();
+//        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
         Tab selectedTab;
@@ -113,10 +130,10 @@ public class ToolBarController {
 
         String pathNoJava = splitByJava[0];
         System.out.println(Paths.get(pathNoJava));
-        String[] splitBySep = pathNoJava.split(File.separator);
+        String[] splitBySep = pathNoJava.split("\\\\"); //File.separator for mac
 //        System.out.println(Paths.get(pathNoJava);
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split(File.separator+className)[0];
+        String classPath = pathNoJava.split("\\\\"+className)[0];
 
 //        System.out.println("class path: "+classPath);
         // creating the process
@@ -165,6 +182,12 @@ public class ToolBarController {
         // TODO: add some code
     }
 
+    public void bindToolBar() {
+        BooleanBinding emptyBinding = Bindings.isEmpty(this.tabPane.getTabs());
+        compileButton.disableProperty().bind(emptyBinding);
+        cprunButton.disableProperty().bind(emptyBinding);
+        stopButton.disableProperty().bind(emptyBinding);
+    }
 
     /**
      * Simple helper method that gets the FXML objects from the
@@ -173,9 +196,9 @@ public class ToolBarController {
     public void receiveFXMLElements(Object[] list)
     {
         tabPane = (TabPane) list[0];
-//        compileButton = (Button) list[5];
-//        cprunButton = (Button) list[6];
-//        stopButton = (Button) list[7];
+        compileButton = (Button) list[5];
+        cprunButton = (Button) list[6];
+        stopButton = (Button) list[7];
         tabFileMap = (Map<Tab, File>) list[8];
         consolePane = (StyleClassedTextArea) list[9];
     }

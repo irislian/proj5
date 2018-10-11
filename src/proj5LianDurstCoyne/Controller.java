@@ -222,6 +222,7 @@ public class Controller
         this.handleNewMenuItemAction();
         fileMenuController.bindFileMenu();
         editMenuController.bindEditMenu();
+        toolBarController.bindToolBar();
     }
 
     /**
@@ -285,13 +286,4 @@ public class Controller
         this.stopButton.setText("Stop!");
     }
 
-//    /**
-//     * Simple helper method which gets the file mapped with the given tab
-//     * TODO: Modify javadoc header
-//     * @param tab Tab which the corresponding file is desired
-//     * @return a file
-//     */
-//    public File getFile(Tab tab){
-//        return fileMenuController.getFile(tab);
-//    }
 }
