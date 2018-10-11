@@ -148,9 +148,10 @@ class FileMenuController
     public void handleCloseMenuItemAction() {
 
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
-        System.out.println(selectedTab.getText());
-        this.closeTab(selectedTab);
-        System.out.println(this.tabPane.getSelectionModel().getSelectedItem().getText());
+        boolean closed = this.closeTab(selectedTab);
+        if(this.isTabless() && closed){
+            this.toolBar.setDisable(true);
+        }
     }
 
     /**
@@ -445,8 +446,8 @@ class FileMenuController
         // set close action (clicking the 'x')
         newTab.setOnCloseRequest(event -> {
             event.consume();
-            closeTab(newTab);
-            if(this.isTabless()){
+            boolean closed = closeTab(newTab);
+            if(this.isTabless() && closed){
                 this.toolBar.setDisable(true);
             }
         });
