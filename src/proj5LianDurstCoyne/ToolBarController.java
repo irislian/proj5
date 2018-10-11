@@ -31,7 +31,7 @@ public class ToolBarController {
 //            FileReader fr;
 
             public void run() {
-                consolePane.appendText("In Run\n");
+//                consolePane.appendText("In Run\n");
                 // creating the process
                 ProcessBuilder pb = new ProcessBuilder("javac", filePath);
                 // redirect error to error file
