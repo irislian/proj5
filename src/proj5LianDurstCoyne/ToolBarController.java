@@ -105,7 +105,7 @@ public class ToolBarController {
     }
 
     
-    public void handleStopButton1() {
+    public void handleStopButton() {
         if (this.runningThread != null) {
             this.runningThread.interrupt();
             this.runningThread = null;
