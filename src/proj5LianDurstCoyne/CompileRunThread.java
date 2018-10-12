@@ -18,17 +18,6 @@ public class CompileRunThread extends Thread {
         this.pb = new ProcessBuilder("java", "-cp", classPath, className);
     }
 
-    // private CompilationThread compile(){
-    //     CompilationThread compileThread = new CompilationThread(consolePane, filePath);
-    //     compileThread.start();
-    //     try{
-    //         compileThread.join();
-    //     }catch(InterruptedException e) {
-    //         System.out.println(e.getMessage());
-    //     }
-    //     return compileThread;
-    // }
-
     private void printError(Process process)throws IOException{
         InputStreamReader isr = new InputStreamReader(process.getErrorStream());
         BufferedReader br = new BufferedReader(isr);
@@ -49,11 +38,11 @@ public class CompileRunThread extends Thread {
         BufferedReader br = new BufferedReader(isr);
         String line;
         while ((line = br.readLine()) != null) {
-            sb.append(line + System.getProperty("line.separator"));
+            String s = line + System.getProperty("line.separator");
+            Platform.runLater(
+                    () -> consolePane.appendText(s)
+            );
         }
-        Platform.runLater(
-                () -> consolePane.appendText(sb.toString())
-        );
         br.close();
         isr.close();
     }
@@ -61,8 +50,9 @@ public class CompileRunThread extends Thread {
     public void run() {
         CompilationThread compileThread = new CompilationThread(consolePane, filePath);
         try {
-//            CompilationThread compileThread = this.compile();
+            // start compilation in a new thread
             compileThread.start();
+            // wait for compilation to finish before moving on to execution
             compileThread.join();
             // if compilation failed, return
             if(!compileThread.getExeState()){
@@ -70,6 +60,16 @@ public class CompileRunThread extends Thread {
             }
             // start the process
             Process process = pb.start();
+
+            // print to console pane as new output is generated
+            new Thread() {
+                @Override
+                public void run() {
+                    try { printOutput(process);
+                    } catch(IOException e) {}
+                }
+            }.start();
+
             // wait for the process to complete or throw an error
             int errCode = process.waitFor();
             Platform.runLater(
@@ -81,8 +81,6 @@ public class CompileRunThread extends Thread {
             if (errCode != 0) {
                 this.printError(process);
             }
-            // print the output
-            this.printOutput(process);
 
         }catch(IOException e) {
             System.out.println(e.getMessage());
