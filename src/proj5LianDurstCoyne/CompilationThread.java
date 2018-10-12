@@ -41,13 +41,13 @@ public class CompilationThread extends Thread {
                     acc.append(line+"\n");
                 }
                 Platform.runLater(
-                        () -> consolePane.appendText("Error:\n +" +acc.toString() + "\n")
+                        () -> consolePane.appendText("Error:\n" + acc.toString() + "\n")
                 );
                 br.close();
                 fr.close();
             } else {
                 Platform.runLater(
-                        () -> consolePane.appendText("Success!\n")
+                        () -> this.consolePane.appendText("Done compiling: "+filePath+"\n")
                 );
             }
         } catch (IOException e ) {

@@ -1,5 +1,6 @@
 package proj5LianDurstCoyne;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -32,10 +33,10 @@ public class ToolBarController {
      */
     private void doCompilation(String filePath) {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
-        this.stopButton.setDisable(false);
-        System.out.print("In doRun: disable property is " + this.stopButton.isDisable());
         thread.start();
         this.runningThread = thread;
+        try{ this.runningThread.join();}
+        catch (InterruptedException e){System.out.println("INTERRUPTED IN doCompilation!");}
     }
 
     /**
@@ -44,14 +45,10 @@ public class ToolBarController {
     public void handleCompileButton(){
         this.disableCpCpRunButtons(true);
         this.stopButton.setDisable(false);
-//        this.stopButton.setDisable(false);
 
         consolePane.clear();
 
         Tab selectedTab;
-//        System.out.print(this.tabPane.getTabs().size()+"\n");
-
-        // TEMPORARILY SOLVES THE PROBLEM
         if (this.tabPane.getTabs().size() > 1){
             // get the corresponding file of the selected tab from the tab pane
             selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
@@ -63,16 +60,15 @@ public class ToolBarController {
 
         File file = tabFileMap.get(selectedTab);
 
-        if(file == null){
-            consolePane.appendText("file not saved yet in the map\n");
-            return;
-        }
+//        if(file == null){
+//            consolePane.appendText("file not saved yet in the map\n");
+//            return;
+//        }
         String filePath = Paths.get(file.toURI()).toString();
         this.consolePane.appendText("Compiling: "+filePath+"\n");
         this.doCompilation(filePath);
-        this.consolePane.appendText("Done compiling: "+filePath+"\n");
 
-        if (this.runningThread.isDaemon()){
+        if (!this.runningThread.isAlive()){
             this.disableCpCpRunButtons(false); //enable compile and compile run
             this.stopButton.setDisable(true);//disable stop
         }
@@ -80,13 +76,11 @@ public class ToolBarController {
 
 
     private void doRun(String classPath, String className, String filePath) {
-        //        System.out.println("class path: "+classPath);
-
         CompileRunThread compileRunThread = new CompileRunThread(this.consolePane, filePath, classPath, className);
-//        this.stopButton.setDisable(false);
-//        System.out.print("In doRun: disable property is " + this.stopButton.isDisable());
         compileRunThread.start();
         this.runningThread = compileRunThread;
+        try{ this.runningThread.join();}
+        catch (InterruptedException e){System.out.println("INTERRUPTED IN doRun!");}
     }
 
 
@@ -97,7 +91,6 @@ public class ToolBarController {
 
         // get the corresponding file of the selected tab from the tab pane
         Tab selectedTab;
-        // TEMPORARILY SOLVES THE PROBLEM
         if (this.tabPane.getTabs().size() > 1){
             // get the corresponding file of the selected tab from the tab pane
             selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
@@ -108,10 +101,10 @@ public class ToolBarController {
         }
         File file = tabFileMap.get(selectedTab);
 
-        if(file == null){
-            System.out.println("file is not in the map");
-            return;
-        }
+//        if(file == null){
+//            System.out.println("file is not in the map");
+//            return;
+//        }
 
         String pathToFile = Paths.get(file.toURI()).toString();
         String[] splitByJava = pathToFile.split(".ja");
@@ -123,7 +116,7 @@ public class ToolBarController {
 
         this.doRun(classPath, className, pathToFile);
 
-        if (this.runningThread.isDaemon()){
+        if (!this.runningThread.isAlive()){
             this.disableCpCpRunButtons(false); //enable compile and compile run
             this.stopButton.setDisable(true);//disable stop
         }
@@ -138,29 +131,15 @@ public class ToolBarController {
         System.out.println("STOP IS PRESSED");
     }
 
-//    public void bindToolBar() {
-//        BooleanBinding emptyBinding = Bindings.isEmpty(this.tabPane.getTabs());
-//        this.compileButton.disableProperty().bind(emptyBinding);
-//        this.cpRunButton.disableProperty().bind(emptyBinding);
-//        this.stopButton.disableProperty().bind(emptyBinding);
-//    }
-
     public void disableCpCpRunButtons(boolean disable){
         this.compileButton.setDisable(disable);
         this.cpRunButton.setDisable(disable);
 //        this.stopButton.setDisable(!b);
     }
 
-    /*
-     * Simple helper method
-     *
-     * @return true if there aren't currently any tabs open, else false
-     */
-    private boolean isTabless() { return this.tabPane.getTabs().isEmpty(); }
-
     /**
      * Simple helper method that gets the FXML objects from the
-     * main controller for use by oth®®er methods in the class.
+     * main controller for use by other methods in the class.
      */
     public void receiveFXMLElements(Object[] list)
     {
