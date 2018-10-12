@@ -1,28 +1,42 @@
 package proj5LianDurstCoyne;
 
 import javafx.application.Platform;
-import org.fxmisc.richtext.StyleClassedTextArea;
 
 import java.io.*;
 
 public class CompilationThread extends Thread {
-    private String filePath;
     private ConsolePane consolePane;
-    private boolean compiled;
+    private String filePath;
+    private ProcessBuilder pb;
+    private boolean succeed;
 
     public CompilationThread(ConsolePane consolePane, String filePath) {
-        this.filePath = filePath;
         this.consolePane = consolePane;
-        this.compiled = true;
+        this.filePath = filePath;
+        // creating the process
+        this.pb = new ProcessBuilder("javac", filePath);
+        this.succeed = true;
     }
 
-    public boolean getCompileState(){
-        return compiled;
+    public boolean getExeState(){
+        return succeed;
+    }
+
+    private void printError(Process process)throws IOException{
+        InputStreamReader isr = new InputStreamReader(process.getErrorStream());
+        BufferedReader br = new BufferedReader(isr);
+        StringBuilder acc = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            acc.append(line+"\n");}
+        Platform.runLater(
+                () -> consolePane.appendText("Error:\n" + acc.toString() + "\n")
+        );
+        isr.close();
+        br.close();
     }
 
     public void run() {
-        // creating the process
-        ProcessBuilder pb = new ProcessBuilder("javac", filePath);
         // start the process
         try {
             Process process = pb.start();
@@ -33,18 +47,8 @@ public class CompilationThread extends Thread {
             );
             // if there is an error, print the error
             if (errCode != 0) {
-                this.compiled = false;
-                InputStreamReader isr = new InputStreamReader(process.getErrorStream());
-                BufferedReader br = new BufferedReader(isr);
-                StringBuilder acc = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    acc.append(line+"\n");}
-                Platform.runLater(
-                        () -> consolePane.appendText("Error:\n" + acc.toString() + "\n")
-                );
-                isr.close();
-                br.close();
+                this.succeed = false;
+                this.printError(process);
             } else {
                 Platform.runLater(
                         () -> this.consolePane.appendText("Done compiling: "+filePath+"\n")

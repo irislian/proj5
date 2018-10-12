@@ -1,7 +1,6 @@
 package proj5LianDurstCoyne;
 
 import javafx.application.Platform;
-import org.fxmisc.richtext.StyleClassedTextArea;
 
 import java.io.*;
 
@@ -19,23 +18,53 @@ public class CompileRunThread extends Thread {
         this.pb = new ProcessBuilder("java", "-cp", classPath, className);
     }
 
+    private CompilationThread compile(){
+        CompilationThread compileThread = new CompilationThread(consolePane, filePath);
+        compileThread.start();
+        try{
+            compileThread.join();
+        }catch(InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        return compileThread;
+    }
+
+    private void printError(Process process)throws IOException{
+        InputStreamReader isr = new InputStreamReader(process.getErrorStream());
+        BufferedReader br = new BufferedReader(isr);
+        StringBuilder acc = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            acc.append(line+"\n");}
+        Platform.runLater(
+                () -> consolePane.appendText("Error:\n" + acc.toString() + "\n")
+        );
+        isr.close();
+        br.close();
+    }
+
+    private void printOutput(Process process) throws IOException{
+        StringBuilder sb = new StringBuilder();
+        InputStreamReader isr = new InputStreamReader(process.getInputStream());
+        BufferedReader br = new BufferedReader(isr);
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line + System.getProperty("line.separator"));
+        }
+        Platform.runLater(
+                () -> consolePane.appendText(sb.toString())
+        );
+        br.close();
+        isr.close();
+    }
+
     public void run() {
         try {
-            CompilationThread compileThread = new CompilationThread(consolePane, filePath);
-            System.out.println("In CR thread, before starting compileThread");
-            compileThread.start();
-            System.out.println("In CR thread, after starting compileThread");
-            try{
-                compileThread.join();
-                System.out.println("In CR thread, after joining compileThread");
-            }catch(InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
+            CompilationThread compileThread = this.compile();
             // if compilation failed, return
-            if(!compileThread.getCompileState()){
+            if(!compileThread.getExeState()){
                 return;
             }
-
             // start the process
             Process process = pb.start();
             // wait for the process to complete or throw an error
@@ -47,31 +76,10 @@ public class CompileRunThread extends Thread {
 
             // if there is an error, print the error
             if (errCode != 0) {
-                InputStreamReader isr = new InputStreamReader(process.getErrorStream());
-                BufferedReader br = new BufferedReader(isr);
-                StringBuilder acc = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    acc.append(line+"\n");}
-                Platform.runLater(
-                        () -> consolePane.appendText("Error:\n" + acc.toString() + "\n")
-                );
-                br.close();
-                isr.close();
+                this.printError(process);
             }
             // print the output
-            StringBuilder sb = new StringBuilder();
-            InputStreamReader isr = new InputStreamReader(process.getInputStream());
-            BufferedReader br = new BufferedReader(isr);
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line + System.getProperty("line.separator"));
-            }
-            Platform.runLater(
-                    () -> consolePane.appendText(sb.toString())
-            );
-            br.close();
-            isr.close();
+            this.printOutput(process);
 
         }catch(IOException e) {
             System.out.println(e.getMessage());
