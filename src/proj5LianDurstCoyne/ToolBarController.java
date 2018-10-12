@@ -110,9 +110,9 @@ public class ToolBarController {
         String[] splitByJava = pathToFile.split(".ja");
 
         String pathNoJava = splitByJava[0];
-        String[] splitBySep = pathNoJava.split("\\\\");
+        String[] splitBySep = pathNoJava.split(File.separator);
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split("\\\\"+className)[0];
+        String classPath = pathNoJava.split(File.separator+className)[0];
 
         this.doRun(classPath, className, pathToFile);
 

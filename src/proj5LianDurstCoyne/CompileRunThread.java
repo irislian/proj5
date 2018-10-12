@@ -67,6 +67,9 @@ public class CompileRunThread extends Thread {
             }
             // start the process
             Process process = pb.start();
+            Writer isrssisrssisrss = new OutputStreamWriter(process.getOutputStream());
+            BufferedWriter isrssisrss = new BufferedWriter(isrssisrssisrss);
+            isrssisrss.write("Hello wrold");
             // wait for the process to complete or throw an error
             int errCode = process.waitFor();
             Platform.runLater(
