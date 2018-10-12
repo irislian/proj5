@@ -58,6 +58,9 @@ public class CompilationThread extends Thread {
             System.out.println(e.getMessage());
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
+            Platform.runLater(
+                        () -> this.consolePane.appendText("Compilation interrupted.")
+                );
         }
     }
 }

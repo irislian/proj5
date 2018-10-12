@@ -18,16 +18,16 @@ public class CompileRunThread extends Thread {
         this.pb = new ProcessBuilder("java", "-cp", classPath, className);
     }
 
-    private CompilationThread compile(){
-        CompilationThread compileThread = new CompilationThread(consolePane, filePath);
-        compileThread.start();
-        try{
-            compileThread.join();
-        }catch(InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
-        return compileThread;
-    }
+    // private CompilationThread compile(){
+    //     CompilationThread compileThread = new CompilationThread(consolePane, filePath);
+    //     compileThread.start();
+    //     try{
+    //         compileThread.join();
+    //     }catch(InterruptedException e) {
+    //         System.out.println(e.getMessage());
+    //     }
+    //     return compileThread;
+    // }
 
     private void printError(Process process)throws IOException{
         InputStreamReader isr = new InputStreamReader(process.getErrorStream());
@@ -59,17 +59,17 @@ public class CompileRunThread extends Thread {
     }
 
     public void run() {
+        CompilationThread compileThread = new CompilationThread(consolePane, filePath);
         try {
-            CompilationThread compileThread = this.compile();
+//            CompilationThread compileThread = this.compile();
+            compileThread.start();
+            compileThread.join();
             // if compilation failed, return
             if(!compileThread.getExeState()){
                 return;
             }
             // start the process
             Process process = pb.start();
-            Writer isrssisrssisrss = new OutputStreamWriter(process.getOutputStream());
-            BufferedWriter isrssisrss = new BufferedWriter(isrssisrssisrss);
-            isrssisrss.write("Hello wrold");
             // wait for the process to complete or throw an error
             int errCode = process.waitFor();
             Platform.runLater(
@@ -87,7 +87,13 @@ public class CompileRunThread extends Thread {
         }catch(IOException e) {
             System.out.println(e.getMessage());
         }catch(InterruptedException e) {
-            System.out.println(e.getMessage());
+            if (compileThread.isAlive()) {
+                compileThread.interrupt();
+            } else {
+                Platform.runLater(
+                    () -> this.consolePane.appendText("Execution interrupted.")
+                );
+            }
         }
     }
 }

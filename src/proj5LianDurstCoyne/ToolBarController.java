@@ -35,8 +35,8 @@ public class ToolBarController {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
         thread.start();
         this.runningThread = thread;
-        try{ this.runningThread.join();}
-        catch (InterruptedException e){System.out.println("INTERRUPTED IN doCompilation!");}
+//        try{ this.runningThread.join();}
+//        catch (InterruptedException e){System.out.println("INTERRUPTED IN doCompilation!");}
     }
 
     /**
@@ -44,7 +44,6 @@ public class ToolBarController {
      */
     public void handleCompileButton(){
         this.disableCpCpRunButtons(true);
-        this.stopButton.setDisable(false);
 
         consolePane.clear();
 
@@ -68,10 +67,14 @@ public class ToolBarController {
         this.consolePane.appendText("Compiling: "+filePath+"\n");
         this.doCompilation(filePath);
 
-        if (!this.runningThread.isAlive()){
-            this.disableCpCpRunButtons(false); //enable compile and compile run
-            this.stopButton.setDisable(true);//disable stop
-        }
+        // if (!this.runningThread.isAlive()){
+            // this.disableCpCpRunButtons(false); //enable compile and compile run
+//            this.stopButton.setDisable(true);//disable stop
+        // }
+        new Thread(() -> {
+            while (runningThread != null && runningThread.isAlive()) {}
+            disableCpCpRunButtons(false);
+        }).start();
     }
 
 
@@ -79,14 +82,12 @@ public class ToolBarController {
         CompileRunThread compileRunThread = new CompileRunThread(this.consolePane, filePath, classPath, className);
         compileRunThread.start();
         this.runningThread = compileRunThread;
-        try{ this.runningThread.join();}
-        catch (InterruptedException e){System.out.println("INTERRUPTED IN doRun!");}
     }
 
 
     public void handleCprunButton() {
         this.disableCpCpRunButtons(true);
-        this.stopButton.setDisable(false);
+//        this.stopButton.setDisable(false);
 //        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
@@ -116,10 +117,15 @@ public class ToolBarController {
 
         this.doRun(classPath, className, pathToFile);
 
-        if (!this.runningThread.isAlive()){
-            this.disableCpCpRunButtons(false); //enable compile and compile run
-            this.stopButton.setDisable(true);//disable stop
-        }
+        new Thread(() -> {
+            while (runningThread != null && runningThread.isAlive()) {}
+            disableCpCpRunButtons(false);
+        }).start();
+
+//        if (!this.runningThread.isAlive()){
+//            this.disableCpCpRunButtons(false); //enable compile and compile run
+////            this.stopButton.setDisable(true);//disable stop
+//        }
     }
 
     
@@ -127,6 +133,7 @@ public class ToolBarController {
         if (this.runningThread != null) {
             this.runningThread.interrupt();
             this.runningThread = null;
+            disableCpCpRunButtons(false);
         }
         System.out.println("STOP IS PRESSED");
     }
@@ -134,7 +141,7 @@ public class ToolBarController {
     public void disableCpCpRunButtons(boolean disable){
         this.compileButton.setDisable(disable);
         this.cpRunButton.setDisable(disable);
-//        this.stopButton.setDisable(!b);
+        this.stopButton.setDisable(!disable);
     }
 
     /**
