@@ -6,11 +6,9 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 import java.io.*;
 
 public class CompileRunThread extends Thread {
-
     private ConsolePane consolePane;
     private String filePath;
     private ProcessBuilder pb;
-    private File errorFile;
 
     public CompileRunThread(
             ConsolePane consolePane, String filePath,
@@ -19,23 +17,27 @@ public class CompileRunThread extends Thread {
         this.filePath = filePath;
         // creating the process
         this.pb = new ProcessBuilder("java", "-cp", classPath, className);
-        // redirect error to error file
-        errorFile = new File("src/proj5LianDurstCoyne/ErrorLog.txt");
-        pb.redirectError(errorFile);
     }
 
     public void run() {
         try {
             CompilationThread compileThread = new CompilationThread(consolePane, filePath);
+            System.out.println("In CR thread, before starting compileThread");
             compileThread.start();
+            System.out.println("In CR thread, after starting compileThread");
             try{
                 compileThread.join();
+                System.out.println("In CR thread, after joining compileThread");
             }catch(InterruptedException e) {
                 System.out.println(e.getMessage());
             }
+            // if compilation failed, return
+            if(!compileThread.getCompileState()){
+                return;
+            }
+
             // start the process
             Process process = pb.start();
-            StringBuilder sb = new StringBuilder();
             // wait for the process to complete or throw an error
             int errCode = process.waitFor();
             Platform.runLater(
@@ -45,19 +47,22 @@ public class CompileRunThread extends Thread {
 
             // if there is an error, print the error
             if (errCode != 0) {
-                FileReader fr = new FileReader(errorFile);
-                BufferedReader br = new BufferedReader(fr);
+                InputStreamReader isr = new InputStreamReader(process.getErrorStream());
+                BufferedReader br = new BufferedReader(isr);
+                StringBuilder acc = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
-                    sb.append(line);
-                    sb.append("\n");
-                }
+                    acc.append(line+"\n");}
+                Platform.runLater(
+                        () -> consolePane.appendText("Error:\n" + acc.toString() + "\n")
+                );
                 br.close();
-                fr.close();
+                isr.close();
             }
             // print the output
-            BufferedReader br = null;
-            br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            InputStreamReader isr = new InputStreamReader(process.getInputStream());
+            BufferedReader br = new BufferedReader(isr);
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line + System.getProperty("line.separator"));
@@ -66,6 +71,8 @@ public class CompileRunThread extends Thread {
                     () -> consolePane.appendText(sb.toString())
             );
             br.close();
+            isr.close();
+
         }catch(IOException e) {
             System.out.println(e.getMessage());
         }catch(InterruptedException e) {
