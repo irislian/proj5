@@ -36,11 +36,11 @@ public class CompileRunThread extends Thread {
         StringBuilder sb = new StringBuilder();
         InputStreamReader isr = new InputStreamReader(process.getInputStream());
         BufferedReader br = new BufferedReader(isr);
-        String line;
-        while ((line = br.readLine()) != null) {
-            String s = line + System.getProperty("line.separator");
+        int line;
+        while ((line = br.read()) != '\0') {
+            char s =(char) line;
             Platform.runLater(
-                    () -> consolePane.appendText(s)
+                    () -> consolePane.appendText((String.valueOf(s)))
             );
         }
         br.close();
@@ -62,13 +62,11 @@ public class CompileRunThread extends Thread {
             Process process = pb.start();
 
             // print to console pane as new output is generated
-            new Thread() {
-                @Override
-                public void run() {
-                    try { printOutput(process);
-                    } catch(IOException e) {}
-                }
-            }.start();
+            new Thread(() -> {
+                try {
+                    printOutput(process);
+                } catch(IOException e) {}
+            }).start();
 
             // wait for the process to complete or throw an error
             int errCode = process.waitFor();
