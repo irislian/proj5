@@ -55,11 +55,10 @@ public class CompilationThread extends Thread {
                 );
             }
         } catch (IOException e ) {
-            System.out.println(e.getMessage());
+            System.out.println("IOException in CompilationThread "+e.getMessage());
         } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
             Platform.runLater(
-                        () -> this.consolePane.appendText("Compilation interrupted.")
+                        () -> this.consolePane.appendText("Compilation interrupted.\n")
                 );
         }
     }

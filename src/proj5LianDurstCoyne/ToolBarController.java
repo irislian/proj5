@@ -18,7 +18,6 @@ public class ToolBarController {
     private Button compileButton;
     private Button cpRunButton;
     private Button stopButton;
-//    private ToolBar toolBar;
 
     // initialize to null if no running threads
     private Thread runningThread = null;
@@ -33,15 +32,13 @@ public class ToolBarController {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
         thread.start();
         this.runningThread = thread;
-//        try{ this.runningThread.join();}
-//        catch (InterruptedException e){System.out.println("INTERRUPTED IN doCompilation!");}
     }
 
     /**
      *
      */
     public void handleCompileButton(){
-        this.disableCpCpRunButtons(true);
+        this.disableEnableButtons(true);
 
         consolePane.clear();
 
@@ -56,22 +53,13 @@ public class ToolBarController {
         }
 
         File file = tabFileMap.get(selectedTab);
-
-//        if(file == null){
-//            consolePane.appendText("file not saved yet in the map\n");
-//            return;
-//        }
         String filePath = Paths.get(file.toURI()).toString();
         this.consolePane.appendText("Compiling: "+filePath+"\n");
         this.doCompilation(filePath);
 
-        // if (!this.runningThread.isAlive()){
-            // this.disableCpCpRunButtons(false); //enable compile and compile run
-//            this.stopButton.setDisable(true);//disable stop
-        // }
         new Thread(() -> {
             while (runningThread != null && runningThread.isAlive()) {}
-            disableCpCpRunButtons(false);
+            disableEnableButtons(false);
         }).start();
     }
 
@@ -84,8 +72,7 @@ public class ToolBarController {
 
 
     public void handleCprunButton() {
-        this.disableCpCpRunButtons(true);
-//        this.stopButton.setDisable(false);
+        this.disableEnableButtons(true);
 //        consolePane.clear();
 
         // get the corresponding file of the selected tab from the tab pane
@@ -100,30 +87,21 @@ public class ToolBarController {
         }
         File file = tabFileMap.get(selectedTab);
 
-//        if(file == null){
-//            System.out.println("file is not in the map");
-//            return;
-//        }
-
         String pathToFile = Paths.get(file.toURI()).toString();
         String[] splitByJava = pathToFile.split(".ja");
 
         String pathNoJava = splitByJava[0];
-        String[] splitBySep = pathNoJava.split(File.separator);
+        String[] splitBySep = pathNoJava.split("\\\\");
         String className = splitBySep[splitBySep.length-1];
-        String classPath = pathNoJava.split(File.separator+className)[0];
+        String classPath = pathNoJava.split("\\\\"+className)[0];
 
         this.doRun(classPath, className, pathToFile);
 
         new Thread(() -> {
             while (runningThread != null && runningThread.isAlive()) {}
-            disableCpCpRunButtons(false);
+            disableEnableButtons(false);
         }).start();
 
-//        if (!this.runningThread.isAlive()){
-//            this.disableCpCpRunButtons(false); //enable compile and compile run
-////            this.stopButton.setDisable(true);//disable stop
-//        }
     }
 
     
@@ -131,12 +109,11 @@ public class ToolBarController {
         if (this.runningThread != null) {
             this.runningThread.interrupt();
             this.runningThread = null;
-            disableCpCpRunButtons(false);
+            disableEnableButtons(false);
         }
-        System.out.println("STOP IS PRESSED");
     }
 
-    public void disableCpCpRunButtons(boolean disable){
+    public void disableEnableButtons(boolean disable){
         this.compileButton.setDisable(disable);
         this.cpRunButton.setDisable(disable);
         this.stopButton.setDisable(!disable);

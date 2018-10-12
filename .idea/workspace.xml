@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef9c19bb-74d6-49f5-82f7-3de00d75330d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/proj5/proj5LianDurstCoyne/CompilationThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proj5/proj5LianDurstCoyne/CompilationThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proj5/proj5LianDurstCoyne/CompileRunThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proj5/proj5LianDurstCoyne/CompileRunThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proj5/proj5LianDurstCoyne/ToolBarController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proj5/proj5LianDurstCoyne/ToolBarController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/CompilationThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/CompilationThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/CompileRunThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/CompileRunThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ToolBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proj5LianDurstCoyne/ToolBarController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,13 +44,13 @@
         <counts>
           <entry key="css" value="1" />
           <entry key="fxml" value="50" />
-          <entry key="java" value="3763" />
+          <entry key="java" value="3894" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="JAVA" value="3763" />
+          <entry key="JAVA" value="3894" />
           <entry key="XML" value="50" />
         </counts>
       </usages-collector>
@@ -57,13 +62,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
+            <state relative-caret-position="299">
               <caret line="226" column="41" lean-forward="true" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
               <folding>
-                <element signature="e#2472#2473#0" expanded="true" />
-                <element signature="e#2533#2534#0" expanded="true" />
-                <element signature="e#7642#7643#0" expanded="true" />
                 <element signature="e#7699#7700#0" expanded="true" />
+                <element signature="e#7756#7757#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2584">
-              <caret line="151" selection-start-line="151" selection-end-line="151" />
+            <state relative-caret-position="38">
+              <caret line="438" column="7" selection-start-line="438" selection-start-column="7" selection-end-line="438" selection-end-column="7" />
               <folding>
                 <element signature="e#14054#14055#0" expanded="true" />
                 <element signature="e#14127#14128#0" expanded="true" />
@@ -86,11 +89,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-549">
+              <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ToolBarController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-361">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="36" />
+            <state relative-caret-position="-1843">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,10 +111,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ConsolePane.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/CompilationThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+            <state relative-caret-position="1083">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
               <folding>
                 <element signature="e#620#621#0" expanded="true" />
                 <element signature="e#650#651#0" expanded="true" />
@@ -111,11 +132,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/CompileRunThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="72" column="77" selection-start-line="72" selection-start-column="77" selection-end-line="72" selection-end-column="77" />
+            <state relative-caret-position="-247">
+              <caret line="70" column="22" lean-forward="true" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+              <folding>
+                <element signature="e#2215#2417#0" expanded="true" />
+                <element signature="e#2416#2417#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,9 +164,14 @@
       <find>system</find>
       <find>table</find>
       <find>system.out</find>
-      <find>handleclo</find>
       <find>tabcon</find>
       <find>.join</find>
+      <find>handleclo</find>
+      <find>execu</find>
+      <find>con</find>
+      <find>execution i</find>
+      <find>System.</find>
+      <find>sys</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -200,7 +230,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539369053896" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539382732243" />
     <property name="last_opened_file_path" value="D:/4上2018FA/CS361/proj4" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -240,8 +270,17 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="184" y="0" width="1076" height="676" extended-state="1" />
+    <frame x="184" y="0" width="1076" height="676" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20964567" />
@@ -253,11 +292,11 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290441" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20404412" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.20404412" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.3290441" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -321,21 +360,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="299">
           <caret line="226" column="41" lean-forward="true" selection-start-line="226" selection-start-column="41" selection-end-line="226" selection-end-column="41" />
           <folding>
-            <element signature="e#2472#2473#0" expanded="true" />
-            <element signature="e#2533#2534#0" expanded="true" />
-            <element signature="e#7642#7643#0" expanded="true" />
             <element signature="e#7699#7700#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ConsolePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -346,9 +376,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ErrorLog.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ErrorLog.txt" />
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ColoredCodeArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1513">
@@ -356,22 +384,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ProcessThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#636#637#0" expanded="true" />
-            <element signature="e#666#667#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ProcessThread.java" />
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/FileMenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
-          <caret line="151" selection-start-line="151" selection-end-line="151" />
+        <state relative-caret-position="38">
+          <caret line="438" column="7" selection-start-line="438" selection-start-column="7" selection-end-line="438" selection-end-column="7" />
           <folding>
             <element signature="e#14054#14055#0" expanded="true" />
             <element signature="e#14127#14128#0" expanded="true" />
@@ -383,10 +400,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-549">
+          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ToolBarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1843">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ConsolePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/CompilationThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        <state relative-caret-position="1083">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
             <element signature="e#620#621#0" expanded="true" />
             <element signature="e#650#651#0" expanded="true" />
@@ -396,17 +437,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/CompileRunThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="72" column="77" selection-start-line="72" selection-start-column="77" selection-end-line="72" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/proj5LianDurstCoyne/ToolBarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-361">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="36" />
+        <state relative-caret-position="-247">
+          <caret line="70" column="22" lean-forward="true" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2215#2417#0" expanded="true" />
+            <element signature="e#2416#2417#0" expanded="true" />
           </folding>
         </state>
       </provider>

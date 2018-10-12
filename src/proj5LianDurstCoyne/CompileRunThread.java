@@ -83,13 +83,13 @@ public class CompileRunThread extends Thread {
             }
 
         }catch(IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("IOException in CompilationThread "+e.getMessage());
         }catch(InterruptedException e) {
             if (compileThread.isAlive()) {
                 compileThread.interrupt();
             } else {
                 Platform.runLater(
-                    () -> this.consolePane.appendText("Execution interrupted.")
+                    () -> this.consolePane.appendText("Execution interrupted.\n")
                 );
             }
         }
