@@ -1,6 +1,5 @@
 package proj5LianDurstCoyne;
 
-import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -27,9 +26,8 @@ public class ToolBarController {
 
     /**
      *
-     * @param filePath
+     * @param filePath the path to the selected file
      *
-     * TODO: DO A TRY CATCH and this should return a boolean indicating whether it succeeds
      */
     private void doCompilation(String filePath) {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
