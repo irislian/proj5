@@ -62,13 +62,11 @@ public class CompileRunThread extends Thread {
             Process process = pb.start();
 
             // print to console pane as new output is generated
-            new Thread() {
-                @Override
-                public void run() {
-                    try { printOutput(process);
-                    } catch(IOException e) {}
-                }
-            }.start();
+            new Thread(() -> {
+                try {
+                    printOutput(process);
+                } catch(IOException e) {}
+            }).start();
 
             // wait for the process to complete or throw an error
             int errCode = process.waitFor();
