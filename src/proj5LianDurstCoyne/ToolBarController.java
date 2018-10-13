@@ -40,7 +40,6 @@ public class ToolBarController {
     /**
      * a helper method which compiles a java program.
      * @param filePath the path to the file that is to be compiled.
-     *
      */
     private void doCompilation(String filePath) {
         CompilationThread thread = new CompilationThread(consolePane, filePath);
@@ -111,7 +110,7 @@ public class ToolBarController {
      *      method returns and no further action is taken.
      *   4. If the user selected yes, the file is saved.
      *   5. The file is compiled, and then run.
-     * @param fmCtrl
+     * @param fmCtrl the FileMenuController which is instantiated within the Controller class.
      */
     public void handleCprunButton(FileMenuController fmCtrl) {
         this.disableEnableButtons(true);

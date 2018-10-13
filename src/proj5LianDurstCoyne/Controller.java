@@ -29,6 +29,8 @@ import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
  *  @author Iris Lian
  *  @author Chris Marcello
  *  @author Evan Savillo
+ *  @author Robert Durst
+ *  @author Michael Coyne
  */
 public class Controller
 {
@@ -258,13 +260,7 @@ public class Controller
      * when ok button inside the dialog is clicked.
      */
     @FXML private void handleCompileButtonAction() {
-//        try {
             toolBarController.handleCompileButton(fileMenuController);
-//        } catch (IOException e1) {
-//            printStackTrace(e1);
-//        } catch (InterruptedException e2){
-//            printStackTrace(e2);
-//        }
     }
 
     /**
@@ -272,7 +268,7 @@ public class Controller
      * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
      */
     @FXML private void handleCpRunButtonAction() {
-            toolBarController.handleCprunButton(fileMenuController);
+        toolBarController.handleCprunButton(fileMenuController);
     }
 
     /**

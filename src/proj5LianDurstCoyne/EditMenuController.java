@@ -19,6 +19,8 @@ import org.fxmisc.richtext.CodeArea;
  *  @author Iris Lian
  *  @author Chris Marcello
  *  @author Evan Savillo
+ *  @author Robert Durst
+ *  @author Michael Coyne
  */
 class EditMenuController
 {

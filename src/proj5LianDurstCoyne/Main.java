@@ -30,6 +30,8 @@ import javafx.scene.Parent;
  * @author Evan Savillo
  * @author Chris Marcello
  * @author Yi Feng
+ * @author Robert Durst
+ * @author Michael Coyne
  */
 public class Main extends Application
 {

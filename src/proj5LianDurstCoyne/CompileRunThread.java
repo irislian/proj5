@@ -73,7 +73,6 @@ public class CompileRunThread extends Thread {
      * @throws IOException an exception which may occur due to an error in input or output.
      */
     private void printOutput(Process process) throws IOException{
-        StringBuilder sb = new StringBuilder();
         InputStreamReader isr = new InputStreamReader(process.getInputStream());
         BufferedReader br = new BufferedReader(isr);
         int line;

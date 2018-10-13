@@ -1,10 +1,3 @@
-/*
-File: UserErrorDialog.java
-CS361 Project 4
-Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
-Date: 10/02/18
-*/
-
 package proj5LianDurstCoyne;
 
 import javafx.scene.control.Alert;

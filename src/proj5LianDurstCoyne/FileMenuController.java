@@ -29,6 +29,8 @@ import java.util.*;
  *  @author Iris Lian
  *  @author Chris Marcello
  *  @author Evan Savillo
+ *  @author Robert Durst
+ *  @author Michael Coyne
  */
 class FileMenuController
 {
@@ -69,7 +71,8 @@ class FileMenuController
         // set the title and the content of the About window
         dialog.setTitle("About");
         dialog.setHeaderText("Authors");
-        dialog.setContentText("Yi Feng,\nIris Lian,\nChristopher Marcello,\nand Evan Savillo");
+        dialog.setContentText("Project 5: Iris Lian, Robert Durst, and Michael Coyne\n"+
+                "Project 4: Yi Feng,Iris Lian,Christopher Marcello,and Evan Savillo");
 
         // enable to resize the About window
         dialog.setResizable(true);
@@ -237,7 +240,6 @@ class FileMenuController
                 return;
             }
         }
-
         Platform.exit();
     }
 
@@ -433,7 +435,8 @@ class FileMenuController
 
     /**
      * Simple helper method which creates a new tab and adds it to the tab pane
-     * TODO: Modify javadoc header
+     * If the tab is closed by clicking the 'x', the toolbar will be disabled if
+     * this is the last tab remained
      * @return a new tab
      */
     private Tab createNewTab(){
@@ -467,7 +470,7 @@ class FileMenuController
     }
 
     /*
-     * Simple helper method
+     * Simple helper method checking if there are any tabs
      *
      * @return true if there aren't currently any tabs open, else false
      */
