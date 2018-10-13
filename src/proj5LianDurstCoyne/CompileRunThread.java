@@ -4,20 +4,54 @@ import javafx.application.Platform;
 
 import java.io.*;
 
-public class CompileRunThread extends Thread {
-    private ConsolePane consolePane;
-    private String filePath;
-    private ProcessBuilder pb;
 
+/**
+ * This class extends Thread, and is used to compile and then run a .java program
+ * in its own thread. This is so the GUI does not
+ * freeze while a program is being compiled. The run() method is the most important
+ * method in the class; it is executed when the thread is started using the start()
+ * method, which is inherited from the Thread class.
+ */
+public class CompileRunThread extends Thread {
+
+    /**
+     * the ConsolePane object where text is to be appended. The text in the consolePane
+     * is seen by the user in the IO console.
+     */
+    private ConsolePane consolePane;
+
+    /**
+     * the path to the file which is to be compiled and run.
+     */
+    private String filePath;
+    /**
+     * the process which is to be executed by the thread. This process runs the java program with
+     * the system command "java" and the "-cp" option to specify the classpath.
+     */
+    private ProcessBuilder runPB;
+
+    /**
+     * @param consolePane the ConsolePane object where text is to be appended, and displayed to
+     *                    the user.
+     * @param filePath    the path to file which is to be compiled and run.
+     * @param classPath   the path to the directory where the .class file is stored.
+     * @param className   the name of the class which is to be run.
+     */
     public CompileRunThread(
             ConsolePane consolePane, String filePath,
             String classPath, String className) {
         this.consolePane = consolePane;
         this.filePath = filePath;
         // creating the process
-        this.pb = new ProcessBuilder("java", "-cp", classPath, className);
+        this.runPB = new ProcessBuilder("java", "-cp", classPath, className);
     }
 
+    /**
+     * a helper method which is used for printing errors encountered while attempting
+     * to run the java program.
+     * @param process the process which is executed by the thread.
+     * @throws IOException an exception which may occur due to an error in input or output.
+     */
     private void printError(Process process)throws IOException{
         InputStreamReader isr = new InputStreamReader(process.getErrorStream());
         BufferedReader br = new BufferedReader(isr);
@@ -32,6 +66,12 @@ public class CompileRunThread extends Thread {
         br.close();
     }
 
+    /**
+     * A helper method used for printing output to the consolePane so that the user
+     * can view it.
+     * @param process the process which is executed by the thread.
+     * @throws IOException an exception which may occur due to an error in input or output.
+     */
     private void printOutput(Process process) throws IOException{
         StringBuilder sb = new StringBuilder();
         InputStreamReader isr = new InputStreamReader(process.getInputStream());
@@ -47,6 +87,12 @@ public class CompileRunThread extends Thread {
         isr.close();
     }
 
+    /**
+     * the method which is run when the thread is started using the start() method inherited from
+     * Thread. In this method, the .java program is compiled and then run. Any errors which
+     * occur during compilation or execution are printed to the consolePane so that the user
+     * can view them.
+     */
     public void run() {
         CompilationThread compileThread = new CompilationThread(consolePane, filePath);
         try {
@@ -58,8 +104,9 @@ public class CompileRunThread extends Thread {
             if(!compileThread.getExeState()){
                 return;
             }
+
             // start the process
-            Process process = pb.start();
+            Process process = runPB.start();
 
             // print to console pane as new output is generated
             new Thread(() -> {

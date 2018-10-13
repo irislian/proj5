@@ -4,24 +4,66 @@ import javafx.application.Platform;
 
 import java.io.*;
 
+/**
+ * This class extends Thread, and is a class meant exclusively for handling the
+ * compilation of .java files within a thread. This is so the GUI does not
+ * freeze while a program is being compiled. The run() method is the most important
+ * method in the class; it is executed when the thread is started using the start()
+ * method, which is inherited from the Thread class.
+ */
+
 public class CompilationThread extends Thread {
+
+    /**
+     * a ConsolePane object which output text is appended to, so that the text may be
+     * displayed in the GUI.
+     */
     private ConsolePane consolePane;
+    /**
+     * the path to the file which is to be compiled.
+     */
     private String filePath;
+
+    /**
+     * a ProcessBuilder object which executes the operating system command "javac", which
+     * compiles a .java file.
+     */
     private ProcessBuilder pb;
+
+    /**
+     * a boolean value that indicates whether the thread successfully executed.
+     */
     private boolean succeed;
 
+    /**
+     * When the class is instantiated, a ProcessBuilder is initialized, which
+     * is the process to be run by the thread.
+     * @param consolePane the consolePane is the output area where text is to be
+     *                    displayed
+     * @param filePath the filePath is the path to the file which is to be
+     *                 compiled.
+     */
     public CompilationThread(ConsolePane consolePane, String filePath) {
         this.consolePane = consolePane;
         this.filePath = filePath;
-        // creating the process
         this.pb = new ProcessBuilder("javac", filePath);
         this.succeed = true;
     }
 
+    /**
+     *
+     * @return a boolean value which indicates whether the thread successfully executed.
+     */
     public boolean getExeState(){
         return succeed;
     }
 
+    /**
+     * a helper method for printing errors to the consolePane.
+     * @param process the process which is being executed by the thread.
+     * @throws IOException an exception that indicates that there was an error
+     *                     with input.
+     */
     private void printError(Process process)throws IOException{
         InputStreamReader isr = new InputStreamReader(process.getErrorStream());
         BufferedReader br = new BufferedReader(isr);
@@ -36,6 +78,13 @@ public class CompilationThread extends Thread {
         br.close();
     }
 
+    /**
+     * This method is executed when the thread is started using the start() method.
+     * Within this method:
+     * 1. The .java file is compiled.
+     * 2. If any errors occurred during compilation, they are printed to the consolePane
+     *    so that the can see them.
+     */
     public void run() {
         // start the process
         try {

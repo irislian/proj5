@@ -33,13 +33,10 @@ import java.util.*;
 class FileMenuController
 {
     private TabPane tabPane;
-
     private MenuItem closeMenuItem;
     private MenuItem saveMenuItem;
     private MenuItem saveAsMenuItem;
-
     private Stage primaryStage;
-
     private ToolBar toolBar;
 
     /**
