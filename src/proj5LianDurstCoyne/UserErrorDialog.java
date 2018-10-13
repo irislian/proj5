@@ -1,3 +1,10 @@
+/*
+    File: UserErrorDialog.java
+    CS361 Project 5
+    Names: Iris Lian, Robert Durst, and Michael Coyne
+    Date: 10/12/18
+*/
+
 package proj5LianDurstCoyne;
 
 import javafx.scene.control.Alert;
