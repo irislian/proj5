@@ -259,7 +259,7 @@ public class Controller
      */
     @FXML private void handleCompileButtonAction() {
 //        try {
-            toolBarController.handleCompileButton();
+            toolBarController.handleCompileButton(fileMenuController);
 //        } catch (IOException e1) {
 //            printStackTrace(e1);
 //        } catch (InterruptedException e2){
@@ -272,7 +272,7 @@ public class Controller
      * Sets the text of Goodbye button to "Yah, sure!" when the Goodbye button is clicked.
      */
     @FXML private void handleCpRunButtonAction() {
-            toolBarController.handleCprunButton();
+            toolBarController.handleCprunButton(fileMenuController);
     }
 
     /**

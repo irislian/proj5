@@ -334,7 +334,7 @@ class FileMenuController
      * @return true if the tab content has not been saved to any file yet,
      * or have been changed since last save.
      */
-    private boolean tabNeedsSaving(Tab tab)
+    boolean tabNeedsSaving(Tab tab)
     {
         // check whether the embedded text has been saved or not
         if (this.tabFileMap.get(tab) == null)
